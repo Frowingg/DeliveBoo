@@ -13,7 +13,7 @@ class CreateUserCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_category', function (Blueprint $table) {
+        Schema::create('category_user', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
 
@@ -29,6 +29,6 @@ class CreateUserCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_category');
+        Schema::dropIfExists('category_user');
     }
 }

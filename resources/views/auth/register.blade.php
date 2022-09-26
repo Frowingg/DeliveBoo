@@ -88,7 +88,18 @@
                                     </label>           
                                 </div> --}}
 
-                        <div class="mb-3">
+                        Categorie:                           
+                        @foreach($categories as $category)
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" name="categories[]">
+                                <label class="form-check-label" for="category-{{ $category->id }}">
+                                    {{ $category->name }}
+                                </label>
+                                
+                            </div>
+                        @endforeach
+                        {{-- <div class="mb-3">
                             Categorie:                           
                             @foreach($categories as $category)
                                 <div class="custom-control custom-switch">
@@ -96,7 +107,7 @@
                                     <label class="custom-control-label" for="category-{{ $category->id }}">{{ $category->name }}</label>
                                 </div>
                             @endforeach
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

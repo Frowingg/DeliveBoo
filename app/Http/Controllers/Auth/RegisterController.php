@@ -56,7 +56,8 @@ class RegisterController extends Controller
             'VAT_number' => ['required', 'string', 'max:11', 'min:11'],
             // 'user_cover' => ['mimes:jpeg,jpg,png', 'max:1024'],
             // 'user_cover' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string'],
         ]);
     }
 
@@ -69,8 +70,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {      
+        // dd($data);
+        // $user = User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'address' => $data['address'],
+        //     'VAT_number' => $data['VAT_number'],
+        //     'user_cover' => $data['user_cover'],
+            
+        //     'password' => Hash::make($data['password']),
+        // ]);
 
-        return User::create([
+        // return 
+
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'address' => $data['address'],
@@ -78,6 +92,10 @@ class RegisterController extends Controller
             'user_cover' => $data['user_cover'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->categories()->sync($data['categories']);
+
+        return $user;
     }
 
     public function showRegistrationForm()
