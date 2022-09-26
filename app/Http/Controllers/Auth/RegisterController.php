@@ -52,6 +52,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'address' => ['required', 'string', 'max:255'],
+            'VAT_number' => ['required', 'string', 'max:11', 'min:11'],
+            // 'user_cover' => ['mimes:jpeg,jpg,png', 'max:1024'],
+            // 'user_cover' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -61,13 +65,27 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \App\User
+     * 
      */
     protected function create(array $data)
-    {
+    {      
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'address' => $data['address'],
+            'VAT_number' => $data['VAT_number'],
+            'user_cover' => $data['user_cover'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        $categories = \App\Category::all();
+        $data = [
+            'categories' => $categories
+        ];
+        return view('auth.register', $data);
     }
 }
