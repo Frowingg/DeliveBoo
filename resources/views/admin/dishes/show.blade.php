@@ -6,8 +6,8 @@
         <img class="w-50" src="{{ asset('storage/' . $dish->dish_cover )}}" alt="$dish->name">
     @endif
         <h3>Categoria: {{ $dish->category ? $dish->category->name : 'Nessuna' }}</h3>
-        <div>Data creazine: {{$dish->created_at->format('D d-m-Y')}}</div>
-        <div>Ultimo aggiornamento: {{$dish->updated_at->format('D d-m-Y / H.i' )}}</div>
+        {{-- <div>Data creazine: {{$dish->created_at->format('D d-m-Y')}}</div> --}}
+        {{-- <div>Ultimo aggiornamento: {{$dish->updated_at->format('D d-m-Y / H.i' )}}</div> --}}
         {{-- <div>Slug: {{$dish->slug}}</div> --}}
         <h2>Ingredienti:</h2>
         <p>{{$dish->ingredients}}</p>
@@ -25,14 +25,14 @@
         <h3>Descrizione:</h3>
         <p>{{$dish->description}}</p>
         
-        {{-- <div class="d-flex">
-            <a class="btn btn-primary mr-3" href="{{ route('admin.dishs.edit', ['dish' => $dish->id]) }}"> Modifica dish</a>
+        <div class="d-flex">
+            <a class="btn btn-primary mr-3" href="{{ route('admin.dishes.edit', ['dish' => $dish->id]) }}"> Modifica Piatto</a>
 
-            <form action="{{route('admin.dishs.destroy', ['dish' => $dish->id ])}}" method="post">
+            <form action="{{route('admin.dishes.destroy', ['dish' => $dish->id ])}}" method="post">
                 @csrf
                 @method('DELETE')
-                <input class="btn btn-danger mr-3" type="submit" value="Elimina" onClick="return confirm('Sicuro di cancellare il dish');">
+                <input class="btn btn-danger mr-3" type="submit" value="Elimina" onClick="return confirm('Sicuro di cancellare il Piatto');">
             </form>
 
-        </div> --}}
+        </div>
 @endsection

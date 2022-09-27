@@ -3,11 +3,11 @@
 
 
 <h1>Tutti i Piatti</h1>
-{{-- @if ($deleted_message)
+@if ($deleted_message)
     <div class="alert alert-info" role="alert">
-        Post eliminato correttamente
+        Piatto eliminato corretamente
     </div>   
-@endif --}}
+@endif
 
     <div class="row row-cols-3 ">
         @foreach ($dishes as $dish)

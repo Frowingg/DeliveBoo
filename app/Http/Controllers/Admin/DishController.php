@@ -21,14 +21,15 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $dishes = Dish::paginate(6);
-        // $request_info= $request->all();
-        $this->getDifferentDay($dishes);
+        $request_info= $request->all();
+        $deleted_message = isset($request_info['deleted']) ? $request_info['deleted'] : null;
+        // $this->getDifferentDay($dishes);
         $data = [
             'dishes'=> $dishes,
-            // 'deleted_message' => $deleted_message,
+            'deleted_message' => $deleted_message,
         ];
 
         return view('admin.dishes.index', $data);
@@ -71,11 +72,14 @@ class DishController extends Controller
         $user = Auth::user();
         $form_data['user_id'] = $user->id;
 
+        if ( ! $request->has('available')) {
+            // Do something when checkbox isn't checked.
+            $form_data['available'] = 0;
+         } else {
+            $form_data['available'] = 1;
+         }
+
         $new_dish -> fill($form_data);
-        
-        if(!isset($form_data->available)){
-            $new_dish['available'] = 0;
-        }
         dd($new_dish);
         // $new_dish->slug = $this->getSlug($new_dish->title);
         $new_dish->save();
@@ -115,8 +119,15 @@ class DishController extends Controller
      */
     public function edit($id)
     {
-        //
+          $dish = Dish::findOrFail($id);
+    
+            $data = [
+            'dish'=> $dish
+        ];
+
+        return view('admin.dishes.edit', $data);
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -127,7 +138,27 @@ class DishController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate($this->getValidation());
+        $form_data = $request->all();
+        $dish_to_update = Dish::findOrFail($id);
+
+        if(isset($form_data['dish_cover'])) {
+            if($dish_to_update->dish_cover){
+                Storage::delete($dish_to_update->dish_cover);
+            }
+            $img_path = Storage::put('dish-covers', $form_data['dish_cover']);
+            $form_data['dish_cover'] = $img_path;
+        }
+
+        // if ($form_data['title'] !== $post_to_update->title) {
+        //     $form_data['slug'] = $this->getSlug($form_data['title']);
+        //    }else{
+        //     $form_data['slug'] = $post_to_update->slug;
+        // }
+
+        $dish_to_update->update($form_data);
+
+        return redirect()-> route('admin.dishes.show', ['dish' => $dish_to_update->id]);
     }
 
     /**
@@ -137,9 +168,21 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    
     {
-        //
+        {
+            $delete_dish = Dish::findOrFail($id);
+            // $delete_dish->tags()->sync([]);
+
+            if($delete_dish->dish_cover){
+                Storage::delete($delete_dish->dish_cover);
+            }
+
+            $delete_dish->delete();
+            return redirect()->route('admin.dishes.index', ['deleted'=> 'yes']);    
+        }
     }
+    
 
     protected function getValidation() {
         return [
@@ -151,10 +194,10 @@ class DishController extends Controller
         ];
     }
 
-    protected function getDifferentDay($posts){
-        $today = Carbon::now();
-        foreach($posts as $post){
-            $post['updated_days_ago'] = $post -> updated_at-> diffInDays($today);
-        }
-    }
+    // protected function getDifferentDay($dishes){
+    //     $today = Carbon::now();
+    //     foreach($dishes as $dish){
+    //         $dish['updated_days_ago'] = $dish -> updated_at-> diffInDays($today);
+    //     }
+    // }
 }
