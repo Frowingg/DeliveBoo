@@ -22,7 +22,7 @@
                   <div> Aggiornato: {{$dish->updated_days_ago}} giorn{{$dish->updated_days_ago > 1 ? 'i' : 'o' }} fa</div>
                   @endif --}}
                   
-                  {{-- <a href="{{ route('admin.dishs.show', ['dish' => $dish->id]) }}" class="btn btn-primary mt-1">Vedi articolo</a> --}}
+                  <a href="{{ route('admin.dishes.show', ['dish' => $dish->id]) }}" class="btn btn-primary mt-1">Vedi Prodotto</a>
                 </div>
             </div>
         </div> 

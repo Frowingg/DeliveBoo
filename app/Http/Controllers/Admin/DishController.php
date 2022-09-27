@@ -9,9 +9,10 @@ use App\Category;
 use App\Order;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Mail;
 // use App\Mail\NewPostAdminEmail;
-// use Carbon\Carbon;
+use Carbon\Carbon;
 
 class DishController extends Controller
 {
@@ -24,7 +25,7 @@ class DishController extends Controller
     {
         $dishes = Dish::paginate(6);
         // $request_info= $request->all();
-
+        $this->getDifferentDay($dishes);
         $data = [
             'dishes'=> $dishes,
             // 'deleted_message' => $deleted_message,
@@ -67,7 +68,14 @@ class DishController extends Controller
         }
 
         $new_dish = new Dish();
+        $user = Auth::user();
+        $form_data['user_id'] = $user->id;
+
         $new_dish -> fill($form_data);
+        
+        if(!isset($form_data->available)){
+            $new_dish['available'] = 0;
+        }
         dd($new_dish);
         // $new_dish->slug = $this->getSlug($new_dish->title);
         $new_dish->save();
@@ -87,7 +95,16 @@ class DishController extends Controller
      */
     public function show($id)
     {
-        //
+        {
+            $dish = Dish::findOrFail($id);
+            $now = Carbon::now();
+    
+            $data = [
+                'dish'=> $dish 
+            ];
+    
+            return view('admin.dishes.show', $data);
+        }
     }
 
     /**
@@ -132,5 +149,12 @@ class DishController extends Controller
             'price' => 'required|numeric|between:0,999.99',
             'dish_cover' => 'nullable|file|mimes:jpeg,jpg,bmp,png'
         ];
+    }
+
+    protected function getDifferentDay($posts){
+        $today = Carbon::now();
+        foreach($posts as $post){
+            $post['updated_days_ago'] = $post -> updated_at-> diffInDays($today);
+        }
     }
 }

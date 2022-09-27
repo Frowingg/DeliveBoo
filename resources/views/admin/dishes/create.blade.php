@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 @section('content')
+  
     <h1>Crea nuovo Piatto</h1>
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -28,7 +29,8 @@
             </div>
 
             <div class="custom-control custom-switch">
-                <input class="custom-control-input" type="checkbox" id="available" checked>
+                <input class="custom-control-input" type="checkbox" id="available" name="available" value="1"checked>
+                {{-- <input type="hidden" name="available" value="0"> --}}
                 <label class="custom-control-label" for="available">Disponibilità</label>
             </div>
 
