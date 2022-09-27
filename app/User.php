@@ -28,6 +28,16 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Category');
     }
 
+    public function orders() {
+        return $this->belongsToMany('App\Order');
+    }
+
+    public function dish() {
+        return $this->belongsTo('App\Dish');
+    }
+
+
+
     /**
      * The attributes that should be hidden for arrays.
      *

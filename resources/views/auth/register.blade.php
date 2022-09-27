@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -80,14 +80,6 @@
                             </div>
                         </div>
 
-                                                       {{-- <div class="form-check">            
-                                    <input class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="tag-{{ $tag->id }}" name="tags[]" 
-                                    {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="tag-{{ $tag->id }}">
-                                        {{ $tag->name }}
-                                    </label>           
-                                </div> --}}
-
                         Categorie:                           
                         @foreach($categories as $category)
                             <div class="form-check">
@@ -99,15 +91,6 @@
                                 
                             </div>
                         @endforeach
-                        {{-- <div class="mb-3">
-                            Categorie:                           
-                            @foreach($categories as $category)
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="category-{{ $category->id }}" name="categories[]">
-                                    <label class="custom-control-label" for="category-{{ $category->id }}">{{ $category->name }}</label>
-                                </div>
-                            @endforeach
-                        </div> --}}
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
