@@ -20,7 +20,6 @@ class CreateDishesTable extends Migration
             $table->text('ingredients');
             $table->decimal('price');
             $table->smallInteger('available');
-            // $table->bigInteger('user_id');
             $table->string('dish_cover', 255)->nullable();
             $table->timestamps();
         });
