@@ -13,19 +13,55 @@ class OrdersTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i = 0; $i < 10; $i++){
-            $new_dish = new Order();
 
-            $new_dish->name = $faker->word();
-            $new_dish->lastname = $faker->word();
-            $new_dish->address = $faker->word(5, true);
-            $new_dish->quantity = $faker-> randomNumber(2, false);
-            $new_dish->total_price = $faker-> randomNumber(3, false);
-            $new_dish->email = $faker->word();  
-            $new_dish->user_id = rand(1,7);          
+        $orders = [
+            [
+                'name' => 'Giacomo',
+                'lastname' => 'Rossi',
+                'address' => 'Via Roma, 1',
+                'quantity' => 1,
+                'total_price' => 10,
+                'email' => 'Giacomo@email.it',
+                'user_id' => 1
+            ],
+            [
+                'name' => 'Davide',
+                'lastname' => 'Pisani',
+                'address' => 'Via Pisani, 10',
+                'quantity' => 4,
+                'total_price' => 50,
+                'email' => 'Davide@email.it',
+                'user_id' => 1
+            ],
+            [
+                'name' => 'Paolo',
+                'lastname' => 'Verdi',
+                'address' => 'Via Palermo, 12',
+                'quantity' => 2,
+                'total_price' => 100,
+                'email' => 'Paolo@email.it',
+                'user_id' => 1
+            ]
+        ];
 
-            $new_dish->save();
+        foreach($orders as $order){
+            $new_order = new Order();
 
+            $new_order->name = $order['name'];
+            $new_order->lastname = $order['lastname'];
+            $new_order->address = $order['address'];
+            $new_order->quantity = $order['quantity'];
+            $new_order->total_price = $order['total_price'];
+            $new_order->email = $order['email'];  
+            $new_order->user_id = $order['user_id'];          
+
+            
+            
+            $new_order->save();
+            
+            $new_order->dishes()->sync(rand(1,10));
         }
+
+        
     }
 }
