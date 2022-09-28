@@ -14,12 +14,13 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            'italiana',
-            'cinese',
-            'giapponese',
-            'indiana',
-            'araba',
-            'messicana'
+            'Italiana',
+            'Asiatica',
+            'Messicana',
+            'Francese',
+            'Americana',
+            'Greca',
+            'Vegana',
         ];
 
         foreach($categories as $category) {

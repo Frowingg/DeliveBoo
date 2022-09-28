@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -55,6 +56,7 @@ class RegisterController extends Controller
             'address' => ['required', 'string', 'max:255'],
             'VAT_number' => ['required', 'string', 'max:11', 'min:11'],
             'user_cover' => ['mimes:jpeg,jpg,png', 'max:1024'],
+            'categories' => ['required'],
             // 'user_cover' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
             'password' => ['required', 'string'],
@@ -83,6 +85,10 @@ class RegisterController extends Controller
 
         // return 
 
+        if(isset($data['user_cover'])){
+            $img_path = Storage::put('user-covers', $data['user_cover']);
+            $data['user_cover'] = $img_path;
+        }
 
         $user = User::create([
             'name' => $data['name'],

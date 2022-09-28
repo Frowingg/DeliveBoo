@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>bububabab</h1>
+    <a href="/admin">Vai alla admin</a>
+    <h1></h1>
 </body>
 </html>
