@@ -1,21 +1,21 @@
 @extends('layouts.dashboard')
 @section('content')
 
+
+
 <h1 class="mb-4">Benvenuto {{$user->name}}</h1>
 <span>DEBUG: {{$user->id}}</span>
 <div class="row row-cols-2">
     <div class="col">
         <h2>I miei ordini:</h2>
         <ul>
-            <li>Ciao</li>
-            <li>Ciao</li>
-            <li>Ciao</li>
-            <li>Ciao</li>
-            <li>Ciao</li>
-            <li>Ciao</li>
-            <li>Ciao</li>
-            <li>Ciao</li>
-            <li>Ciao</li>
+            @foreach ($orders as $order)
+                <div class="mb-4">
+                    <div>Cliente: {{$order->name}}</div>
+                    <div>Totale: {{$order->total_price}}</div>
+                    <a href="#">Dettagli ordine</a>
+                </div>
+            @endforeach
         </ul>
     </div>
     <div class="col">

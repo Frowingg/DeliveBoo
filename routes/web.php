@@ -23,6 +23,7 @@ Route::middleware('auth')
 ->prefix('admin')
 ->group(function(){
     Route::get('/', 'HomeController@index',)->name('home');
+    Route::get('/order', 'HomeController@show',)->name('order');
     Route::resource('dishes', 'DishController');
 });
 

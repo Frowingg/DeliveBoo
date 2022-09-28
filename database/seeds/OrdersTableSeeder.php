@@ -22,7 +22,7 @@ class OrdersTableSeeder extends Seeder
                 'quantity' => 1,
                 'total_price' => 10,
                 'email' => 'Giacomo@email.it',
-                'user_id' => 1
+                'user_id' => rand(1,5)
             ],
             [
                 'name' => 'Davide',
@@ -31,7 +31,7 @@ class OrdersTableSeeder extends Seeder
                 'quantity' => 4,
                 'total_price' => 50,
                 'email' => 'Davide@email.it',
-                'user_id' => 1
+                'user_id' => rand(1,5)
             ],
             [
                 'name' => 'Paolo',
@@ -40,7 +40,7 @@ class OrdersTableSeeder extends Seeder
                 'quantity' => 2,
                 'total_price' => 100,
                 'email' => 'Paolo@email.it',
-                'user_id' => 1
+                'user_id' => rand(1,5)
             ]
         ];
 
@@ -62,6 +62,6 @@ class OrdersTableSeeder extends Seeder
             $new_order->dishes()->sync(rand(1,10));
         }
 
-        
+
     }
 }
