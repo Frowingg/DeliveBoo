@@ -3,7 +3,7 @@
     {{-- {{dd($dish)}} --}}
     <h1>{{$dish->name}}</h1>
     @if ($dish->dish_cover)
-        <img class="w-50" src="{{ asset('storage/' . $dish->dish_cover )}}" alt="$dish->name">
+        <img class="w-50" src="{{ asset('storage/' . $dish->dish_cover )}}" alt="{{$dish->name}}">
     @endif
         <h3>Categoria: {{ $dish->category ? $dish->category->name : 'Nessuna' }}</h3>
         {{-- <div>Data creazine: {{$dish->created_at->format('D d-m-Y')}}</div> --}}

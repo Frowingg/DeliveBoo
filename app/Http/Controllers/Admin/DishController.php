@@ -23,7 +23,8 @@ class DishController extends Controller
      */
     public function index(Request $request)
     {
-        $dishes = Dish::paginate(6);
+        // $dishes = Dish::paginate(6);
+        $dishes = Dish::orderBy('name','asc')->paginate(1);
         $request_info= $request->all();
         $deleted_message = isset($request_info['deleted']) ? $request_info['deleted'] : null;
         // $this->getDifferentDay($dishes);
@@ -80,7 +81,7 @@ class DishController extends Controller
          }
 
         $new_dish -> fill($form_data);
-        dd($new_dish);
+        
         // $new_dish->slug = $this->getSlug($new_dish->title);
         $new_dish->save();
     
@@ -141,6 +142,13 @@ class DishController extends Controller
         $request->validate($this->getValidation());
         $form_data = $request->all();
         $dish_to_update = Dish::findOrFail($id);
+
+        if ( ! $request->has('available')) {
+            // Do something when checkbox isn't checked.
+            $form_data['available'] = 0;
+         } else {
+            $form_data['available'] = 1;
+         }
 
         if(isset($form_data['dish_cover'])) {
             if($dish_to_update->dish_cover){

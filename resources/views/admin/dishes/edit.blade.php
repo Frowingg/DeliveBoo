@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 @section('content')
-  
-    <h1>Crea nuovo Piatto</h1>
+    <h1>Modifica Piatto</h1>
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -11,7 +10,7 @@
             </ul>
         </div>
     @endif
-        <form action="{{route('admin.dishes.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('admin.dishes.update', ['dish' => $dish->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -30,7 +29,7 @@
             </div>
 
             <div class="custom-control custom-switch">
-                {{-- <input class="custom-control-input" type="checkbox" id="available" name="available" value=1 {{ old('available', $dish->available )  == $dish->available   ? 'checked' : '' }}> da finire --}}
+                <input class="custom-control-input" type="checkbox" id="available" name="available" value=1 {{ old('available', $dish->available)  ? 'checked' : '' }}> 
                 <label class="custom-control-label" for="available">Disponibilità</label>
             </div>
 
@@ -47,7 +46,7 @@
                 <label for="description" class="form-label">Descrizione Piatto</label>
                 <textarea class="form-control" id="description" name="description" rows="6">{{ old('description', $dish->description) }}</textarea>
             </div>
-            <input class="btn btn-primary" type="submit" value="Crea Piatto">
+            <input class="btn btn-primary" type="submit" value="Salva Piatto">
         </form>
 
 @endsection
