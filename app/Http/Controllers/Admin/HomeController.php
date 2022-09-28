@@ -19,21 +19,20 @@ class HomeController extends Controller
             $dishes_user_id = [];
             $all_dishes = [];
 
-            // //Questo è l'utente che ha fatto l'ordine
-            // $user_info = Order::all()->where('user_id', '=',$user->id);
-            // foreach($user_info as $data){
-            //     //Mi salvo gli id degli utenti che ci hanno fatto un ordine
-            //     array_push($orders_user_id, $data->id);
-            // }
+            //Questo è l'utente che ha fatto l'ordine
+            $user_info = Order::all()->where('user_id', '=',$user->id);
+            foreach($user_info as $data){
+                //Mi salvo gli id degli utenti che ci hanno fatto un ordine
+                array_push($orders_user_id, $data->id);
+            }
 
             //*recuperiamo tutti gli ordini degli utenti
-            $all_dishes_ids = DishOrder::all()->where('order_id','=',$id);
+            $all_dishes_ids = DishOrder::all()->whereIn('order_id',$orders_user_id);
             foreach($all_dishes_ids as $data){    
                 array_push($dishes_user_id, $data->dish_id);
             }
 
-            dd($dishes_user_id);
-            
+            //dd($dishes_user_id);
             $all_dishes_ordered = Dish::all()->whereIn('id',$dishes_user_id);
             foreach($all_dishes_ordered as $data){
                 array_push($all_dishes, $data);
