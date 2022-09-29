@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 
+
+    //custom function
     protected function getSlug($title) {
 
         // creo lo slug da salvare aggiungendo tra le parole del titolo "-"
