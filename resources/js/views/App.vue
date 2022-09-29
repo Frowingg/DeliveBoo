@@ -1,9 +1,9 @@
 <template>
     <div>
-        <!-- <div id="root"> -->
         <HeaderComponents />
-        <CarouselTags />
-        <WorkWithUs />
+        <router-view></router-view>
+        <!-- <CarouselTags />
+        <WorkWithUs /> -->
         <FooterCompo />
         <div class="responsive_my_tb">
             <ResponsiveTablet />
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import HeaderComponents from "./components/HeaderComponents.vue";
-import CarouselTags from "./components/CarouselTags.vue";
-import WorkWithUs from "./components/WorkWithUs.vue";
-import FooterCompo from "./components/FooterCompo.vue";
-import ResponsiveTablet from "./components/Responsive/ResponsiveTablet.vue";
+import HeaderComponents from "../components/MainPages/HeaderComponents.vue";
+import CarouselTags from "../components/MainPages/CarouselTags.vue";
+import WorkWithUs from "../components/MainPages/WorkWithUs.vue";
+import FooterCompo from "../components/MainPages/FooterCompo.vue";
+import ResponsiveTablet from "../components/MainPages/Responsive/ResponsiveTablet.vue";
 
 export default {
     name: "App",
