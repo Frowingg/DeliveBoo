@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// routes auth
 Route::middleware('auth')
 ->namespace('Admin')
 ->name('admin.')
