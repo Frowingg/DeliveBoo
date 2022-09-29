@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('VAT_number', 11);
             $table->string('email')->unique();
             $table->string('user_cover', 255)->nullable();
+            $table->string('slug', 255)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

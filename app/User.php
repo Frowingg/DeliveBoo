@@ -21,6 +21,7 @@ class User extends Authenticatable
         'VAT_number',
         'email',
         'password',
+        'slug',
         'user_cover'
     ];
 
