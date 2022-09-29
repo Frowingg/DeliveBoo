@@ -26,11 +26,9 @@ class DishController extends Controller
         //Recupero l'utente loggato per mostrare solo i suoi piatti
         $user = Auth::user();
 
-        // $dishes = Dish::paginate(6);
         $dishes = Dish::orderBy('name','asc')->where('user_id', '=',$user->id )->paginate(6);
         $request_info= $request->all();
         $deleted_message = isset($request_info['deleted']) ? $request_info['deleted'] : null;
-        // $this->getDifferentDay($dishes);
         $data = [
             'dishes'=> $dishes,
             'deleted_message' => $deleted_message,

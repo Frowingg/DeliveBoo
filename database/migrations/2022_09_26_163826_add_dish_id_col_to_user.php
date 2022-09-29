@@ -15,7 +15,6 @@ class AddDishIdColToUser extends Migration
     {
         Schema::table('dishes', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->after('dish_cover');
-            // scrivo che l'id di cat_id fa riferimento all'id della tab categories
             $table->foreign('user_id')
             ->references('id')
             ->on('users');
@@ -32,7 +31,6 @@ class AddDishIdColToUser extends Migration
     {
         Schema::table('dishes', function (Blueprint $table) {
             $table->dropForeign('dishes_user_id_foreign');
-
             $table->dropColumn('user_id');
         });
     }

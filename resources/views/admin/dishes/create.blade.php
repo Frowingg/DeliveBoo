@@ -18,7 +18,6 @@
 
             <div class="mb-3">
                 <div class="deliveboo-input">
-                    {{-- <label for="name" class="form-label">Nome Piatto</label> --}}
                     <div class="my-label">
                         <div class="label-text">
                             Nome piatto *
@@ -30,7 +29,6 @@
 
             <div class="mb-3">
                 <div class="deliveboo-input">
-                    {{-- <label for="name" class="form-label">Nome Piatto</label> --}}
                     <div class="my-label">
                         <div class="label-text">
                             Ingredienti *
@@ -42,7 +40,6 @@
 
             <div class="mb-3">
                 <div class="deliveboo-input">
-                    {{-- <label for="name" class="form-label">Nome Piatto</label> --}}
                     <div class="my-label">
                         <div class="label-text">
                             Prezzo *

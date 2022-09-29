@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
 use App\Order;
 
 class OrdersTableSeeder extends Seeder
@@ -11,7 +10,7 @@ class OrdersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
 
         $orders = [
@@ -55,8 +54,6 @@ class OrdersTableSeeder extends Seeder
             $new_order->email = $order['email'];  
             $new_order->user_id = $order['user_id'];          
 
-            
-            
             $new_order->save();
             
             //$new_order->dishes()->sync(rand(1,10));

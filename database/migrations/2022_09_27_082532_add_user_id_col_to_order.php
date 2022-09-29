@@ -15,7 +15,6 @@ class AddUserIdColToOrder extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->after('email');
-            // scrivo che l'id di cat_id fa riferimento all'id della tab categories
             $table->foreign('user_id')
             ->references('id')
             ->on('users');
