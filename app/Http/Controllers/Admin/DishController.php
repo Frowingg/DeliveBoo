@@ -90,7 +90,11 @@ class DishController extends Controller
     
         // Mail::to('admin@boolpress.com')->send(new NewPostAdminEmail($new_dish));
 
-        return redirect()->route('admin.dishes.show', ['dish' => $new_dish->id]);
+        $data = [
+            'created' => 'yes',
+            'dish' => $new_dish->id
+        ];
+        return redirect()->route('admin.dishes.show', $data);
 
 
     }
@@ -101,17 +105,28 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         {
             $dish = Dish::findOrFail($id);
             $now = Carbon::now();
-    
+            $user = Auth::user();
+
+            $request_info= $request->all();
+            $created_message = isset($request_info['created']) ? $request_info['created'] : null;
+            $updated_message = isset($request_info['updated']) ? $request_info['updated'] : null;
+
             $data = [
-                'dish'=> $dish 
-            ];
-    
-            return view('admin.dishes.show', $data);
+                'dish'=> $dish,
+                'created_message' => $created_message,
+                'updated_message' => $updated_message,
+            ];   
+
+            if($dish->user_id == $user->id){
+                return view('admin.dishes.show', $data);
+            } else {
+                return abort(404);
+            }
         }
     }
 
@@ -124,12 +139,18 @@ class DishController extends Controller
     public function edit($id)
     {
           $dish = Dish::findOrFail($id);
-    
-            $data = [
-            'dish'=> $dish
-        ];
+          $user = Auth::user();
 
-        return view('admin.dishes.edit', $data);
+            $data = [
+                'dish'=> $dish
+            ];
+
+        if($dish->user_id == $user->id){
+             
+            return view('admin.dishes.edit', $data);
+        } else {
+            return abort(404);
+        }
     }
     
 
@@ -169,7 +190,16 @@ class DishController extends Controller
 
         $dish_to_update->update($form_data);
 
-        return redirect()-> route('admin.dishes.show', ['dish' => $dish_to_update->id]);
+
+        // $request_info= $request->all();
+        // $updated_message = isset($request_info['updated']) ? $request_info['updated'] : null;
+
+        $data = [
+            'dish' => $dish_to_update->id,
+            'updated' => 'yes',
+        ];
+
+        return redirect()-> route('admin.dishes.show', $data);
     }
 
     /**

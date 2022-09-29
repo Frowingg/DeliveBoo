@@ -17,7 +17,7 @@
                 {{-- <img src="..." class="card-img-top" alt="..."> --}}
                 <div class="card-body">
                   <h4 class="card-title">{{$dish->name}}</h4>
-                  <h5>{{$dish->ingredients}}</h5>
+                  <h5>Ingredienti: {{$dish->ingredients}}</h5>
                   {{-- @if ($dish->updated_days_ago > 0)
                   <div> Aggiornato: {{$dish->updated_days_ago}} giorn{{$dish->updated_days_ago > 1 ? 'i' : 'o' }} fa</div>
                   @endif --}}

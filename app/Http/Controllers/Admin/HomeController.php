@@ -48,6 +48,8 @@ class HomeController extends Controller
             return view('admin.home', $data);
         }
 
+
+        
         public function show($id){
 
             $all_user_dishes = DishOrder::all()->where('order_id','=',$id);

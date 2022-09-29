@@ -38,7 +38,7 @@
                 <input  class="form-control" type="file" id="dish_cover" name="dish_cover">
                 @if($dish->dish_cover)
                     <div>Immagine attuale:</div>
-                    <img class="w-50" src="{{ asset('storage/' . $dish->dish_cover) }}" alt="img-not-found">
+                    <img class="w-25" src="{{ asset('storage/' . $dish->dish_cover) }}" alt="img-not-found">
                 @endif
             </div>
         

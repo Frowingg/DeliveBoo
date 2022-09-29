@@ -59,7 +59,7 @@ class OrdersTableSeeder extends Seeder
             
             $new_order->save();
             
-            $new_order->dishes()->sync(rand(1,10));
+            //$new_order->dishes()->sync(rand(1,10));
         }
 
 

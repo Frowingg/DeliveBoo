@@ -1,14 +1,26 @@
 @extends('layouts.dashboard')
 @section('content')
-    {{-- {{dd($dish)}} --}}
+    @if ($created_message)
+        <div class="alert alert-info" role="alert">
+            Piatto Creato 
+       </div>
+    @endif
+
+    @if ($updated_message)
+        <div class="alert alert-info" role="alert">
+            Piatto Modificato
+        </div>
+    @endif
+    
     <h1>{{$dish->name}}</h1>
     @if ($dish->dish_cover)
-        <img class="w-50" src="{{ asset('storage/' . $dish->dish_cover )}}" alt="{{$dish->name}}">
+        <img class="w-25" src="{{ asset('storage/' . $dish->dish_cover )}}" alt="{{$dish->name}}">
     @endif
-        <h3>Categoria: {{ $dish->category ? $dish->category->name : 'Nessuna' }}</h3>
+        {{-- <h3>Categoria: {{ $dish->category ? $dish->category->name : 'Nessuna' }}</h3> --}}
         {{-- <div>Data creazine: {{$dish->created_at->format('D d-m-Y')}}</div> --}}
         {{-- <div>Ultimo aggiornamento: {{$dish->updated_at->format('D d-m-Y / H.i' )}}</div> --}}
         {{-- <div>Slug: {{$dish->slug}}</div> --}}
+
         <h2>Ingredienti:</h2>
         <p>{{$dish->ingredients}}</p>
 

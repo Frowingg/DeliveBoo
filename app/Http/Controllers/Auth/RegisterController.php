@@ -58,8 +58,8 @@ class RegisterController extends Controller
             'user_cover' => ['mimes:jpeg,jpg,png', 'max:1024'],
             'categories' => ['required'],
             // 'user_cover' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg'],
-            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            //'password' => ['required', 'string'],
         ]);
     }
 
@@ -90,15 +90,25 @@ class RegisterController extends Controller
             $data['user_cover'] = $img_path;
         }
 
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'address' => $data['address'],
-            'VAT_number' => $data['VAT_number'],
-            'user_cover' => $data['user_cover'],
-            'password' => Hash::make($data['password']),
-        ]);
-
+        if(isset($data['user_cover'])){
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'address' => $data['address'],
+                'VAT_number' => $data['VAT_number'],
+                'user_cover' => $data['user_cover'],
+                'password' => Hash::make($data['password']),
+            ]);
+        } else {
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'address' => $data['address'],
+                'VAT_number' => $data['VAT_number'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
+            
         $user->categories()->sync($data['categories']);
 
         return $user;
