@@ -159,7 +159,7 @@ class DishesTableSeeder extends Seeder
             $new_dish->price = $dish['price'];
             $new_dish->available = $dish['available'];
             $new_dish->dish_cover = $dish['dish_cover'];
-            $new_dish->user_id = rand(1,5);
+            $new_dish->user_id = 1;
             
             $new_dish->save();
         }
