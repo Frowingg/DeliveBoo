@@ -1,6 +1,19 @@
 <template>
     <div>
         <CarouselComponent />
+        <div class="d-flex" v-if="filtered_category_user.lenght === 0">
+            <div style="border: 1px solid black; cursor: pointer" v-for="category in categories"  :key="category.id" @click="showThisCategoryUser(category.name)">
+                <h6>{{ category.name }}</h6>
+                <img class="w-15" :src="category.category_cover" :alt="category.name">
+            </div>
+        </div>
+
+        <!-- <div v-if="filtered_category_user.lenght > 0">
+            <div v-for="filtered_user in filtered_category_user" :key="filtered_user.id">
+                <h6>{{ filtered_user.name }}</h6>
+            </div>
+        </div> -->
+        
     </div>
 </template>
 
@@ -15,7 +28,8 @@ export default {
     data() {
         return {
             users: [],
-            categories: []
+            categories: [],
+            filtered_category_user: []
         }
     },
     methods: {
@@ -29,8 +43,24 @@ export default {
             axios.get('/api/categories')
             .then((response) => {
                 this.categories = response.data.results
+                this.filtered_category_user = response.data.results
             })
+        },
+        showThisCategoryUser(name_category) {
+            
+            this.users.forEach(user => {
+
+                user.categories.forEach(element => {
+
+                    if(element.name.includes(name_category) ) {
+                        this.filtered_category_user.push(user)
+                    }
+
+                });
+            });      
+            console.log(this.filtered_category_user)
         }
+
     },
     mounted() {
         this.getUsers();

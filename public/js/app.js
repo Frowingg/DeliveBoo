@@ -2043,7 +2043,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       users: [],
-      categories: []
+      categories: [],
+      filtered_category_user: []
     };
   },
   methods: {
@@ -2059,7 +2060,20 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/categories').then(function (response) {
         _this2.categories = response.data.results;
+        _this2.filtered_category_user = response.data.results;
       });
+    },
+    showThisCategoryUser: function showThisCategoryUser(name_category) {
+      var _this3 = this;
+
+      this.users.forEach(function (user) {
+        user.categories.forEach(function (element) {
+          if (element.name.includes(name_category)) {
+            _this3.filtered_category_user.push(user);
+          }
+        });
+      });
+      console.log(this.filtered_category_user);
     }
   },
   mounted: function mounted() {
@@ -2447,7 +2461,28 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("CarouselComponent")], 1);
+  return _c("div", [_c("CarouselComponent"), _vm._v(" "), _vm.filtered_category_user.lenght === 0 ? _c("div", {
+    staticClass: "d-flex"
+  }, _vm._l(_vm.categories, function (category) {
+    return _c("div", {
+      key: category.id,
+      staticStyle: {
+        border: "1px solid black",
+        cursor: "pointer"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.showThisCategoryUser(category.name);
+        }
+      }
+    }, [_c("h6", [_vm._v(_vm._s(category.name))]), _vm._v(" "), _c("img", {
+      staticClass: "w-15",
+      attrs: {
+        src: category.category_cover,
+        alt: category.name
+      }
+    })]);
+  }), 0) : _vm._e()], 1);
 };
 
 var staticRenderFns = [];
