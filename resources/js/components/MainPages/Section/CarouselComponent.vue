@@ -78,18 +78,19 @@ export default {
 $animationSpeed: 40s;
 
 // Animation
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-250px * 7));
-    }
-}
+// @keyframes scroll {
+//     0% {
+//         transform: translateX(0);
+//     }
+//     100% {
+//         transform: translateX(calc(-250px * 7));
+//     }
+// }
 
 // Styling
 .slider_my {
     position: relative;
+    padding-top: 80px;
 
     &::before,
     &::after {
@@ -112,7 +113,7 @@ $animationSpeed: 40s;
     }
 
     .slide-track_my {
-        animation: scroll $animationSpeed linear infinite;
+        // animation: scroll $animationSpeed linear infinite;
         display: flex;
         width: calc(350px * 7);
     }

@@ -19,3 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Route da fare per il frontend
+Route::get('/dishes', 'Api\DishController@index');
+
+Route::get('/users', 'Api\UserController@index');
+
+Route::get('/users/{slug}', 'Api\UserController@show');

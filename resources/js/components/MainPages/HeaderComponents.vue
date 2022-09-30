@@ -11,7 +11,7 @@
                         <a href="/login">Login</a>
                     </div>
                     <div class="registration_my">
-                        <a href="/admin">Registrati</a>
+                        <a href="/register">Registrati</a>
                     </div>
                 </div>
             </div>

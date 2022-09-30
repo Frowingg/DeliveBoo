@@ -17,8 +17,6 @@
 
 <script>
 import HeaderComponents from "../components/MainPages/HeaderComponents.vue";
-import CarouselTags from "../components/MainPages/CarouselTags.vue";
-import WorkWithUs from "../components/MainPages/WorkWithUs.vue";
 import FooterCompo from "../components/MainPages/FooterCompo.vue";
 import ResponsiveTablet from "../components/MainPages/Responsive/ResponsiveTablet.vue";
 
@@ -26,8 +24,6 @@ export default {
     name: "App",
     components: {
         HeaderComponents,
-        CarouselTags,
-        WorkWithUs,
         FooterCompo,
         ResponsiveTablet,
     },

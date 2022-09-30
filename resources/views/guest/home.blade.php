@@ -10,8 +10,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <a href="/admin">Vai alla admin</a>
-    <h1>php laravel</h1>
     <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
