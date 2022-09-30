@@ -2063,18 +2063,31 @@ __webpack_require__.r(__webpack_exports__);
         _this2.filtered_category_user = response.data.results;
       });
     },
-    showThisCategoryUser: function showThisCategoryUser(name_category) {
+    getFilteredCategory: function getFilteredCategory(id) {
       var _this3 = this;
 
-      this.users.forEach(function (user) {
-        user.categories.forEach(function (element) {
-          if (element.name.includes(name_category)) {
-            _this3.filtered_category_user.push(user);
-          }
-        });
+      axios.get('/api/category/' + id).then(function (response) {
+        _this3.filtered_category_user = response.data.results;
+        console.log(response.data);
+        console.log(response.data.results);
       });
-      console.log(this.filtered_category_user);
-    }
+    } // categoryToSearch(id) {
+    //     axios.get('/api/category/' + id)
+    //     .then((response) => {
+    //         this.
+    //     })
+    // },
+    // showThisCategoryUser(name_category) {
+    //     this.users.forEach(user => {
+    //         user.categories.forEach(element => {
+    //             if(element.name.includes(name_category) ) {
+    //                 this.filtered_category_user.push(user)
+    //             }
+    //         });
+    //     });      
+    //     console.log(this.filtered_category_user)
+    // }
+
   },
   mounted: function mounted() {
     this.getUsers();
@@ -2461,7 +2474,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("CarouselComponent"), _vm._v(" "), _vm.filtered_category_user.lenght === 0 ? _c("div", {
+  return _c("div", [_c("CarouselComponent"), _vm._v(" "), _c("div", {
     staticClass: "d-flex"
   }, _vm._l(_vm.categories, function (category) {
     return _c("div", {
@@ -2472,7 +2485,7 @@ var render = function render() {
       },
       on: {
         click: function click($event) {
-          return _vm.showThisCategoryUser(category.name);
+          return _vm.getFilteredCategory(category.id);
         }
       }
     }, [_c("h6", [_vm._v(_vm._s(category.name))]), _vm._v(" "), _c("img", {
@@ -2482,7 +2495,7 @@ var render = function render() {
         alt: category.name
       }
     })]);
-  }), 0) : _vm._e()], 1);
+  }), 0)], 1);
 };
 
 var staticRenderFns = [];
@@ -54186,7 +54199,7 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router.js */ "./resources/js/router.js");
 /* harmony import */ var _views_App_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/App.vue */ "./resources/js/views/App.vue");
 /**
@@ -54220,7 +54233,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#root',
   render: function render(h) {

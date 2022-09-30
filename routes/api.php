@@ -26,3 +26,5 @@ Route::get('/users/{slug}', 'Api\UserController@show');
 Route::get('/dishes', 'Api\DishController@index');
 
 Route::get('/categories', 'Api\CategoryController@index');
+
+Route::get('/category/{id}', 'Api\CategoryController@showSingleCategory');
