@@ -1,7 +1,7 @@
 <template>
     <div>
-        <HeaderComponents />
-        <router-view></router-view>
+        <HeaderComponents @performeSearch="saveSearchWord" />
+        <router-view :search="searchWord" ></router-view>
         <!-- <CarouselTags />
         <WorkWithUs /> -->
         <FooterCompo />
@@ -26,6 +26,16 @@ export default {
         HeaderComponents,
         FooterCompo,
         ResponsiveTablet,
+    },
+    methods: {
+        saveSearchWord(wordToSearch) {
+            this.searchWord = wordToSearch
+        }
+    },
+    data() {
+        return {
+            searchWord: ''
+        }
     },
 };
 </script>

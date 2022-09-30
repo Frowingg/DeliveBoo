@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <!--jumbotrone-->
+            <!--jumbotron-->
             <div class="jumbotrone_my">
                 <div class="search_bar_my">
                     <h3>A fame come siamo messi?</h3>
@@ -24,6 +24,8 @@
                     </div>
                     <div class="input-group_my">
                         <input
+                            @keyup="$emit('performeSearch', userToSearch)"
+                            v-model="userToSearch"
                             type="search"
                             class="search"
                             placeholder="Cerca il ristorante che preferisci"
@@ -43,10 +45,11 @@
 
 export default {
     name: "HeaderComponents",
-
-    // props: {
-    //     headerLinks: Array,
-    // }
+    data() {
+        return{
+            userToSearch: ''
+        }
+    }
 };
 </script>
 

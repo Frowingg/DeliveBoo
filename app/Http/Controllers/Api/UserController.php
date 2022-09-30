@@ -44,4 +44,24 @@ class UserController extends Controller
 
         return response()->json($data);
     }
+
+    public function showFilteredUser($word) {
+
+        $user = User::whereLike('name', $word)->get();
+        
+        dd($word);
+
+        if($user) {
+            $data =  [
+                'success' => true,
+                'results' => $user
+            ];
+        } else {
+            $data = [
+                'success' => false
+            ];
+        }
+
+        return response()->json($data);
+    }
 }

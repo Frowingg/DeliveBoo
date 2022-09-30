@@ -1928,10 +1928,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 // import { defineComponent } from '@vue/composition-api'
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "HeaderComponents" // props: {
-  //     headerLinks: Array,
-  // }
-
+  name: "HeaderComponents",
+  data: function data() {
+    return {
+      userToSearch: ''
+    };
+  }
 });
 
 /***/ }),
@@ -2040,27 +2042,41 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     CarouselComponent: _components_MainPages_Section_CarouselComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  props: {
+    'search': String
+  },
   data: function data() {
     return {
       users: [],
       categories: [],
-      filtered_category_user: []
+      filtered_category_user: [],
+      filtered_users: [] // myWord: ''
+
     };
   },
   methods: {
-    getUsers: function getUsers() {
+    getUsers: function getUsers(word) {
       var _this = this;
 
       axios.get('/api/users').then(function (response) {
         _this.users = response.data.results;
-      });
+      }); // if(word === '') {
+      //     axios.get('/api/users')
+      //     .then((response) => {
+      //         this.users = response.data.results   
+      //     })
+      // } else {
+      //     axios.get('/api/users/word')
+      //     .then((response) => {
+      //         this.users = response.data.results 
+      //     })
+      // }
     },
     getCategories: function getCategories() {
       var _this2 = this;
 
       axios.get('/api/categories').then(function (response) {
         _this2.categories = response.data.results;
-        _this2.filtered_category_user = response.data.results;
       });
     },
     getFilteredCategory: function getFilteredCategory(id) {
@@ -2068,31 +2084,28 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/category/' + id).then(function (response) {
         _this3.filtered_category_user = response.data.results;
-        console.log(response.data);
-        console.log(response.data.results);
       });
-    } // categoryToSearch(id) {
-    //     axios.get('/api/category/' + id)
-    //     .then((response) => {
-    //         this.
-    //     })
-    // },
-    // showThisCategoryUser(name_category) {
-    //     this.users.forEach(user => {
-    //         user.categories.forEach(element => {
-    //             if(element.name.includes(name_category) ) {
-    //                 this.filtered_category_user.push(user)
-    //             }
-    //         });
-    //     });      
-    //     console.log(this.filtered_category_user)
-    // }
+    },
+    getUserToSearch: function getUserToSearch(word) {
+      var _this4 = this;
 
+      this.users.forEach(function (singleUser) {
+        if (singleUser.name.includes(word)) {
+          _this4.filtered_users.push(singleUser);
+        }
+      });
+    }
   },
   mounted: function mounted() {
+    // if(search !== null) {
+    //     this.myWord = search
+    // };
     this.getUsers();
     this.getCategories();
-  }
+  } // computed: {
+  //    getUserToSearch(this.search);
+  // }
+
 });
 
 /***/ }),
@@ -2166,6 +2179,16 @@ __webpack_require__.r(__webpack_exports__);
     HeaderComponents: _components_MainPages_HeaderComponents_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     FooterCompo: _components_MainPages_FooterCompo_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     ResponsiveTablet: _components_MainPages_Responsive_ResponsiveTablet_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  methods: {
+    saveSearchWord: function saveSearchWord(wordToSearch) {
+      this.searchWord = wordToSearch;
+    }
+  },
+  data: function data() {
+    return {
+      searchWord: ''
+    };
   }
 });
 
@@ -2305,16 +2328,55 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
+  return _c("div", [_c("div", {
+    staticClass: "container_my"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "jumbotrone_my"
+  }, [_c("div", {
+    staticClass: "search_bar_my"
+  }, [_c("h3", [_vm._v("A fame come siamo messi?")]), _vm._v(" "), _c("div", {
+    staticClass: "message_my"
+  }, [_vm._v("\n                    Ordina i piatti che ami con DeliveBoo\n                ")]), _vm._v(" "), _c("div", {
+    staticClass: "input-group_my"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.userToSearch,
+      expression: "userToSearch"
+    }],
+    staticClass: "search",
+    attrs: {
+      type: "search",
+      placeholder: "Cerca il ristorante che preferisci",
+      "aria-label": "Search",
+      "aria-describedby": "search-addon"
+    },
+    domProps: {
+      value: _vm.userToSearch
+    },
+    on: {
+      keyup: function keyup($event) {
+        return _vm.$emit("performeSearch", _vm.userToSearch);
+      },
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.userToSearch = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("a", {
+    staticClass: "button_search_my",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("CERCA")])])])])])]);
 };
 
 var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("div", {
-    staticClass: "container_my"
-  }, [_c("div", {
+  return _c("div", {
     staticClass: "header_top_my"
   }, [_c("div", {
     staticClass: "logo_my"
@@ -2336,28 +2398,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "/register"
     }
-  }, [_vm._v("Registrati")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "jumbotrone_my"
-  }, [_c("div", {
-    staticClass: "search_bar_my"
-  }, [_c("h3", [_vm._v("A fame come siamo messi?")]), _vm._v(" "), _c("div", {
-    staticClass: "message_my"
-  }, [_vm._v("\n                    Ordina i piatti che ami con DeliveBoo\n                ")]), _vm._v(" "), _c("div", {
-    staticClass: "input-group_my"
-  }, [_c("input", {
-    staticClass: "search",
-    attrs: {
-      type: "search",
-      placeholder: "Cerca il ristorante che preferisci",
-      "aria-label": "Search",
-      "aria-describedby": "search-addon"
-    }
-  }), _vm._v(" "), _c("a", {
-    staticClass: "button_search_my",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("CERCA")])])])])])]);
+  }, [_vm._v("Registrati")])])])]);
 }];
 render._withStripped = true;
 
@@ -2495,7 +2536,22 @@ var render = function render() {
         alt: category.name
       }
     })]);
-  }), 0)], 1);
+  }), 0), _vm._v(" "), _vm._l(_vm.filtered_users, function (filteredUser, index) {
+    return _c("div", {
+      key: index,
+      staticStyle: {
+        "backgroud-color": "red"
+      }
+    }, [_c("h5", [_vm._v(_vm._s(filteredUser.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(filteredUser.address))])]);
+  }), _vm._v(" "), _vm._l(_vm.filtered_category_user, function (filteredUser, index) {
+    return _c("div", {
+      key: index
+    }, [_c("h5", [_vm._v(_vm._s(filteredUser.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(filteredUser.address))])]);
+  }), _vm._v(" "), _vm._l(_vm.users, function (user) {
+    return _c("div", {
+      key: user.id
+    }, [_c("h5", [_vm._v(_vm._s(user.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(user.address))])]);
+  })], 2);
 };
 
 var staticRenderFns = [];
@@ -2574,7 +2630,15 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("HeaderComponents"), _vm._v(" "), _c("router-view"), _vm._v(" "), _c("FooterCompo"), _vm._v(" "), _c("div", {
+  return _c("div", [_c("HeaderComponents", {
+    on: {
+      performeSearch: _vm.saveSearchWord
+    }
+  }), _vm._v(" "), _c("router-view", {
+    attrs: {
+      search: _vm.searchWord
+    }
+  }), _vm._v(" "), _c("FooterCompo"), _vm._v(" "), _c("div", {
     staticClass: "responsive_my_tb"
   }, [_c("ResponsiveTablet")], 1)], 1);
 };

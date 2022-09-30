@@ -28,3 +28,5 @@ Route::get('/dishes', 'Api\DishController@index');
 Route::get('/categories', 'Api\CategoryController@index');
 
 Route::get('/category/{id}', 'Api\CategoryController@showSingleCategory');
+
+Route::get('/users/{word}', 'Api\UserController@showFilteredUser');
