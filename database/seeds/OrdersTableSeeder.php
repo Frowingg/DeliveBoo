@@ -55,8 +55,6 @@ class OrdersTableSeeder extends Seeder
             $new_order->user_id = $order['user_id'];          
 
             $new_order->save();
-            
-            //$new_order->dishes()->sync(rand(1,10));
         }
 
 

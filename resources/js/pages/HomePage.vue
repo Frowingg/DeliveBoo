@@ -14,19 +14,27 @@ export default {
     },
     data() {
         return {
-            users: []
+            users: [],
+            categories: []
         }
     },
     methods: {
-        getUser() {
-            Axios.get('/api/users')
+        getUsers() {
+            axios.get('/api/users')
             .then((response) => {
                 this.users = response.data.results
+            })
+        },
+        getCategories() {
+            axios.get('/api/categories')
+            .then((response) => {
+                this.categories = response.data.results
             })
         }
     },
     mounted() {
         this.getUsers();
+        this.getCategories();
     }
 };
 </script>

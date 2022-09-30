@@ -32,12 +32,10 @@ class HomeController extends Controller
                 array_push($dishes_user_id, $data->dish_id);
             }
 
-            //dd($dishes_user_id);
             $all_dishes_ordered = Dish::all()->whereIn('id',$dishes_user_id);
             foreach($all_dishes_ordered as $data){
                 array_push($all_dishes, $data);
             }
-
 
             $data = [
                 'user' => $user,

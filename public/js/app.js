@@ -2042,20 +2042,29 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      users: []
+      users: [],
+      categories: []
     };
   },
   methods: {
-    getUser: function getUser() {
+    getUsers: function getUsers() {
       var _this = this;
 
-      Axios.get('/api/users').then(function (response) {
+      axios.get('/api/users').then(function (response) {
         _this.users = response.data.results;
+      });
+    },
+    getCategories: function getCategories() {
+      var _this2 = this;
+
+      axios.get('/api/categories').then(function (response) {
+        _this2.categories = response.data.results;
       });
     }
   },
   mounted: function mounted() {
     this.getUsers();
+    this.getCategories();
   }
 });
 

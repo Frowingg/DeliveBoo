@@ -73,32 +73,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {      
-        // dd($data);
-        // $user = User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'address' => $data['address'],
-        //     'VAT_number' => $data['VAT_number'],
-        //     'user_cover' => $data['user_cover'],
-            
-        //     'password' => Hash::make($data['password']),
-        // ]);
 
-        // return 
+        // if(isset($data['user_cover'])){
+        //     $img_path = Storage::put('user-covers', $data['user_cover']);
+        //     $data['user_cover'] = $img_path;
+        // }
 
         if(isset($data['user_cover'])){
+
             $img_path = Storage::put('user-covers', $data['user_cover']);
-            $data['user_cover'] = $img_path;
-        }
 
-        if(isset($data['user_cover'])){
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'address' => $data['address'],
                 'VAT_number' => $data['VAT_number'],
                 'slug' => $this->getSlug($data['name']),
-                'user_cover' => $data['user_cover'],
+                'user_cover' => $img_path,
                 'password' => Hash::make($data['password']),
             ]);
         } else {
