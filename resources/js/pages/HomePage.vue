@@ -8,18 +8,17 @@
             </div>
         </div>
 
-        <!-- <div style="backgroud-color: red" v-for="filteredUser, index in filtered_users" :key="index">
+        <div style="backgroud-color: red" v-for="filteredUser, index in filtered_users" :key="index">
             <h5>{{ filteredUser.name }}</h5>
             <p>{{ filteredUser.address }}</p>
-        </div> -->
+        </div>
 
         
         <div v-for="filteredUser in filtered_category_user" :key="filteredUser.id">
-            <div v-for="test,index in filteredUser" :key="index">
-                <h5>{{ test.name }}</h5>
-                <p>{{ test.address }}</p>
-            </div>
-          
+            <div v-for="singleUser, index in filteredUser" :key="index">
+                <h5>{{ singleUser.name }}</h5>
+                <p>{{ singleUser.address }}</p>
+            </div>  
         </div>
         
         <!-- <div v-for="user in users" :key="user.id">
@@ -46,7 +45,8 @@ export default {
             users: [],
             categories: [],
             filtered_category_user: [],
-            filtered_users: []
+            filtered_users: [],
+            list_of_categories: [],
             // myWord: ''
         }
     },
@@ -75,16 +75,21 @@ export default {
             })
         },
         getFilteredCategory(id) {
-            axios.get('/api/category/' + id)
-            .then((response) => {
-                if(response.data.results.length > 0){
-                    if(!this.filtered_category_user.includes(response.data.results[0,])){
-                        this.filtered_category_user.push(response.data.results) 
-                        console.log(this.filtered_category_user)
-                        // console.log(response.data.results)
-                    }  
-                }    
-            })
+            axios.get("/api/category/" + id).then((response) => {
+                let data = response.data.results;
+
+                for (let i = 0; i < data.length; i++) {
+                    const currentUser = data[i];
+                    const currentUserCategory = currentUser.pivot.category_id;
+
+                    if (!this.list_of_categories.includes(currentUserCategory)){ 
+                        this.filtered_category_user.push(data);
+                        this.list_of_categories.push(currentUserCategory);
+                    }else{
+                        
+                    }
+                }
+            });
         },
         // getUserToSearch(word) {
         //     this.users.forEach(singleUser => {                
