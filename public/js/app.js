@@ -2043,40 +2043,38 @@ __webpack_require__.r(__webpack_exports__);
     CarouselComponent: _components_MainPages_Section_CarouselComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    'search': String
+    search: String
   },
   data: function data() {
     return {
       users: [],
       categories: [],
       filtered_category_user: [],
-      filtered_users: [],
-      list_of_categories: [] // myWord: ''
-
+      list_of_categories: []
     };
   },
   methods: {
     getUsers: function getUsers(word) {
       var _this = this;
 
-      axios.get('/api/users').then(function (response) {
+      axios.get("/api/users").then(function (response) {
         _this.users = response.data.results;
       }); // if(word === '') {
       //     axios.get('/api/users')
       //     .then((response) => {
-      //         this.users = response.data.results   
+      //         this.users = response.data.results
       //     })
       // } else {
       //     axios.get('/api/users/word')
       //     .then((response) => {
-      //         this.users = response.data.results 
+      //         this.users = response.data.results
       //     })
       // }
     },
     getCategories: function getCategories() {
       var _this2 = this;
 
-      axios.get('/api/categories').then(function (response) {
+      axios.get("/api/categories").then(function (response) {
         _this2.categories = response.data.results;
       });
     },
@@ -2086,32 +2084,61 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/category/" + id).then(function (response) {
         var data = response.data.results;
 
-        for (var i = 0; i < data.length; i++) {
+        var _loop = function _loop(i) {
           var currentUser = data[i];
           var currentUserCategory = currentUser.pivot.category_id;
 
           if (!_this3.list_of_categories.includes(currentUserCategory)) {
-            _this3.filtered_category_user.push(data);
+            data.forEach(function (element) {
+              var userWithCategoryId = {
+                user: element,
+                category_id: currentUserCategory
+              };
+
+              _this3.filtered_category_user.push(userWithCategoryId);
+            });
 
             _this3.list_of_categories.push(currentUserCategory);
-          } else {}
+
+            return "break";
+          } else {
+            var index = 0;
+
+            for (var _i = 0; _i < _this3.filtered_category_user.length; _i++) {
+              var currentElem = _this3.filtered_category_user[_i];
+
+              if (currentElem.category_id === id) {
+                index = _i;
+                break;
+              }
+            }
+
+            _this3.filtered_category_user.splice(index, data.length);
+
+            _this3.list_of_categories.splice(_this3.list_of_categories.indexOf(id), 1);
+
+            return "break";
+          }
+        };
+
+        for (var i = 0; i < data.length; i++) {
+          var _ret = _loop(i);
+
+          if (_ret === "break") break;
         }
       });
     } // getUserToSearch(word) {
-    //     this.users.forEach(singleUser => {                
+    //     this.users.forEach(singleUser => {
     //         if(singleUser.name.includes(word)) {
     //             this.filtered_users.push(singleUser)
     //         }
     //     });
-    // }        
+    // }
 
   },
   mounted: function mounted() {
-    // if(search !== null) {
-    //     this.myWord = search
-    // };
     this.getUsers();
-    this.getCategories(); // this.getUserToSearch(search);         
+    this.getCategories(); // this.getUserToSearch(search);
   }
 });
 
@@ -2543,21 +2570,10 @@ var render = function render() {
         alt: category.name
       }
     })]);
-  }), 0), _vm._v(" "), _vm._l(_vm.filtered_users, function (filteredUser, index) {
-    return _c("div", {
-      key: index,
-      staticStyle: {
-        "backgroud-color": "red"
-      }
-    }, [_c("h5", [_vm._v(_vm._s(filteredUser.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(filteredUser.address))])]);
-  }), _vm._v(" "), _vm._l(_vm.filtered_category_user, function (filteredUser) {
+  }), 0), _vm._v(" "), _vm._l(_vm.filtered_category_user, function (filteredUser) {
     return _c("div", {
       key: filteredUser.id
-    }, _vm._l(filteredUser, function (singleUser, index) {
-      return _c("div", {
-        key: index
-      }, [_c("h5", [_vm._v(_vm._s(singleUser.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(singleUser.address))])]);
-    }), 0);
+    }, [_c("h5", [_vm._v(_vm._s(filteredUser.user.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(filteredUser.user.address))])]);
   })], 2);
 };
 
