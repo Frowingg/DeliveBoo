@@ -39,12 +39,40 @@
         
         <div class="d-flex">
             <a class="btn btn-primary mr-3" href="{{ route('admin.dishes.edit', ['dish' => $dish->id]) }}"> Modifica Piatto</a>
+            <input class="btn btn-danger mr-3" type="submit" value="Elimina" onClick="document.getElementById('pop-up').style.display='block'">
+        </div>
 
+        <div id="pop-up"  >
             <form action="{{route('admin.dishes.destroy', ['dish' => $dish->id ])}}" method="post">
                 @csrf
                 @method('DELETE')
-                <input class="btn btn-danger mr-3" type="submit" value="Elimina" onClick="return confirm('Sicuro di cancellare il Piatto');">
+                
+                <div>
+                    <h3>Vuoi davvero eliminare il piatto?</h3>
+                </div>
+
+                <div>
+                    <button type="button" class="cancelbtn btn btn-primary mr-3" onClick="document.getElementById('pop-up').style.display='none'">Annulla</button>
+                    <button type="button submit" class="deletebtn btn btn-danger">Elimina</button>
+                </div>
+
+                
             </form>
 
         </div>
 @endsection
+
+
+<style>
+    #pop-up{
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: lightgray;
+        border: 3px solid #ffba00;
+        border-radius: 10px;
+        padding: 30px;
+    }
+</style>

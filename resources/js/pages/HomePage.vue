@@ -8,21 +8,24 @@
             </div>
         </div>
 
-        <div style="backgroud-color: red" v-for="filteredUser, index in filtered_users" :key="index">
+        <!-- <div style="backgroud-color: red" v-for="filteredUser, index in filtered_users" :key="index">
             <h5>{{ filteredUser.name }}</h5>
             <p>{{ filteredUser.address }}</p>
-        </div>
+        </div> -->
 
         
-        <div v-for="filteredUser, index in filtered_category_user" :key="index">
-            <h5>{{ filteredUser.name }}</h5>
-            <p>{{ filteredUser.address }}</p>
+        <div v-for="filteredUser in filtered_category_user" :key="filteredUser.id">
+            <div v-for="test,index in filteredUser" :key="index">
+                <h5>{{ test.name }}</h5>
+                <p>{{ test.address }}</p>
+            </div>
+          
         </div>
         
-        <div v-for="user in users" :key="user.id">
+        <!-- <div v-for="user in users" :key="user.id">
             <h5>{{ user.name }}</h5>
             <p>{{ user.address }}</p>
-        </div>
+        </div> -->
 
     </div>
 </template>
@@ -74,18 +77,24 @@ export default {
         getFilteredCategory(id) {
             axios.get('/api/category/' + id)
             .then((response) => {
-                this.filtered_category_user = response.data.results
+                if(response.data.results.length > 0){
+                    if(!this.filtered_category_user.includes(response.data.results[0,])){
+                        this.filtered_category_user.push(response.data.results) 
+                        console.log(this.filtered_category_user)
+                        // console.log(response.data.results)
+                    }  
+                }    
             })
         },
-        getUserToSearch(word) {
-            this.users.forEach(singleUser => {                
-                if(singleUser.name.includes(word)) {
+        // getUserToSearch(word) {
+        //     this.users.forEach(singleUser => {                
+        //         if(singleUser.name.includes(word)) {
                     
-                    this.filtered_users.push(singleUser)
+        //             this.filtered_users.push(singleUser)
                     
-                }
-            });
-        }        
+        //         }
+        //     });
+        // }        
     },
     mounted() {
         // if(search !== null) {
@@ -93,11 +102,10 @@ export default {
         // };
         this.getUsers();
         this.getCategories();
-              
+        // this.getUserToSearch(search);         
     },
-    // computed: {
-    //    getUserToSearch(this.search);
-    // }
+
+    
 };
 </script>
 

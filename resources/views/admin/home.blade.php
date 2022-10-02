@@ -18,12 +18,11 @@
             @endforeach
         </ul>
     </div>
-    <div class="col">
+    <div class="col ">
         <div class="card w-50">
-            {{-- @if ($user->user_cover)
+            @if ($user->user_cover)
                 <img src="{{asset('storage/' . $user->user_cover)}}" alt="Foto profilo">
-            @endif --}}
-            <img src="{{asset('storage/' . $user->user_cover)}}" alt="Foto profilo">
+            @endif
             <div class="card-body">
               <p class="card-text"><b>Indirizzo:</b> {{$user->address}}</p>
               <p class="card-text"><b>Partita IVA:</b> {{$user->VAT_number}}</p>

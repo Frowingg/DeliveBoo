@@ -12,7 +12,7 @@
     <div class="row row-cols-3 ">
         @foreach ($dishes as $dish)
         {{-- start card  --}}
-        <div class="col mt-3">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-3">
             <div class="card">
                 {{-- <img src="..." class="card-img-top" alt="..."> --}}
                 <div class="card-body">

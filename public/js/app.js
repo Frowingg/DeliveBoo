@@ -1976,137 +1976,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "CarouselComponents",
-  data: function data() {
-    return {
-      carrousels: [{
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }, {
-        url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg"
-      }]
-    };
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/HomePage.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/HomePage.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_MainPages_Section_CarouselComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/MainPages/Section/CarouselComponent.vue */ "./resources/js/components/MainPages/Section/CarouselComponent.vue");
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "HomePage",
-  components: {
-    CarouselComponent: _components_MainPages_Section_CarouselComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  props: {
-    'search': String
-  },
-  data: function data() {
-    return {
-      users: [],
-      categories: [],
-      filtered_category_user: [],
-      filtered_users: [] // myWord: ''
-
-    };
-  },
-  methods: {
-    getUsers: function getUsers(word) {
-      var _this = this;
-
-      axios.get('/api/users').then(function (response) {
-        _this.users = response.data.results;
-      }); // if(word === '') {
-      //     axios.get('/api/users')
-      //     .then((response) => {
-      //         this.users = response.data.results   
-      //     })
-      // } else {
-      //     axios.get('/api/users/word')
-      //     .then((response) => {
-      //         this.users = response.data.results 
-      //     })
-      // }
-    },
-    getCategories: function getCategories() {
-      var _this2 = this;
-
-      axios.get('/api/categories').then(function (response) {
-        _this2.categories = response.data.results;
-      });
-    },
-    getFilteredCategory: function getFilteredCategory(id) {
-      var _this3 = this;
-
-      axios.get('/api/category/' + id).then(function (response) {
-        _this3.filtered_category_user = response.data.results;
-      });
-    },
-    getUserToSearch: function getUserToSearch(word) {
-      var _this4 = this;
-
-      this.users.forEach(function (singleUser) {
-        if (singleUser.name.includes(word)) {
-          _this4.filtered_users.push(singleUser);
-        }
-      });
-    }
-  },
-  mounted: function mounted() {
-    // if(search !== null) {
-    //     this.myWord = search
-    // };
-    this.getUsers();
-    this.getCategories();
-  } // computed: {
-  //    getUserToSearch(this.search);
-  // }
-
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\resources\\js\\pages\\HomePage.vue: Unexpected token (49:85)\n\n\u001b[0m \u001b[90m 47 |\u001b[39m             \u001b[33m.\u001b[39mthen((response) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 48 |\u001b[39m                 \u001b[36mif\u001b[39m(response\u001b[33m.\u001b[39mdata\u001b[33m.\u001b[39mresults\u001b[33m.\u001b[39mlength \u001b[33m>\u001b[39m \u001b[35m0\u001b[39m){\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 49 |\u001b[39m                     \u001b[36mif\u001b[39m(\u001b[33m!\u001b[39m\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mfiltered_category_user\u001b[33m.\u001b[39mincludes(response\u001b[33m.\u001b[39mdata\u001b[33m.\u001b[39mresults[\u001b[35m0\u001b[39m\u001b[33m,\u001b[39m])){\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 50 |\u001b[39m                         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mfiltered_category_user\u001b[33m.\u001b[39mpush(response\u001b[33m.\u001b[39mdata\u001b[33m.\u001b[39mresults) \u001b[0m\n\u001b[0m \u001b[90m 51 |\u001b[39m                         console\u001b[33m.\u001b[39mlog(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mfiltered_category_user)\u001b[0m\n\u001b[0m \u001b[90m 52 |\u001b[39m                         \u001b[90m// console.log(response.data.results)\u001b[39m\u001b[0m\n    at instantiate (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:72:32)\n    at constructor (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:367:12)\n    at Parser.raise (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:3684:19)\n    at Parser.unexpected (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:3722:16)\n    at Parser.parseExprAtom (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:13323:22)\n    at Parser.parseExprSubscripts (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12848:23)\n    at Parser.parseUpdate (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12827:21)\n    at Parser.parseMaybeUnary (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12797:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12588:61)\n    at Parser.parseExprOps (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12595:23)\n    at Parser.parseMaybeConditional (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12565:23)\n    at Parser.parseMaybeAssign (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12517:21)\n    at Parser.parseExpressionBase (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12460:36)\n    at C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12447:39\n    at Parser.allowInAnd (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:14549:12)\n    at Parser.parseExpression (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12447:17)\n    at Parser.parseMember (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12915:28)\n    at Parser.parseSubscript (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12901:21)\n    at Parser.parseSubscripts (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12865:19)\n    at Parser.parseExprSubscripts (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12854:17)\n    at Parser.parseUpdate (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12827:21)\n    at Parser.parseMaybeUnary (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12797:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12588:61)\n    at Parser.parseExprOps (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12595:23)\n    at Parser.parseMaybeConditional (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12565:23)\n    at Parser.parseMaybeAssign (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12517:21)\n    at C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12475:39\n    at Parser.allowInAnd (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:14549:12)\n    at Parser.parseMaybeAssignAllowIn (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12475:17)\n    at Parser.parseExprListItem (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:14254:18)\n    at Parser.parseCallExpressionArguments (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:13074:22)\n    at Parser.parseCoverCallAndAsyncArrowHead (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12971:29)\n    at Parser.parseSubscript (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12896:19)\n    at Parser.parseSubscripts (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12865:19)\n    at Parser.parseExprSubscripts (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12854:17)\n    at Parser.parseUpdate (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12827:21)\n    at Parser.parseMaybeUnary (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12797:23)\n    at Parser.parseMaybeUnary (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12771:28)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12588:61)\n    at Parser.parseExprOps (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12595:23)\n    at Parser.parseMaybeConditional (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12565:23)\n    at Parser.parseMaybeAssign (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12517:21)\n    at Parser.parseExpressionBase (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12453:23)\n    at C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12447:39\n    at Parser.allowInAnd (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:14543:16)\n    at Parser.parseExpression (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:12447:17)\n    at Parser.parseHeaderExpression (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:15149:22)\n    at Parser.parseIfStatement (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:15253:22)\n    at Parser.parseStatementContent (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:14891:21)\n    at Parser.parseStatement (C:\\Users\\Davide96\\Boolean_class66\\Laravel-project\\DeliveBoo\\node_modules\\@babel\\parser\\lib\\index.js:14840:17)");
 
 /***/ }),
 
@@ -2456,50 +2333,6 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=template&id=f7ee8118&scoped=true&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=template&id=f7ee8118&scoped=true& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "slider_my"
-  }, [_c("div", {
-    staticClass: "slide-track_my"
-  }, _vm._l(_vm.carrousels, function (carrousel, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "slide_my"
-    }, [_c("a", {
-      attrs: {
-        href: "#"
-      }
-    }, [_c("img", {
-      attrs: {
-        src: carrousel.url,
-        height: "100",
-        width: "250",
-        alt: ""
-      }
-    })])]);
-  }), 0)]);
-};
-
-var staticRenderFns = [];
-render._withStripped = true;
-
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/HomePage.vue?vue&type=template&id=04c29797&":
 /*!************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/HomePage.vue?vue&type=template&id=04c29797& ***!
@@ -2536,21 +2369,14 @@ var render = function render() {
         alt: category.name
       }
     })]);
-  }), 0), _vm._v(" "), _vm._l(_vm.filtered_users, function (filteredUser, index) {
+  }), 0), _vm._v(" "), _vm._l(_vm.filtered_category_user, function (filteredUser) {
     return _c("div", {
-      key: index,
-      staticStyle: {
-        "backgroud-color": "red"
-      }
-    }, [_c("h5", [_vm._v(_vm._s(filteredUser.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(filteredUser.address))])]);
-  }), _vm._v(" "), _vm._l(_vm.filtered_category_user, function (filteredUser, index) {
-    return _c("div", {
-      key: index
-    }, [_c("h5", [_vm._v(_vm._s(filteredUser.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(filteredUser.address))])]);
-  }), _vm._v(" "), _vm._l(_vm.users, function (user) {
-    return _c("div", {
-      key: user.id
-    }, [_c("h5", [_vm._v(_vm._s(user.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(user.address))])]);
+      key: filteredUser.id
+    }, _vm._l(filteredUser, function (test, index) {
+      return _c("div", {
+        key: index
+      }, [_c("h5", [_vm._v(_vm._s(test.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(test.address))])]);
+    }), 0);
   })], 2);
 };
 
@@ -7067,25 +6893,6 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 // module
 exports.push([module.i, ".container_my[data-v-0e601454] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.responsive_layout_my[data-v-0e601454] {\n  width: calc(33.3333333333% - 10px);\n  margin-top: 20px;\n  margin-left: 10px;\n}\n.responsive_layout_my img[data-v-0e601454] {\n  border: 1px solid;\n  border-radius: 20px;\n}\n.store_my[data-v-0e601454] {\n  font-size: 30px;\n  color: #d0d0d0;\n  text-align: center;\n}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "/* eslint-disable */\n.slider_my[data-v-f7ee8118] {\n  position: relative;\n  padding-top: 80px;\n  display: flex;\n  align-items: center;\n}\n.slider_my[data-v-f7ee8118]::before, .slider_my[data-v-f7ee8118]::after {\n  content: \"\";\n  height: 100px;\n  position: absolute;\n  width: 200px;\n  z-index: 2;\n}\n.slider_my[data-v-f7ee8118]::after {\n  right: 0;\n  top: 0;\n  transform: rotateZ(180deg);\n}\n.slider_my[data-v-f7ee8118]::before {\n  left: 0;\n  top: 0;\n}\n.slider_my .slide-track_my[data-v-f7ee8118] {\n  display: flex;\n  width: 2450px;\n}\n.slider_my .slide_my[data-v-f7ee8118] {\n  width: 14.2857142857%;\n  margin-left: 10px;\n  display: flex;\n  align-items: center;\n}\n.slider_my a[data-v-f7ee8118] {\n  display: inline-block;\n  width: 100%;\n}\n.slider_my img[data-v-f7ee8118] {\n  width: 100%;\n  border-radius: 15px;\n  border: 1px solid;\n}\n.slide_my:hover img[data-v-f7ee8118] {\n  width: 100%;\n  border-radius: 15px;\n  border: 5px solid #fbba00;\n}", ""]);
 
 // exports
 
@@ -38473,36 +38280,6 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/App.vue?vue&type=style&index=0&id=91ac6b5c&lang=scss&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/App.vue?vue&type=style&index=0&id=91ac6b5c&lang=scss& ***!
@@ -54614,93 +54391,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/MainPages/Section/CarouselComponent.vue":
-/*!*************************************************************************!*\
-  !*** ./resources/js/components/MainPages/Section/CarouselComponent.vue ***!
-  \*************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CarouselComponent_vue_vue_type_template_id_f7ee8118_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CarouselComponent.vue?vue&type=template&id=f7ee8118&scoped=true& */ "./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=template&id=f7ee8118&scoped=true&");
-/* harmony import */ var _CarouselComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CarouselComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _CarouselComponent_vue_vue_type_style_index_0_id_f7ee8118_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss& */ "./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _CarouselComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CarouselComponent_vue_vue_type_template_id_f7ee8118_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CarouselComponent_vue_vue_type_template_id_f7ee8118_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "f7ee8118",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/MainPages/Section/CarouselComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************!*\
-  !*** ./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CarouselComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CarouselComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CarouselComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss&":
-/*!***********************************************************************************************************************************!*\
-  !*** ./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss& ***!
-  \***********************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CarouselComponent_vue_vue_type_style_index_0_id_f7ee8118_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=style&index=0&id=f7ee8118&scoped=true&lang=scss&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CarouselComponent_vue_vue_type_style_index_0_id_f7ee8118_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CarouselComponent_vue_vue_type_style_index_0_id_f7ee8118_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CarouselComponent_vue_vue_type_style_index_0_id_f7ee8118_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CarouselComponent_vue_vue_type_style_index_0_id_f7ee8118_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-/***/ }),
-
-/***/ "./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=template&id=f7ee8118&scoped=true&":
-/*!********************************************************************************************************************!*\
-  !*** ./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=template&id=f7ee8118&scoped=true& ***!
-  \********************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_CarouselComponent_vue_vue_type_template_id_f7ee8118_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CarouselComponent.vue?vue&type=template&id=f7ee8118&scoped=true& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MainPages/Section/CarouselComponent.vue?vue&type=template&id=f7ee8118&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_CarouselComponent_vue_vue_type_template_id_f7ee8118_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_CarouselComponent_vue_vue_type_template_id_f7ee8118_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/img/jumbotron/jumbotron-deliveboo-wide.jpg":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/img/jumbotron/jumbotron-deliveboo-wide.jpg ***!
@@ -55065,8 +54755,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
