@@ -1931,8 +1931,19 @@ __webpack_require__.r(__webpack_exports__);
   name: "HeaderComponents",
   data: function data() {
     return {
-      userToSearch: ''
+      userToSearch: '',
+      currentUser: []
     };
+  },
+  methods: {
+    getUsers: function getUsers() {
+      var _this = this;
+
+      axios.get("/api/users").then(function (response) {
+        _this.currentUser = response.data.current_user;
+        console.log(_this.currentUser);
+      });
+    }
   }
 });
 
@@ -2047,39 +2058,39 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      users: [],
+      // users: [],
       categories: [],
       filtered_category_user: [],
       list_of_categories: []
     };
   },
   methods: {
-    getUsers: function getUsers(word) {
+    // getUsers() {
+    //     axios.get("/api/users").then((response) => {
+    //         this.users = response.data.results;
+    //         console.log(this.users);
+    //     });
+    //     if(word === '') {
+    //         axios.get('/api/users')
+    //         .then((response) => {
+    //             this.users = response.data.results
+    //         })
+    //     } else {
+    //         axios.get('/api/users/word')
+    //         .then((response) => {
+    //             this.users = response.data.results
+    //         })
+    //     }
+    // },
+    getCategories: function getCategories() {
       var _this = this;
 
-      axios.get("/api/users").then(function (response) {
-        _this.users = response.data.results;
-      }); // if(word === '') {
-      //     axios.get('/api/users')
-      //     .then((response) => {
-      //         this.users = response.data.results
-      //     })
-      // } else {
-      //     axios.get('/api/users/word')
-      //     .then((response) => {
-      //         this.users = response.data.results
-      //     })
-      // }
-    },
-    getCategories: function getCategories() {
-      var _this2 = this;
-
       axios.get("/api/categories").then(function (response) {
-        _this2.categories = response.data.results;
+        _this.categories = response.data.results;
       });
     },
     getFilteredCategory: function getFilteredCategory(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       axios.get("/api/category/" + id).then(function (response) {
         var data = response.data.results;
@@ -2088,24 +2099,24 @@ __webpack_require__.r(__webpack_exports__);
           var currentUser = data[i];
           var currentUserCategory = currentUser.pivot.category_id;
 
-          if (!_this3.list_of_categories.includes(currentUserCategory)) {
+          if (!_this2.list_of_categories.includes(currentUserCategory)) {
             data.forEach(function (element) {
               var userWithCategoryId = {
                 user: element,
                 category_id: currentUserCategory
               };
 
-              _this3.filtered_category_user.push(userWithCategoryId);
+              _this2.filtered_category_user.push(userWithCategoryId);
             });
 
-            _this3.list_of_categories.push(currentUserCategory);
+            _this2.list_of_categories.push(currentUserCategory);
 
             return "break";
           } else {
             var index = 0;
 
-            for (var _i = 0; _i < _this3.filtered_category_user.length; _i++) {
-              var currentElem = _this3.filtered_category_user[_i];
+            for (var _i = 0; _i < _this2.filtered_category_user.length; _i++) {
+              var currentElem = _this2.filtered_category_user[_i];
 
               if (currentElem.category_id === id) {
                 index = _i;
@@ -2113,9 +2124,9 @@ __webpack_require__.r(__webpack_exports__);
               }
             }
 
-            _this3.filtered_category_user.splice(index, data.length);
+            _this2.filtered_category_user.splice(index, data.length);
 
-            _this3.list_of_categories.splice(_this3.list_of_categories.indexOf(id), 1);
+            _this2.list_of_categories.splice(_this2.list_of_categories.indexOf(id), 1);
 
             return "break";
           }
@@ -2137,7 +2148,7 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   mounted: function mounted() {
-    this.getUsers();
+    // this.getUsers();
     this.getCategories(); // this.getUserToSearch(search);
   }
 });
@@ -2572,8 +2583,21 @@ var render = function render() {
     })]);
   }), 0), _vm._v(" "), _vm._l(_vm.filtered_category_user, function (filteredUser) {
     return _c("div", {
-      key: filteredUser.id
-    }, [_c("h5", [_vm._v(_vm._s(filteredUser.user.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(filteredUser.user.address))])]);
+      key: filteredUser.id,
+      staticStyle: {
+        "border-top": "1px solid blue"
+      }
+    }, [_c("h5", [_vm._v(_vm._s(filteredUser.user.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(filteredUser.user.address))]), _vm._v(" "), _c("router-link", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        to: {
+          name: "single-user",
+          params: {
+            slug: filteredUser.user.slug
+          }
+        }
+      }
+    }, [_vm._v("\n            Vedi ristorante    \n        ")])], 1);
   })], 2);
 };
 
@@ -2629,7 +2653,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div");
+  return _c("div", [_vm._v("\n    bububaubabu\n")]);
 };
 
 var staticRenderFns = [];

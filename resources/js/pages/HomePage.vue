@@ -2,32 +2,29 @@
     <div>
         <CarouselComponent />
         <div class="d-flex">
-            <div
-                style="border: 1px solid black; cursor: pointer"
-                v-for="category in categories"
-                :key="category.id"
-                @click="getFilteredCategory(category.id)"
-            >
+            <div style="border: 1px solid black; cursor: pointer"  v-for="category in categories"  :key="category.id" @click="getFilteredCategory(category.id)" >
                 <h6>{{ category.name }}</h6>
                 <img class="w-15" :src="category.category_cover" :alt="category.name" />
             </div>
         </div>
 
-        <!-- <div style="backgroud-color: red" v-for="filteredUser, index in filtered_users" :key="index">
-            <h5>{{ filteredUser.name }}</h5>
-            <p>{{ filteredUser.address }}</p>
-        </div> -->
-
-        <div v-for="filteredUser in filtered_category_user" :key="filteredUser.id">
+        <div style="border-top: 1px solid blue;" v-for="filteredUser in filtered_category_user" :key="filteredUser.id">
             <h5>{{ filteredUser.user.name }}</h5>
             <p>{{ filteredUser.user.address }}</p>
+            <router-link :to="{name: 'single-user', params:{slug: filteredUser.user.slug} }" class="btn btn-primary" >
+                Vedi ristorante    
+            </router-link>        
         </div>
 
-        <!-- <div v-for="user in users" :key="user.id">
-            <h5>{{ user.name }}</h5>
-            <p>{{ user.address }}</p>
-        </div> -->
+        <!-- <div v-if="this.filtered_category_user.length === 0" class="mt-5">
+            <h3>Tutti i ristoranti:</h3>
+            <div style="border-top: 1px solid red;" v-for="user in users" :key="user.id">
+                <h5>{{ user.name }}</h5>
+                <p>{{ user.address }}</p>
+            </div>
+        </div> -->   
     </div>
+        
 </template>
 
 <script>
@@ -43,29 +40,31 @@ export default {
     },
     data() {
         return {
-            users: [],
+            // users: [],
             categories: [],
             filtered_category_user: [],
             list_of_categories: [],
         };
+        
     },
     methods: {
-        getUsers(word) {
-            axios.get("/api/users").then((response) => {
-                this.users = response.data.results;
-            });
-            // if(word === '') {
-            //     axios.get('/api/users')
-            //     .then((response) => {
-            //         this.users = response.data.results
-            //     })
-            // } else {
-            //     axios.get('/api/users/word')
-            //     .then((response) => {
-            //         this.users = response.data.results
-            //     })
-            // }
-        },
+        // getUsers() {
+        //     axios.get("/api/users").then((response) => {
+        //         this.users = response.data.results;
+        //         console.log(this.users);
+        //     });
+        //     if(word === '') {
+        //         axios.get('/api/users')
+        //         .then((response) => {
+        //             this.users = response.data.results
+        //         })
+        //     } else {
+        //         axios.get('/api/users/word')
+        //         .then((response) => {
+        //             this.users = response.data.results
+        //         })
+        //     }
+        // },
         getCategories() {
             axios.get("/api/categories").then((response) => {
                 this.categories = response.data.results;
@@ -79,9 +78,7 @@ export default {
                     const currentUser = data[i];
                     const currentUserCategory = currentUser.pivot.category_id;
 
-                    if (
-                        !this.list_of_categories.includes(currentUserCategory)
-                    ) {
+                    if (!this.list_of_categories.includes(currentUserCategory)){
                         data.forEach((element) => {
                             const userWithCategoryId = {
                                 user: element,
@@ -120,7 +117,7 @@ export default {
         // }
     },
     mounted() {
-        this.getUsers();
+        // this.getUsers();
         this.getCategories();
         // this.getUserToSearch(search);
     },

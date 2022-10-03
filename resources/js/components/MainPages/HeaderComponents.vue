@@ -47,10 +47,20 @@ export default {
     name: "HeaderComponents",
     data() {
         return{
-            userToSearch: ''
+            userToSearch: '',
+            currentUser: [],
+        }
+    },
+
+     methods: {
+        getUsers() {
+            axios.get("/api/users").then((response) => {
+                this.currentUser = response.data.current_user;
+                console.log(this.currentUser);
+            });
         }
     }
-};
+}
 </script>
 
 <style scoped lang="scss">

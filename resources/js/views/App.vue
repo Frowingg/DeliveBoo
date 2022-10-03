@@ -2,8 +2,8 @@
     <div>
         <HeaderComponents @performeSearch="saveSearchWord" />
         <router-view :search="searchWord" ></router-view>
-        <!-- <CarouselTags />
-        <WorkWithUs /> -->
+         <!-- <CarouselTags /> -->
+        <!-- <WorkWithUs /> -->
         <FooterCompo />
         <div class="responsive_my_tb">
             <ResponsiveTablet />

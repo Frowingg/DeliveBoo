@@ -60,7 +60,7 @@ class RegisterController extends Controller
             'categories' => ['required'],
             // 'user_cover' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            //'password' => ['required', 'string'],
+            // 'password' => ['required', 'string'],
         ]);
     }
 
