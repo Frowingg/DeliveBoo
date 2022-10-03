@@ -101,7 +101,15 @@
                                 </label>
                                 
                             </div>
-                            @endforeach                   
+                            @endforeach     
+                            <span id="error-check-category" style="background-color: red">
+                                    
+                            </span>  
+                            @error('categories')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span> 
+                            @enderror        
                         </div> 
 
                         <div class="form-group row">
@@ -138,8 +146,20 @@
             </div>
         </div>
     </div>
+    <script>
+
+        function handleData() {
+                    let check_category = new FormData(document.querySelector("form"));
+                    let categoryError = document.getElementById('error-check-category');
+                    if(!check_category .has("categories[]")) {
+                        categoryError.innerHTML = 'Seleziona almeno una categoria';
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            
+        </script>
 </div>
-<script>
-    
-</script>
+
 @endsection
