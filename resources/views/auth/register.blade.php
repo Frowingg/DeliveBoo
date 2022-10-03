@@ -18,7 +18,7 @@
 
                 <div class="card-body">
                     <div class="mb-4">I campi contrassegnati con * sono obbligatori</div>
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" oninput='password_confirmation.setCustomValidity(password_confirmation.value != password.value ? "Password di conferma ERRATA!" : "")'>
                         @csrf
 
                         <div class="form-group row">
@@ -39,7 +39,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}*</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}*</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -64,11 +64,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="VAT_number" class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA') }}*</label>
+                            <label for="VAT_number" class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA (es.12345678910)') }}*</label>
 
                             <div class="col-md-6">
-                                <input id="VAT_number" type="number" min="11" max="11" class="form-control @error('VAT_number') is-invalid @enderror" name="VAT_number" value="{{ old('VAT_number') }}" required autocomplete="VAT_number" onKeyPress="if(this.value.length==11) return false;">
-
+                                {{-- <input id="VAT_number" type="number" min="11" pattern="[0-9]{11}" class="form-control @error('VAT_number') is-invalid @enderror" name="VAT_number" value="{{ old('VAT_number') }}" required autocomplete="VAT_number" onKeyPress="if(this.value.length===11) return false;"> --}}
+                                <input id="VAT_number" pattern="[0-9]{11}" type="text" inputmode="numeric" maxlength="11" minlength="11" class="form-control @error('VAT_number') is-invalid @enderror" name="VAT_number" value="{{ old('VAT_number') }}" required autocomplete="VAT_number">
                                 @error('VAT_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -95,7 +95,7 @@
                             @foreach($categories as $category)
                             <div class="form-check">
                                 
-                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" name="categories[]">
+                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" name="categories[]" >
                                 <label class="form-check-label" for="category-{{ $category->id }}">
                                     {{ $category->name }}
                                 </label>
@@ -128,7 +128,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary" onClick="test">
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -140,11 +140,6 @@
     </div>
 </div>
 <script>
-    function test(){
-        var form = document.querySelector('form-check > input');
-        form.addEventListener('change', function() {
-            alert('Hi!');
-});
-    }
+    
 </script>
 @endsection
