@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index() {
 
         $users = User::with(['categories'])->get();
-        // $current_user = Auth::user()->id;
+        $current_user = Auth::user()->id;
 
         foreach($users as $user) {
             if($user->user_cover) {
@@ -22,7 +22,7 @@ class UserController extends Controller
         $data = [
             'success' => true,
             'results' => $users,
-            // 'current_user' => $current_user
+            'current_user' => $current_user
         ];
 
         return response()->json($data);

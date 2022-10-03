@@ -2058,39 +2058,40 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      // users: [],
+      users: [],
       categories: [],
       filtered_category_user: [],
       list_of_categories: []
     };
   },
   methods: {
-    // getUsers() {
-    //     axios.get("/api/users").then((response) => {
-    //         this.users = response.data.results;
-    //         console.log(this.users);
-    //     });
-    //     if(word === '') {
-    //         axios.get('/api/users')
-    //         .then((response) => {
-    //             this.users = response.data.results
-    //         })
-    //     } else {
-    //         axios.get('/api/users/word')
-    //         .then((response) => {
-    //             this.users = response.data.results
-    //         })
-    //     }
-    // },
-    getCategories: function getCategories() {
+    getUsers: function getUsers() {
       var _this = this;
 
+      axios.get("/api/users").then(function (response) {
+        _this.users = response.data.current_user;
+        console.log(_this.users);
+      }); //     if(word === '') {
+      //         axios.get('/api/users')
+      //         .then((response) => {
+      //             this.users = response.data.results
+      //         })
+      //     } else {
+      //         axios.get('/api/users/word')
+      //         .then((response) => {
+      //             this.users = response.data.results
+      //         })
+      //     }
+    },
+    getCategories: function getCategories() {
+      var _this2 = this;
+
       axios.get("/api/categories").then(function (response) {
-        _this.categories = response.data.results;
+        _this2.categories = response.data.results;
       });
     },
     getFilteredCategory: function getFilteredCategory(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("/api/category/" + id).then(function (response) {
         var data = response.data.results;
@@ -2099,24 +2100,24 @@ __webpack_require__.r(__webpack_exports__);
           var currentUser = data[i];
           var currentUserCategory = currentUser.pivot.category_id;
 
-          if (!_this2.list_of_categories.includes(currentUserCategory)) {
+          if (!_this3.list_of_categories.includes(currentUserCategory)) {
             data.forEach(function (element) {
               var userWithCategoryId = {
                 user: element,
                 category_id: currentUserCategory
               };
 
-              _this2.filtered_category_user.push(userWithCategoryId);
+              _this3.filtered_category_user.push(userWithCategoryId);
             });
 
-            _this2.list_of_categories.push(currentUserCategory);
+            _this3.list_of_categories.push(currentUserCategory);
 
             return "break";
           } else {
             var index = 0;
 
-            for (var _i = 0; _i < _this2.filtered_category_user.length; _i++) {
-              var currentElem = _this2.filtered_category_user[_i];
+            for (var _i = 0; _i < _this3.filtered_category_user.length; _i++) {
+              var currentElem = _this3.filtered_category_user[_i];
 
               if (currentElem.category_id === id) {
                 index = _i;
@@ -2124,9 +2125,9 @@ __webpack_require__.r(__webpack_exports__);
               }
             }
 
-            _this2.filtered_category_user.splice(index, data.length);
+            _this3.filtered_category_user.splice(index, data.length);
 
-            _this2.list_of_categories.splice(_this2.list_of_categories.indexOf(id), 1);
+            _this3.list_of_categories.splice(_this3.list_of_categories.indexOf(id), 1);
 
             return "break";
           }
@@ -2148,7 +2149,7 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   mounted: function mounted() {
-    // this.getUsers();
+    this.getUsers();
     this.getCategories(); // this.getUserToSearch(search);
   }
 });
@@ -2232,8 +2233,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      searchWord: ''
+      searchWord: ""
     };
+  },
+  computed: {
+    userLogged: function userLogged() {
+      return window.userLogged;
+    }
   }
 });
 
@@ -2677,9 +2683,10 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("HeaderComponents", {
+  return _c("div", [_vm.userLogged ? _c("div", [_vm._v("Loggato")]) : _vm._e(), _vm._v(" "), _c("HeaderComponents", {
     on: {
-      performeSearch: _vm.saveSearchWord
+      performeSearch: _vm.saveSearchWord,
+      userLogged: _vm.userLogged
     }
   }), _vm._v(" "), _c("router-view", {
     attrs: {

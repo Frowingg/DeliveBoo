@@ -16,10 +16,8 @@
     @if ($dish->dish_cover)
         <img class="w-25" src="{{ asset('storage/' . $dish->dish_cover )}}" alt="{{$dish->name}}">
     @endif
-        {{-- <h3>Categoria: {{ $dish->category ? $dish->category->name : 'Nessuna' }}</h3> --}}
-        {{-- <div>Data creazine: {{$dish->created_at->format('D d-m-Y')}}</div> --}}
-        {{-- <div>Ultimo aggiornamento: {{$dish->updated_at->format('D d-m-Y / H.i' )}}</div> --}}
-        {{-- <div>Slug: {{$dish->slug}}</div> --}}
+        <div>Data creazine: {{$dish->created_at->format('D d-m-Y')}}</div>
+        <div>Ultimo aggiornamento: {{$dish->updated_at->format('D d-m-Y / H.i' )}}</div>
 
         <h2>Ingredienti:</h2>
         <p>{{$dish->ingredients}}</p>

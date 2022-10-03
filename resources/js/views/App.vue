@@ -1,8 +1,9 @@
 <template>
     <div>
-        <HeaderComponents @performeSearch="saveSearchWord" />
-        <router-view :search="searchWord" ></router-view>
-         <!-- <CarouselTags /> -->
+        <div v-if="userLogged">Loggato</div>
+        <HeaderComponents @performeSearch="saveSearchWord" @userLogged="userLogged" />
+        <router-view :search="searchWord"></router-view>
+        <!-- <CarouselTags /> -->
         <!-- <WorkWithUs /> -->
         <FooterCompo />
         <div class="responsive_my_tb">
@@ -29,13 +30,18 @@ export default {
     },
     methods: {
         saveSearchWord(wordToSearch) {
-            this.searchWord = wordToSearch
-        }
+            this.searchWord = wordToSearch;
+        },
     },
     data() {
         return {
-            searchWord: ''
-        }
+            searchWord: "",
+        };
+    },
+    computed: {
+        userLogged() {
+            return window.userLogged;
+        },
     },
 };
 </script>

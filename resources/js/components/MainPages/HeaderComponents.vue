@@ -10,6 +10,10 @@
                     <div class="login_my">
                         <a href="/login">Login</a>
                     </div>
+
+                    <!-- <div v-if="userLogged">
+                        {{userLogged.name}}
+                    </div> -->
                     <div class="registration_my">
                         <a href="/register">Registrati</a>
                     </div>

@@ -40,7 +40,7 @@ export default {
     },
     data() {
         return {
-            // users: [],
+            users: [],
             categories: [],
             filtered_category_user: [],
             list_of_categories: [],
@@ -48,11 +48,11 @@ export default {
         
     },
     methods: {
-        // getUsers() {
-        //     axios.get("/api/users").then((response) => {
-        //         this.users = response.data.results;
-        //         console.log(this.users);
-        //     });
+        getUsers() {
+            axios.get("/api/users").then((response) => {
+                this.users = response.data.current_user;
+                console.log(this.users);
+            });
         //     if(word === '') {
         //         axios.get('/api/users')
         //         .then((response) => {
@@ -64,7 +64,7 @@ export default {
         //             this.users = response.data.results
         //         })
         //     }
-        // },
+        },
         getCategories() {
             axios.get("/api/categories").then((response) => {
                 this.categories = response.data.results;
@@ -117,7 +117,7 @@ export default {
         // }
     },
     mounted() {
-        // this.getUsers();
+        this.getUsers();
         this.getCategories();
         // this.getUserToSearch(search);
     },
