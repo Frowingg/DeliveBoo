@@ -2,6 +2,7 @@
     <div>
         <HeaderComponents />
         <router-view></router-view>
+        <WorkWithUs />
         <FooterCompo />
         <div class="responsive_my_tb">
             <ResponsiveTablet />
@@ -12,6 +13,7 @@
 <script>
 import HeaderComponents from "../components/MainPages/HeaderComponents.vue";
 import FooterCompo from "../components/MainPages/FooterCompo.vue";
+import WorkWithUs from "../components/MainPages/WorkWithUs.vue";
 import ResponsiveTablet from "../components/MainPages/Responsive/ResponsiveTablet.vue";
 
 export default {
@@ -20,6 +22,7 @@ export default {
         HeaderComponents,
         FooterCompo,
         ResponsiveTablet,
+        WorkWithUs,
     },
     methods: {
         saveSearchWord(wordToSearch) {

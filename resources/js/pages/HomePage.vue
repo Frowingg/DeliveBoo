@@ -27,24 +27,11 @@
             </div>
         </div>
 
-        <!-- <div class="d-flex">
-            <div style="border: 1px solid black; cursor: pointer"  v-for="category in categories"  :key="category.id" @click="getFilteredCategory(category.id)" >
-                <h6>{{ category.name }}</h6>
-                <img class="w-15" :src="category.category_cover" :alt="category.name" />
-            </div>
-        </div> -->
-
-        <!-- <div style="border-top: 1px solid blue;" v-for="filteredUser in filtered_category_user" :key="filteredUser.id">
-            <h5>{{ filteredUser.user.name }}</h5>
-            <p>{{ filteredUser.user.address }}</p>
-            <router-link :to="{name: 'single-user', params:{slug: filteredUser.user.slug} }" class="btn btn-primary" >
-                Vedi ristorante    
-            </router-link>        
-        </div> -->
-
+    
         <div class="contain">
             <div class="card" v-for="filteredUser in filtered_category_user" :key="filteredUser.id">
-                <!-- <img src="" alt=""> -->
+                <router-link :to="{name: 'single-user', params:{slug: filteredUser.user.slug} }">
+                
                 <div class="card-layover"></div>
                 <div class="card-info">
                     <div class="card-title">{{ filteredUser.user.name }}</div>
@@ -60,12 +47,10 @@
 
                     </ul>
                 </div>
-                <router-link :to="{name: 'single-user', params:{slug: filteredUser.user.slug} }" class="btn btn-primary" >
-                    Vedi ristorante    
-                </router-link> 
-
+            </router-link>
             </div>
         </div>
+         
     </div>
         
 </template>
@@ -78,7 +63,6 @@ export default {
     },
     data() {
         return {
-            users: [],
             categories: [],
             filtered_category_user: [],
             list_of_categories: [],
@@ -238,6 +222,8 @@ export default {
     .contain{
         width: 80%;
         margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
     }
     
     .card{
@@ -245,6 +231,7 @@ export default {
         overflow: hidden;
         height: 220px;
         width: 400px;
+        margin: 5px;
         display: flex;
         border-radius: 30px;
         transition: all 0.5s;
