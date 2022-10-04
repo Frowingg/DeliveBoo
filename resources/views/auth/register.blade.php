@@ -18,7 +18,7 @@
 
                 <div class="card-body">
                     <div class="mb-4">I campi contrassegnati con * sono obbligatori</div>
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" oninput='password_confirmation.setCustomValidity(password_confirmation.value != password.value ? "Password di conferma ERRATA!" : "")'>
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" onsubmit="return validationCheck()" oninput='password_confirmation.setCustomValidity(password_confirmation.value != password.value ? "Password di conferma ERRATA!" : "")'>
                         @csrf
 
                         <div class="form-group row">
@@ -148,7 +148,7 @@
     </div>
     <script>
 
-        function handleData() {
+        function validationCheck() {
                     let check_category = new FormData(document.querySelector("form"));
                     let categoryError = document.getElementById('error-check-category');
                     if(!check_category .has("categories[]")) {

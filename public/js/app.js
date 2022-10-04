@@ -2127,7 +2127,8 @@ __webpack_require__.r(__webpack_exports__);
   name: "SingleUser",
   data: function data() {
     return {
-      user: null
+      user: null,
+      dishes: []
     };
   },
   mounted: function mounted() {
@@ -2136,10 +2137,16 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/users/' + this.$route.params.slug).then(function (response) {
       if (response.data.success) {
         _this.user = response.data.results;
+        console.log(_this.user);
       } else {
         _this.$router.push({
           name: 'not-found'
         });
+      }
+    });
+    axios.get('/api/dishes/').then(function (response) {
+      if (response.data.success) {
+        _this.dishes = response.data.results;
       }
     });
   }
@@ -2663,7 +2670,14 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm._v("\n    bububaubabu\n")]);
+  return _c("div", {
+    staticClass: "container"
+  }, _vm._l(_vm.dishes, function (dish, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "mt-5"
+    }, [dish.user_id === _vm.user.id ? _c("div", [_vm._v("\n            " + _vm._s(dish) + "\n        ")]) : _vm._e()]);
+  }), 0);
 };
 
 var staticRenderFns = [];
