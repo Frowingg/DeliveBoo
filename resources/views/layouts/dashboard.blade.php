@@ -32,7 +32,7 @@
 
                     <div class="admin-head">
                         <div class="delive-logo">
-                            DeliveBoo
+                            <a href="/">DeliveBoo</a> 
                         </div>
                         <div class="admin-logo">
                             Admin Panel
@@ -125,7 +125,17 @@
     .admin-head{
         margin: 2rem 0;
     }
-
+    .admin-head a{
+            text-decoration: none;
+            color: white;
+        }
+    .delive-logo{
+        font-family: 'Pacifico', cursive;
+        color: white;
+        padding: 0 1rem;
+        font-size: 2.2rem;
+    }
+    
     .delive-logo{
         font-family: 'Pacifico', cursive;
         color: white;

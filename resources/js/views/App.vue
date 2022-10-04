@@ -1,18 +1,11 @@
 <template>
     <div>
-        <div v-if="userLogged">Loggato</div>
-        <HeaderComponents @performeSearch="saveSearchWord" @userLogged="userLogged" />
-        <router-view :search="searchWord"></router-view>
-        <!-- <CarouselTags /> -->
-        <!-- <WorkWithUs /> -->
+        <HeaderComponents />
+        <router-view></router-view>
         <FooterCompo />
         <div class="responsive_my_tb">
             <ResponsiveTablet />
         </div>
-        <!-- <div class="responsive_my_sp">
-        <ResponsiveHome />
-    </div> -->
-        <!-- </div> -->
     </div>
 </template>
 

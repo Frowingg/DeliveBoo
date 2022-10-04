@@ -1944,6 +1944,11 @@ __webpack_require__.r(__webpack_exports__);
         console.log(_this.currentUser);
       });
     }
+  },
+  computed: {
+    userLogged: function userLogged() {
+      return window.userLogged;
+    }
   }
 });
 
@@ -2065,33 +2070,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getUsers: function getUsers() {
+    getCategories: function getCategories() {
       var _this = this;
 
-      axios.get("/api/users").then(function (response) {
-        _this.users = response.data.current_user;
-        console.log(_this.users);
-      }); //     if(word === '') {
-      //         axios.get('/api/users')
-      //         .then((response) => {
-      //             this.users = response.data.results
-      //         })
-      //     } else {
-      //         axios.get('/api/users/word')
-      //         .then((response) => {
-      //             this.users = response.data.results
-      //         })
-      //     }
-    },
-    getCategories: function getCategories() {
-      var _this2 = this;
-
       axios.get("/api/categories").then(function (response) {
-        _this2.categories = response.data.results;
+        _this.categories = response.data.results;
       });
     },
     getFilteredCategory: function getFilteredCategory(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       axios.get("/api/category/" + id).then(function (response) {
         var data = response.data.results;
@@ -2100,24 +2087,24 @@ __webpack_require__.r(__webpack_exports__);
           var currentUser = data[i];
           var currentUserCategory = currentUser.pivot.category_id;
 
-          if (!_this3.list_of_categories.includes(currentUserCategory)) {
+          if (!_this2.list_of_categories.includes(currentUserCategory)) {
             data.forEach(function (element) {
               var userWithCategoryId = {
                 user: element,
                 category_id: currentUserCategory
               };
 
-              _this3.filtered_category_user.push(userWithCategoryId);
+              _this2.filtered_category_user.push(userWithCategoryId);
             });
 
-            _this3.list_of_categories.push(currentUserCategory);
+            _this2.list_of_categories.push(currentUserCategory);
 
             return "break";
           } else {
             var index = 0;
 
-            for (var _i = 0; _i < _this3.filtered_category_user.length; _i++) {
-              var currentElem = _this3.filtered_category_user[_i];
+            for (var _i = 0; _i < _this2.filtered_category_user.length; _i++) {
+              var currentElem = _this2.filtered_category_user[_i];
 
               if (currentElem.category_id === id) {
                 index = _i;
@@ -2125,9 +2112,9 @@ __webpack_require__.r(__webpack_exports__);
               }
             }
 
-            _this3.filtered_category_user.splice(index, data.length);
+            _this2.filtered_category_user.splice(index, data.length);
 
-            _this3.list_of_categories.splice(_this3.list_of_categories.indexOf(id), 1);
+            _this2.list_of_categories.splice(_this2.list_of_categories.indexOf(id), 1);
 
             return "break";
           }
@@ -2139,18 +2126,10 @@ __webpack_require__.r(__webpack_exports__);
           if (_ret === "break") break;
         }
       });
-    } // getUserToSearch(word) {
-    //     this.users.forEach(singleUser => {
-    //         if(singleUser.name.includes(word)) {
-    //             this.filtered_users.push(singleUser)
-    //         }
-    //     });
-    // }
-
+    }
   },
   mounted: function mounted() {
-    this.getUsers();
-    this.getCategories(); // this.getUserToSearch(search);
+    this.getCategories();
   }
 });
 
@@ -2381,7 +2360,64 @@ var render = function render() {
 
   return _c("div", [_c("div", {
     staticClass: "container_my"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticClass: "header_top_my"
+  }, [_vm._m(0), _vm._v(" "), _vm.userLogged ? _c("div", {
+    staticClass: "interface_my"
+  }, [_vm._m(1)]) : _c("div", {
+    staticClass: "interface_my"
+  }, [_vm._m(2), _vm._v(" "), _vm._m(3)])]), _vm._v(" "), _vm._m(4)])]);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "logo_my"
+  }, [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("DeliveBoo")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "registration_my"
+  }, [_c("a", {
+    attrs: {
+      href: "/admin"
+    }
+  }, [_vm._v("Il tuo Ristorante")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "login_my"
+  }, [_c("a", {
+    attrs: {
+      href: "/login"
+    }
+  }, [_vm._v("Login")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "registration_my"
+  }, [_c("a", {
+    attrs: {
+      href: "/register"
+    }
+  }, [_vm._v("Registrati")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "jumbotrone_my"
   }, [_c("div", {
     staticClass: "search_bar_my"
@@ -2390,66 +2426,19 @@ var render = function render() {
   }, [_vm._v("\n                    Ordina i piatti che ami con DeliveBoo\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "input-group_my"
   }, [_c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.userToSearch,
-      expression: "userToSearch"
-    }],
     staticClass: "search",
     attrs: {
       type: "search",
       placeholder: "Cerca il ristorante che preferisci",
       "aria-label": "Search",
       "aria-describedby": "search-addon"
-    },
-    domProps: {
-      value: _vm.userToSearch
-    },
-    on: {
-      keyup: function keyup($event) {
-        return _vm.$emit("performeSearch", _vm.userToSearch);
-      },
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.userToSearch = $event.target.value;
-      }
     }
   }), _vm._v(" "), _c("a", {
     staticClass: "button_search_my",
     attrs: {
       href: "#"
     }
-  }, [_vm._v("CERCA")])])])])])]);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "header_top_my"
-  }, [_c("div", {
-    staticClass: "logo_my"
-  }, [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("DeliveBoo")])]), _vm._v(" "), _c("div", {
-    staticClass: "interface_my"
-  }, [_c("div", {
-    staticClass: "login_my"
-  }, [_c("a", {
-    attrs: {
-      href: "/login"
-    }
-  }, [_vm._v("Login")])]), _vm._v(" "), _c("div", {
-    staticClass: "registration_my"
-  }, [_c("a", {
-    attrs: {
-      href: "/register"
-    }
-  }, [_vm._v("Registrati")])])])]);
+  }, [_vm._v("CERCA")])])])]);
 }];
 render._withStripped = true;
 
@@ -2683,16 +2672,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.userLogged ? _c("div", [_vm._v("Loggato")]) : _vm._e(), _vm._v(" "), _c("HeaderComponents", {
-    on: {
-      performeSearch: _vm.saveSearchWord,
-      userLogged: _vm.userLogged
-    }
-  }), _vm._v(" "), _c("router-view", {
-    attrs: {
-      search: _vm.searchWord
-    }
-  }), _vm._v(" "), _c("FooterCompo"), _vm._v(" "), _c("div", {
+  return _c("div", [_c("HeaderComponents"), _vm._v(" "), _c("router-view"), _vm._v(" "), _c("FooterCompo"), _vm._v(" "), _c("div", {
     staticClass: "responsive_my_tb"
   }, [_c("ResponsiveTablet")], 1)], 1);
 };
@@ -55119,8 +55099,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

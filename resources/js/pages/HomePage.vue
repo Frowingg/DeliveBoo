@@ -48,23 +48,6 @@ export default {
         
     },
     methods: {
-        getUsers() {
-            axios.get("/api/users").then((response) => {
-                this.users = response.data.current_user;
-                console.log(this.users);
-            });
-        //     if(word === '') {
-        //         axios.get('/api/users')
-        //         .then((response) => {
-        //             this.users = response.data.results
-        //         })
-        //     } else {
-        //         axios.get('/api/users/word')
-        //         .then((response) => {
-        //             this.users = response.data.results
-        //         })
-        //     }
-        },
         getCategories() {
             axios.get("/api/categories").then((response) => {
                 this.categories = response.data.results;
@@ -106,20 +89,9 @@ export default {
                 }
             });
         }
-        // getUserToSearch(word) {
-        //     this.users.forEach(singleUser => {
-        //         if(singleUser.name.includes(word)) {
-
-        //             this.filtered_users.push(singleUser)
-
-        //         }
-        //     });
-        // }
     },
     mounted() {
-        this.getUsers();
         this.getCategories();
-        // this.getUserToSearch(search);
     },
 };
 </script>

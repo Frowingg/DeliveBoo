@@ -9,9 +9,9 @@
     <title>Document</title>
 </head>
 <body>
-        @guest
+        {{-- @guest
         <h1>guest</h1>
-        @endguest
+        @endguest --}}
         @auth
         <script>
             window.userLogged = true;
@@ -21,12 +21,3 @@
     <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
-
-{{-- @extends('layouts.app')
-
-@section('content')
-   <div>
-        <div id="root"></div>
-        Home guest php laravel
-   </div>
-@endsection --}}

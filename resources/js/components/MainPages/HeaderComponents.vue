@@ -6,14 +6,15 @@
                     <a href="#">DeliveBoo</a>
                 </div>
 
-                <div class="interface_my">
+                <div class="interface_my" v-if="userLogged">
+                    <div class="registration_my">
+                        <a href="/admin">Il tuo Ristorante</a>
+                    </div>
+                </div>
+                <div class="interface_my" v-else>
                     <div class="login_my">
                         <a href="/login">Login</a>
                     </div>
-
-                    <!-- <div v-if="userLogged">
-                        {{userLogged.name}}
-                    </div> -->
                     <div class="registration_my">
                         <a href="/register">Registrati</a>
                     </div>
@@ -28,8 +29,6 @@
                     </div>
                     <div class="input-group_my">
                         <input
-                            @keyup="$emit('performeSearch', userToSearch)"
-                            v-model="userToSearch"
                             type="search"
                             class="search"
                             placeholder="Cerca il ristorante che preferisci"
@@ -55,13 +54,17 @@ export default {
             currentUser: [],
         }
     },
-
-     methods: {
+    methods: {
         getUsers() {
             axios.get("/api/users").then((response) => {
                 this.currentUser = response.data.current_user;
                 console.log(this.currentUser);
             });
+        }
+    },
+    computed: {
+        userLogged() {
+            return window.userLogged
         }
     }
 }
