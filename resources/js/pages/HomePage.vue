@@ -1,40 +1,78 @@
 <template>
     <div>
-        <CarouselComponent />
-        <div class="d-flex">
+        <div class="carrousel_my">
+            <div class="slider_my">
+                <div class="slide-track_my">
+                    
+                    <div class="slide_my" v-for="category in categories"
+                        :key="category.id"
+                        @click="getFilteredCategory(category.id)" 
+                        v-on:click="isActive = !isActive" v-bind:class="{ active }">
+                        
+                        <a>
+                            <img :src="category.category_cover" :alt="category.name" />
+                            
+                            <div class="layover"></div>
+                            
+                            <div class="name-category">
+                                <div>
+                                    {{ category.name }}
+                                </div>
+                            </div>
+                        
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="d-flex">
             <div style="border: 1px solid black; cursor: pointer"  v-for="category in categories"  :key="category.id" @click="getFilteredCategory(category.id)" >
                 <h6>{{ category.name }}</h6>
                 <img class="w-15" :src="category.category_cover" :alt="category.name" />
             </div>
-        </div>
+        </div> -->
 
-        <div style="border-top: 1px solid blue;" v-for="filteredUser in filtered_category_user" :key="filteredUser.id">
+        <!-- <div style="border-top: 1px solid blue;" v-for="filteredUser in filtered_category_user" :key="filteredUser.id">
             <h5>{{ filteredUser.user.name }}</h5>
             <p>{{ filteredUser.user.address }}</p>
             <router-link :to="{name: 'single-user', params:{slug: filteredUser.user.slug} }" class="btn btn-primary" >
                 Vedi ristorante    
             </router-link>        
-        </div>
+        </div> -->
 
-        <!-- <div v-if="this.filtered_category_user.length === 0" class="mt-5">
-            <h3>Tutti i ristoranti:</h3>
-            <div style="border-top: 1px solid red;" v-for="user in users" :key="user.id">
-                <h5>{{ user.name }}</h5>
-                <p>{{ user.address }}</p>
+        <div class="contain">
+            <div class="card" v-for="filteredUser in filtered_category_user" :key="filteredUser.id">
+                <!-- <img src="" alt=""> -->
+                <div class="card-layover"></div>
+                <div class="card-info">
+                    <div class="card-title">{{ filteredUser.user.name }}</div>
+                    <div class="card-address">{{ filteredUser.user.address }}</div>
+                    <ul class="card-categories">
+                        <li>
+                            Categoria
+                        </li>
+
+                        <li>
+                            Categoria
+                        </li>
+
+                    </ul>
+                </div>
+                <router-link :to="{name: 'single-user', params:{slug: filteredUser.user.slug} }" class="btn btn-primary" >
+                    Vedi ristorante    
+                </router-link> 
+
             </div>
-        </div> -->   
+        </div>
     </div>
         
 </template>
 
 <script>
-import CarouselComponent from "../components/MainPages/Section/CarouselComponent.vue";
-
 export default {
     name: "HomePage",
-    components: {
-        CarouselComponent,
-    },
     props: {
         search: String,
     },
@@ -96,4 +134,201 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped lang="scss">
+
+    @import "../components/sass/variable.scss";
+    
+    // BUTTON CATEGORY
+        .carrousel_my{
+            padding: 4rem 0;
+            margin: 1.1rem 0;
+            overflow: hidden;
+            width: 100%;
+        }
+        .responsive_my_sp{
+          display: none;
+        }
+        .responsive_my_tb{
+          display: none;
+        }
+    
+    
+    
+    // Styling
+    .slide-track_my{
+        margin-top: 0.5rem;
+        padding: 2rem 0;
+        overflow-x: auto;
+        margin: 0 auto;
+        width: 90%;
+    }
+    
+    .slider_my {	
+        position: relative;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 100%;
+        
+        .slide-track_my {
+            display: flex;
+            position: relative;
+            margin: 0 1.2rem;
+        }
+        
+        .slide_my {
+            margin: 0 1rem;
+            display: flex;
+            align-items: center;
+            
+        }
+        a{
+            display: flex;
+            position: relative;
+            width: 220px;
+            height: 110px;
+            cursor: pointer;
+        }
+        img{
+            width: 100%;
+            border-radius: 20px;
+            transition: all 0.5s;
+       }
+        .layover{
+            background-color: black;
+            border-radius: 20px;
+            opacity: 30%;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s;
+       }
+       .name-category{
+        width: 100%;
+        position: absolute;
+        display: flex;
+        align-self: center;
+        color: white;
+        font-weight: 500;
+        font-size: 1.2rem;
+        padding: 0 1.5rem;
+        justify-content: center;
+        transition: all 0.5s;
+       }
+    
+       .slide_my:focus-visible {
+            img{
+                border-radius: 40px;
+                // box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
+            }
+            .layover{
+                background-color: black;
+                border-radius: 40px;
+                opacity: 55%;
+            }
+            
+            .name-category{
+                font-weight: 700;
+                letter-spacing: 2px;
+            }
+        }
+    }
+    
+    // CARD RESTAURANT
+    .contain{
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    .card{
+        background-color: #ffba00;
+        overflow: hidden;
+        height: 220px;
+        width: 400px;
+        display: flex;
+        border-radius: 30px;
+        transition: all 0.5s;
+        position: relative;
+        cursor: pointer;
+        img{
+            width: 100%;
+            justify-self: center;
+            align-self: center;
+            position: absolute;
+            transition: all 0.5s;
+        }
+    }
+    
+    .card-info{
+        padding: 1rem 1.2rem;
+        position: absolute;
+        align-self: end;
+        transition: all 0.5s;
+        bottom: 10px;
+        left: 15px;
+    }
+    
+    .card-address{
+        color: white;
+        margin: 0.5rem 0;
+    }
+    
+    .card-categories{
+        display: flex;
+        list-style: none;
+    }
+    
+    .card-categories li{
+        padding: 0 0.6rem;
+        color: white;
+        font-size: 0.8rem;
+        transition: all 0.5s;
+    }
+    
+    .card-title{
+        color: white;
+        font-weight: 500;
+        font-size: 1.4rem;
+        margin-bottom: 0.3rem;
+        transition: all 0.5s;
+    }
+    
+    .card-layover{
+        background-color: black;
+        opacity: 25%;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transition: all 0.5s;
+    }
+    
+    .card-layover:hover{
+        opacity: 40%;
+    }
+    
+    .card:hover{
+        border-radius: 40px;
+        box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
+        .card-title{
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            color: white;
+        }
+        .card-categories{
+            li{
+                background-color: #ffba00;
+                font-size: 1rem;
+                font-weight: 500;
+                margin: 0.3rem;
+                border-radius: 15px;
+                padding: 0.3rem 0.7rem;
+                color: white;
+            }
+        }
+        img{
+            width: 120%;
+        }
+    }
+    </style>

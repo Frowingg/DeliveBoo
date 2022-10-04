@@ -47,24 +47,6 @@ export default {
                 {
                     url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg",
                 },
-                {
-                    url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg",
-                },
-                {
-                    url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg",
-                },
-                {
-                    url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg",
-                },
-                {
-                    url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg",
-                },
-                {
-                    url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg",
-                },
-                {
-                    url: "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-margherita.jpg",
-                },
             ],
         };
     },
