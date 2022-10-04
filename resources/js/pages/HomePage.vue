@@ -27,27 +27,28 @@
                 </div>
             </div>
         </div>
-
     
         <div class="contain">
             <div class="card" v-for="filteredUser in filtered_category_user" :key="filteredUser.id">
+                
                 <router-link :to="{name: 'single-user', params:{slug: filteredUser.user.slug} }">
                 
                 <div class="card-layover"></div>
                 <div class="card-info">
                     <div class="card-title">{{ filteredUser.user.name }}</div>
-                    <div class="card-address">{{ filteredUser.user.address }}
-                    </div>
-                    <ul class="card-categories">
-                        <li v-for="category in categories" :key="category.id">
-                            <span v-if="category.id == filteredUser.user.pivot.category_id ">
-                                {{ category.name }} 
-                            </span>
-                            
-                        </li>
+                    <div class="card-address">{{ filteredUser.user.address }}</div>
+                    <span v-for="categoryInfo, index in filteredUser" :key="index">
+                        <ul class="card-categories">
 
-                       
-                    </ul>
+                            <li v-for="categoryName, index in categoryInfo.categories" :key="index">
+                                {{ categoryName['name'] }}
+                            </li>
+
+                        </ul>
+                    </span>
+
+                    
+
                 </div>
             </router-link>
             </div>
@@ -98,7 +99,6 @@ export default {
                             );
                         });
                         this.list_of_categories.push(currentUserCategory);
-                        console.log(this.filtered_category_user)
                         break;
                     } else {
                         let index = 0;

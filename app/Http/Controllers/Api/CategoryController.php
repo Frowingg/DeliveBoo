@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
     public function showSingleCategory($id) {
 
-        $singleCategory = Category::findOrFail($id)->users()->get();
+        $singleCategory = Category::findOrFail($id)->users()->with(['categories'])->get();
 
         if($singleCategory) {
             $data = [

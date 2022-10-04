@@ -8,26 +8,26 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function index() {
+    // public function index() {
 
-        $users = User::with(['categories'])->get();
-        $current_user = Auth::user()->id;
+    //     $users = User::with(['categories'])->get();
+    //     $current_user = Auth::user()->id;
 
-        foreach($users as $user) {
-            if($user->user_cover) {
-                $user->user_cover = asset('storage/' . $user->user_cover);
-            }
-        }
+    //     foreach($users as $user) {
+    //         if($user->user_cover) {
+    //             $user->user_cover = asset('storage/' . $user->user_cover);
+    //         }
+    //     }
 
-        $data = [
-            'success' => true,
-            'results' => $users,
-            'current_user' => $current_user
-        ];
+    //     $data = [
+    //         'success' => true,
+    //         'results' => $users,
+    //         'current_user' => $current_user
+    //     ];
 
-        return response()->json($data);
+    //     return response()->json($data);
         
-    }
+    // }
 
     public function show($slug) {
 
@@ -47,23 +47,23 @@ class UserController extends Controller
         return response()->json($data);
     }
 
-    public function showFilteredUser($word) {
+    // public function showFilteredUser($word) {
 
-        $user = User::whereLike('name', $word)->get();
+    //     $user = User::whereLike('name', $word)->get();
         
-        dd($word);
+    //     dd($word);
 
-        if($user) {
-            $data =  [
-                'success' => true,
-                'results' => $user
-            ];
-        } else {
-            $data = [
-                'success' => false
-            ];
-        }
+    //     if($user) {
+    //         $data =  [
+    //             'success' => true,
+    //             'results' => $user
+    //         ];
+    //     } else {
+    //         $data = [
+    //             'success' => false
+    //         ];
+    //     }
 
-        return response()->json($data);
-    }
+    //     return response()->json($data);
+    // }
 }

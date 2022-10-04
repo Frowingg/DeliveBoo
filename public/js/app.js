@@ -2063,7 +2063,6 @@ __webpack_require__.r(__webpack_exports__);
 
             _this2.list_of_categories.push(currentUserCategory);
 
-            console.log(_this2.filtered_category_user);
             return "break";
           } else {
             var index = 0;
@@ -2598,13 +2597,17 @@ var render = function render() {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(filteredUser.user.name))]), _vm._v(" "), _c("div", {
       staticClass: "card-address"
-    }, [_vm._v(_vm._s(filteredUser.user.address) + "\n                ")]), _vm._v(" "), _c("ul", {
-      staticClass: "card-categories"
-    }, _vm._l(_vm.categories, function (category) {
-      return _c("li", {
-        key: category.id
-      }, [category.id == filteredUser.user.pivot.category_id ? _c("span", [_vm._v("\n                            " + _vm._s(category.name) + " \n                        ")]) : _vm._e()]);
-    }), 0)])])], 1);
+    }, [_vm._v(_vm._s(filteredUser.user.address))]), _vm._v(" "), _vm._l(filteredUser, function (categoryInfo, index) {
+      return _c("span", {
+        key: index
+      }, [_c("ul", {
+        staticClass: "card-categories"
+      }, _vm._l(categoryInfo.categories, function (categoryName, index) {
+        return _c("li", {
+          key: index
+        }, [_vm._v("\n                            " + _vm._s(categoryName["name"]) + "\n                        ")]);
+      }), 0)]);
+    })], 2)])], 1);
   }), 0)]);
 };
 
@@ -55223,8 +55226,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

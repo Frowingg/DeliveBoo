@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Route da fare per il frontend
-Route::get('/users', 'Api\UserController@index');
+// Route::get('/users', 'Api\UserController@index');
 
 Route::get('/users/{slug}', 'Api\UserController@show');
 
@@ -29,4 +29,4 @@ Route::get('/categories', 'Api\CategoryController@index');
 
 Route::get('/category/{id}', 'Api\CategoryController@showSingleCategory');
 
-Route::get('/users/{word}', 'Api\UserController@showFilteredUser');
+// Route::get('/users/{word}', 'Api\UserController@showFilteredUser');
