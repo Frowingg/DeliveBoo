@@ -3,11 +3,12 @@
         <div class="carrousel_my">
             <div class="slider_my">
                 <div class="slide-track_my">
-                    
+                    <!-- v-on:click="isActive = !isActive" v-bind:class="{ active }" -->
                     <div class="slide_my" v-for="category in categories"
                         :key="category.id"
                         @click="getFilteredCategory(category.id)" 
-                        v-on:click="isActive = !isActive" v-bind:class="{ active }">
+            
+                        >
                         
                         <a>
                             <img :src="category.category_cover" :alt="category.name" />
@@ -35,16 +36,17 @@
                 <div class="card-layover"></div>
                 <div class="card-info">
                     <div class="card-title">{{ filteredUser.user.name }}</div>
-                    <div class="card-address">{{ filteredUser.user.address }}</div>
+                    <div class="card-address">{{ filteredUser.user.address }}
+                    </div>
                     <ul class="card-categories">
-                        <li>
-                            Categoria
+                        <li v-for="category in categories" :key="category.id">
+                            <span v-if="category.id == filteredUser.user.pivot.category_id ">
+                                {{ category.name }} 
+                            </span>
+                            
                         </li>
 
-                        <li>
-                            Categoria
-                        </li>
-
+                       
                     </ul>
                 </div>
             </router-link>
@@ -70,11 +72,13 @@ export default {
         
     },
     methods: {
+        // prendo tutte le categorie 
         getCategories() {
             axios.get("/api/categories").then((response) => {
                 this.categories = response.data.results;
             });
         },
+        // filtaggio categorie 
         getFilteredCategory(id) {
             axios.get("/api/category/" + id).then((response) => {
                 let data = response.data.results;
@@ -94,6 +98,7 @@ export default {
                             );
                         });
                         this.list_of_categories.push(currentUserCategory);
+                        console.log(this.filtered_category_user)
                         break;
                     } else {
                         let index = 0;

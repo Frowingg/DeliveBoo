@@ -2026,13 +2026,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      users: [],
       categories: [],
       filtered_category_user: [],
       list_of_categories: []
     };
   },
   methods: {
+    // prendo tutte le categorie 
     getCategories: function getCategories() {
       var _this = this;
 
@@ -2040,6 +2040,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.categories = response.data.results;
       });
     },
+    // filtaggio categorie 
     getFilteredCategory: function getFilteredCategory(id) {
       var _this2 = this;
 
@@ -2062,6 +2063,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this2.list_of_categories.push(currentUserCategory);
 
+            console.log(_this2.filtered_category_user);
             return "break";
           } else {
             var index = 0;
@@ -2558,15 +2560,10 @@ var render = function render() {
     return _c("div", {
       key: category.id,
       staticClass: "slide_my",
-      "class": {
-        active: _vm.active
-      },
       on: {
-        click: [function ($event) {
+        click: function click($event) {
           return _vm.getFilteredCategory(category.id);
-        }, function ($event) {
-          _vm.isActive = !_vm.isActive;
-        }]
+        }
       }
     }, [_c("a", [_c("img", {
       attrs: {
@@ -2601,9 +2598,13 @@ var render = function render() {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(filteredUser.user.name))]), _vm._v(" "), _c("div", {
       staticClass: "card-address"
-    }, [_vm._v(_vm._s(filteredUser.user.address))]), _vm._v(" "), _c("ul", {
+    }, [_vm._v(_vm._s(filteredUser.user.address) + "\n                ")]), _vm._v(" "), _c("ul", {
       staticClass: "card-categories"
-    }, [_c("li", [_vm._v("\n                        Categoria\n                    ")]), _vm._v(" "), _c("li", [_vm._v("\n                        Categoria\n                    ")])])])])], 1);
+    }, _vm._l(_vm.categories, function (category) {
+      return _c("li", {
+        key: category.id
+      }, [category.id == filteredUser.user.pivot.category_id ? _c("span", [_vm._v("\n                            " + _vm._s(category.name) + " \n                        ")]) : _vm._e()]);
+    }), 0)])])], 1);
   }), 0)]);
 };
 
