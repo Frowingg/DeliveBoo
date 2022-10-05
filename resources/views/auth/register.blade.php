@@ -2,15 +2,7 @@
 
 @section('content')
 <div class="container">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -20,6 +12,15 @@
                     <div class="mb-4">I campi contrassegnati con * sono obbligatori</div>
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" onsubmit="return validationCheck()" oninput='password_confirmation.setCustomValidity(password_confirmation.value != password.value ? "Password di conferma ERRATA!" : "")'>
                         @csrf
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome ristorante') }}*</label>

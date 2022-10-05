@@ -33,24 +33,24 @@
                 
                 <router-link :to="{name: 'single-user', params:{slug: filteredUser.user.slug} }">
                 
-                <div class="card-layover"></div>
-                <div class="card-info">
-                    <div class="card-title">{{ filteredUser.user.name }}</div>
-                    <div class="card-address">{{ filteredUser.user.address }}</div>
-                    <span v-for="categoryInfo, index in filteredUser" :key="index">
-                        <ul class="card-categories">
+                    <div class="card-layover"></div>
+                    <div class="card-info">
+                        <div class="card-title">{{ filteredUser.user.name }}</div>
+                        <div class="card-address">{{ filteredUser.user.address }}</div>
+                        <span v-for="categoryInfo, index in filteredUser" :key="index">
+                            <ul class="card-categories">
 
-                            <li v-for="categoryName, index in categoryInfo.categories" :key="index">
-                                {{ categoryName['name'] }}
-                            </li>
+                                <li v-for="categoryName, index in categoryInfo.categories" :key="index">
+                                    {{ categoryName['name'] }}
+                                </li>
 
-                        </ul>
-                    </span>
+                            </ul>
+                        </span>
 
-                    
+                        
 
-                </div>
-            </router-link>
+                    </div>
+                </router-link>
             </div>
         </div>
          
@@ -69,8 +69,7 @@ export default {
             categories: [],
             filtered_category_user: [],
             list_of_categories: [],
-        };
-        
+        }
     },
     methods: {
         // prendo tutte le categorie 
@@ -81,26 +80,37 @@ export default {
         },
         // filtaggio categorie 
         getFilteredCategory(id) {
+            // chiamata api pasandogli l'id della categoria specifica
             axios.get("/api/category/" + id).then((response) => {
+                //salviamo il tutti i ristoranti della categoria selezionata in data
                 let data = response.data.results;
 
+                // scorro i ristoranti in data
                 for (let i = 0; i < data.length; i++) {
+                    // il singolo ristorante
                     const currentUser = data[i];
+                    // prendo il category id del ristorante
                     const currentUserCategory = currentUser.pivot.category_id;
 
+                    // se la categoria del ristorante non sta nella lista delle categorie
                     if (!this.list_of_categories.includes(currentUserCategory)){
+                        // mi scorro i ristoranti
                         data.forEach((element) => {
+                            // salvo tutti i dati del ristorante e le sue categorie
                             const userWithCategoryId = {
                                 user: element,
                                 category_id: currentUserCategory,
                             };
+                            // alla lista finale aggiungiamo gli user filtrati
                             this.filtered_category_user.push(
                                 userWithCategoryId
                             );
                         });
+                        // aggiungiamo nella lista delle categorie l'id della categoria selezionata
                         this.list_of_categories.push(currentUserCategory);
                         break;
                     } else {
+
                         let index = 0;
                         for (let i = 0; i < this.filtered_category_user.length; i++) {
                             let currentElem = this.filtered_category_user[i];
@@ -113,7 +123,9 @@ export default {
                         this.list_of_categories.splice( this.list_of_categories.indexOf(id), 1 );
                         break;     
                     }
+                
                 }
+                
             });
         }
     },
@@ -125,202 +137,202 @@ export default {
 
 <style scoped lang="scss">
 
-    @import "../components/sass/variable.scss";
-    
-    // BUTTON CATEGORY
-        .carrousel_my{
-            padding: 4rem 0;
-            margin: 1.1rem 0;
-            overflow: hidden;
-            width: 100%;
-        }
-        .responsive_my_sp{
-          display: none;
-        }
-        .responsive_my_tb{
-          display: none;
-        }
-    
-    
-    
-    // Styling
-    .slide-track_my{
-        margin-top: 0.5rem;
-        padding: 2rem 0;
-        overflow-x: auto;
-        margin: 0 auto;
-        width: 90%;
-    }
-    
-    .slider_my {	
-        position: relative;
-        display: flex;
-        justify-content: center;
-        box-sizing: border-box;
-        width: 100%;
-        
-        .slide-track_my {
-            display: flex;
-            position: relative;
-            margin: 0 1.2rem;
-        }
-        
-        .slide_my {
-            margin: 0 1rem;
-            display: flex;
-            align-items: center;
-            
-        }
-        a{
-            display: flex;
-            position: relative;
-            width: 220px;
-            height: 110px;
-            cursor: pointer;
-        }
-        img{
-            width: 100%;
-            border-radius: 20px;
-            transition: all 0.5s;
-       }
-        .layover{
-            background-color: black;
-            border-radius: 20px;
-            opacity: 30%;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transition: all 0.5s;
-       }
-       .name-category{
-        width: 100%;
-        position: absolute;
-        display: flex;
-        align-self: center;
-        color: white;
-        font-weight: 500;
-        font-size: 1.2rem;
-        padding: 0 1.5rem;
-        justify-content: center;
-        transition: all 0.5s;
-       }
-    
-       .slide_my:focus-visible {
-            img{
-                border-radius: 40px;
-                // box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
-            }
-            .layover{
-                background-color: black;
-                border-radius: 40px;
-                opacity: 55%;
-            }
-            
-            .name-category{
-                font-weight: 700;
-                letter-spacing: 2px;
-            }
-        }
-    }
-    
-    // CARD RESTAURANT
-    .contain{
-        width: 80%;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-    }
-    
-    .card{
-        background-color: #ffba00;
+@import "../components/sass/variable.scss";
+
+// BUTTON CATEGORY
+    .carrousel_my{
+        padding: 4rem 0;
+        margin: 1.1rem 0;
         overflow: hidden;
-        height: 220px;
-        width: 400px;
-        margin: 5px;
+        width: 100%;
+    }
+    .responsive_my_sp{
+        display: none;
+    }
+    .responsive_my_tb{
+        display: none;
+    }
+
+
+
+// Styling
+.slide-track_my{
+    margin-top: 0.5rem;
+    padding: 2rem 0;
+    overflow-x: auto;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.slider_my {	
+    position: relative;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    
+    .slide-track_my {
         display: flex;
-        border-radius: 30px;
-        transition: all 0.5s;
         position: relative;
-        cursor: pointer;
-        img{
-            width: 100%;
-            justify-self: center;
-            align-self: center;
-            position: absolute;
-            transition: all 0.5s;
-        }
+        margin: 0 1.2rem;
     }
     
-    .card-info{
-        padding: 1rem 1.2rem;
-        position: absolute;
-        align-self: end;
-        transition: all 0.5s;
-        bottom: 10px;
-        left: 15px;
-    }
-    
-    .card-address{
-        color: white;
-        margin: 0.5rem 0;
-    }
-    
-    .card-categories{
+    .slide_my {
+        margin: 0 1rem;
         display: flex;
-        list-style: none;
+        align-items: center;
+        
     }
-    
-    .card-categories li{
-        padding: 0 0.6rem;
-        color: white;
-        font-size: 0.8rem;
+    a{
+        display: flex;
+        position: relative;
+        width: 220px;
+        height: 110px;
+        cursor: pointer;
+    }
+    img{
+        width: 100%;
+        border-radius: 20px;
         transition: all 0.5s;
     }
-    
-    .card-title{
-        color: white;
-        font-weight: 500;
-        font-size: 1.4rem;
-        margin-bottom: 0.3rem;
-        transition: all 0.5s;
-    }
-    
-    .card-layover{
+    .layover{
         background-color: black;
-        opacity: 25%;
+        border-radius: 20px;
+        opacity: 30%;
+        position: absolute;
         width: 100%;
         height: 100%;
+        transition: all 0.5s;
+    }
+    .name-category{
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-self: center;
+    color: white;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0 1.5rem;
+    justify-content: center;
+    transition: all 0.5s;
+    }
+
+    .slide_my:focus-visible {
+        img{
+            border-radius: 40px;
+            // box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
+        }
+        .layover{
+            background-color: black;
+            border-radius: 40px;
+            opacity: 55%;
+        }
+        
+        .name-category{
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+    }
+}
+
+// CARD RESTAURANT
+.contain{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    background-color: #ffba00;
+    overflow: hidden;
+    height: 220px;
+    width: 400px;
+    margin: 5px;
+    display: flex;
+    border-radius: 30px;
+    transition: all 0.5s;
+    position: relative;
+    cursor: pointer;
+    img{
+        width: 100%;
+        justify-self: center;
+        align-self: center;
         position: absolute;
         transition: all 0.5s;
     }
-    
-    .card-layover:hover{
-        opacity: 40%;
+}
+
+.card-info{
+    padding: 1rem 1.2rem;
+    position: absolute;
+    align-self: end;
+    transition: all 0.5s;
+    bottom: 10px;
+    left: 15px;
+}
+
+.card-address{
+    color: white;
+    margin: 0.5rem 0;
+}
+
+.card-categories{
+    display: flex;
+    list-style: none;
+}
+
+.card-categories li{
+    padding: 0 0.6rem;
+    color: white;
+    font-size: 0.8rem;
+    transition: all 0.5s;
+}
+
+.card-title{
+    color: white;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+    transition: all 0.5s;
+}
+
+.card-layover{
+    background-color: black;
+    opacity: 25%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: all 0.5s;
+}
+
+.card-layover:hover{
+    opacity: 40%;
+}
+
+.card:hover{
+    border-radius: 40px;
+    box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
+    .card-title{
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        letter-spacing: 1px;
+        color: white;
     }
-    
-    .card:hover{
-        border-radius: 40px;
-        box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
-        .card-title{
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: 1px;
+    .card-categories{
+        li{
+            background-color: #ffba00;
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0.3rem;
+            border-radius: 15px;
+            padding: 0.3rem 0.7rem;
             color: white;
         }
-        .card-categories{
-            li{
-                background-color: #ffba00;
-                font-size: 1rem;
-                font-weight: 500;
-                margin: 0.3rem;
-                border-radius: 15px;
-                padding: 0.3rem 0.7rem;
-                color: white;
-            }
-        }
-        img{
-            width: 120%;
-        }
     }
-    </style>
+    img{
+        width: 120%;
+    }
+}
+</style>
