@@ -1,12 +1,13 @@
 <template>
     <div class="container">
+
         <div id="myproduct">
             <div class="row mt-2 mb-2">
                 <div class="col-md-10">&nbsp;</div>
                 <div class="col-md-2 text-right">
-                    <buttun class="btn btn-primary" data-toggle="modal" data-target="#cart">
-                        <span class="badge badge-light">{{badge}}</span>
-                    </buttun>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#cart">
+                        <span class="badge badge-light">{{carts.length}}</span>
+                    </button>
                     <div class="modal fade" id="cart">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
@@ -19,12 +20,15 @@
                                 <div class="modal-body">
                                     <table class="table table striped text-left">
                                         <tbody>
-                                            <tr v-for="(cart, n) in carts" v-bind:key="cart.id">
+                                            <tr v-for="cart in carts" v-bind:key="cart.id">
                                                 <td>{{cart.name}}</td>
                                                 <td>{{cart.price}}</td>
-                                                <td width="100"><input type="text" readonly class="form-controll" v-model="quantity"></td>
+                                                <td width="100">{{cart.qty}}</td>
                                                 <td width="60">
-                                                    <button @click="removeCart(n)" class="btn btn-danger btn-small"></button>
+                                                    <button @click="increase(cart)" class="btn btn-success btn-small">+</button>
+                                                </td>
+                                                <td width="60">
+                                                    <button @click="reduce(cart)" class="btn btn-danger btn-small">-</button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -32,8 +36,10 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    Prezzo totale: {{totalprice}} &nbsp;
+                                    Prezzo totale: {{getTotal()}} &nbsp;
                                     <button data-dismiss="modal" class="btn btn-primary">Checkout</button>
+                                    <button data-dismiss="modal" v-on:click="removeAllItemFromCart()" class="btn btn-primary">Elimina tutti i prodtti</button>
+
                                 </div>
 
                             </div>
@@ -42,14 +48,14 @@
                 </div>
             </div>
         </div>
+
         <div v-for="dish, index in dishes" :key="index" class="mt-5">
             <div v-if="dish.user_id === user.id">
                 {{dish}}
                 <button class="btn btn-primary" @click="addCart(dish)">
                     Aggiungi al carrello
                 </button>
-            </div>
-            
+            </div>  
         </div>
     </div>
 </template>
@@ -60,53 +66,116 @@ export default {
     name: "SingleUser",
     data() {
         return {
-            user: null,
-            dishes: [],
             carts: [],
-            cartadd: {
-                id: '',
-                name:  '',
-                price: '',
-                amount: ''
-            },
-            badge: '0',
-            quantity: '1',
-            totalprice: '0'
-        };
-    },
-    created() {
-        this.viewcart();
+            dishes: [],
+        }        
     },
     methods: {
-        viewCart() {
-            if(localStorage.getItem('carts')) {
-                this.carts = JSON.parse(localStorage.getItem('carts'));
-                this.badge = this.carts.length;
-                this.totalprice = this.carts.reduce((total, item) => {
-                    return total + this.quantity * item.price;
-                }, 0);
+        addCart(product) {
+            let newItem = {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                qty: 1
+            };
+            if(this.carts.length == 0) {
+                this.carts.push(newItem)
+            } else {
+                let ids = this.carts.map(product => product.id);
+                if (ids.includes(newItem.id)) {
+                    this.carts.forEach(element => {
+                        if (element.id == newItem.id) {
+                            element.qty++;
+                        }
+                    });
+                } else {
+                    this.carts.push(newItem)
+                }
+            } 
+
+            localStorage.setItem('carts', JSON.stringify(this.carts));
+
+            // const storedCarts = JSON.parse(localStorage.getItem("carts"));
+            // const cartsBdg = document.getElementById("carts_bdg");
+            // const cartsBtn = document.getElementById("carts_btn");
+
+            // if(!cartsBtn.classList.contains("text-succes")); {
+            //     cartsBtn.classList.add("text-success");
+            // }
+            // if(cartsBdg.classList.contains("d-none")) {
+            //     cartsBdg.classList.remove("d-none");
+            // }
+            // let quantities = 0;
+
+            // storedCarts.forEach(element => {
+            //     quantities += element.qty;
+            // });
+            // cartsBdg.innerText = quantities;
+        },
+        increase(product) {
+            product.qty++;
+            localStorage.setItem("carts", JSON.stringify(this.carts));
+
+            // const storedCarts = JSON.parse(localStorage.getItem("carts"));
+            // const cartsBdg = document.getElementById('carts_bdg');
+
+            // let quantities = 0;
+
+            // storedCarts.forEach(element => {
+            //     quantities += element.qty;
+            // });
+            // cartsBdg.innerText = quantities;
+        },
+        reduce(product) {
+            if(product.qty > 1) {
+                product.qty--;
+                localStorage.setItem("carts", JSON.stringify(this.carts));
+
+                // const storedCarts = JSON.parse(localStorage.getItem("carts"));
+                // const cartsBdg = document.getElementById('carts_bdg');
+
+                // let quantities = 0;
+
+                // storedCarts.forEach(element => {
+                //     quantities += element.qty;
+                // });
+                // cartsBdg.innerText = quantities;
+            } else {
+                this.carts.splice(this.carts.indexOf(product), 1) 
+                localStorage.setItem("carts", JSON.stringify(this.carts));
+
+                // const cartsBtn = document.getElementById("carts_btn");
+                // const cartsBdg = document.getElementById("carts_bdg");
+
+                // let carts = JSON.parse(localStorage.getItem("carts"));
+
+                // if(carts.length == 0) {
+                //     if (cartsBtn.classList.contains('text-success')) {
+                //         cartsBtn.classList.remove("text-success")
+                //     }
+                //     if (!cartsBdg.classList.contains("d-none")) {
+                //         cartsBdg.classList.add("d-none");
+                //     }
+                // }
             }
         },
-        addCart(dish) {
-            this.cartadd.id = dish.id;
-            this.cartadd.name = dish.name;
-            this.cartadd.price = dish.price;
-            this.cartadd.amount = dish.amount;
-            this.carts.push(this.cartadd);
-            this.cartadd = {};
-            this.storeCart();
+        getTotal() {
+            let total = 0;
+            this.carts.forEach(item => {
+                total += item.qty * item.price
+            });
+            return total
         },
-        removeCart(dish) {
-            this.carts.splice(dish, 1);
-            this.storeCart();
+        removeAllItemFromCart() {
+            this.carts = []
+            localStorage.setItem("carts", JSON.stringify(this.carts));
         },
-        storeCart() {
-            let parsed = JSON.stringify(this.carts);
-            localStorage.setItem('carts', parsed);
-            this.viewCart();
-        }
+
     },
     mounted() {
+        if(localStorage.carts) {
+            this.carts = JSON.parse(localStorage.getItem("carts"))
+        }
         axios.get('/api/users/' + this.$route.params.slug)
         .then((response) => {
             
@@ -124,15 +193,8 @@ export default {
                 this.dishes = response.data.results;
             }
         });
-        fetch('api/products/order',{
-        
-        body: JSON.stringify(this.carts),
-        headers: {
-        'content-type':'application/json'
-        }
-        }).then(res = res.json()).then(res => {});
-            },
-        };
+    },
+}
 </script>
 
 <style>
