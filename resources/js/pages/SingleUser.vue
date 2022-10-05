@@ -124,8 +124,15 @@ export default {
                 this.dishes = response.data.results;
             }
         });
-    },
-};
+        fetch('api/products/order',{
+        
+        body: JSON.stringify(this.carts),
+        headers: {
+        'content-type':'application/json'
+        }
+        }).then(res = res.json()).then(res => {});
+            },
+        };
 </script>
 
 <style>
