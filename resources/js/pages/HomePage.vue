@@ -73,15 +73,10 @@
 export default {
 name: "HomePage",
 data() {
-
     return {
-
         categories: [],
-
         filtered_category_user: [],
-
         list_of_categories: [],
-
     };
 
 },
@@ -91,217 +86,103 @@ methods: {
     // prendo tutte le categorie
 
     getCategories() {
-
         axios.get("/api/categories").then((response) => {
-
             this.categories = response.data.results;
-
         });
-
     },
 
     // filtaggio categorie
 
     getFilteredCategory(id) {
-
         //Aggiungo subito la categoria cliccata...
-
         if (!this.list_of_categories.includes(id)) {
-
             this.list_of_categories.push(id);
-
         } else {
-
             //... se già presente la rimuovo
-
             this.list_of_categories.splice(
-
                 this.list_of_categories.indexOf(id),
-
                 1
-
             );
-
         }
-
         let help_list_of_user = [];
-
-
-
         axios.get("/api/category/" + id).then((response) => {
-
             let data = response.data.results;
-
             //variabili d'aiuto
-
             let devoFiltrarelLUtente = true;
-
-
-
             //Per ogni utente...
-
             for (let i = 0; i < data.length; i++) {
-
                 devoFiltrarelLUtente = true;
-
                 const currentUser = data[i];
-
                 //const currentUserCategory = currentUser.pivot.category_id;
-
-
-
                 const currentUserCategories = [];
-
                 //Recupero l'elenco delle categorie dell'utente attuale
-
                 currentUser.categories.forEach((category) => {
-
                     currentUserCategories.push(category.id);
-
                 });
-
-
-
                 //controllo che le categorie per cui è applicato un filtro siano tutte presenti delle categorie dell'utente
-
                 for (let i = 0; i < this.list_of_categories.length; i++) {
-
-                    if (
-
-                        !currentUserCategories.includes(
-
-                            this.list_of_categories[i]
-
-                        )
-
-                    ) {
-
+                    if (!currentUserCategories.includes(this.list_of_categories[i])){
                         //Se non trovo una categoria tra quelle filtrate, mi segno che questo utente non lo devo aggiungere tra quelli filtrati
-
                         devoFiltrarelLUtente = false;
-
                         break;
-
                     }
-
                 }
-
                 if (devoFiltrarelLUtente) {
-
                     //DA MIGLIORARE
-
                     //uso un array di appoggio per evitare dei flash in pagina quando aggiorno l'array
-
                     help_list_of_user.push({ user: currentUser });
-
                 }
-
                 this.filtered_category_user = help_list_of_user;
-
                 //this.list_of_categories.push(currentUserCategories);
-
-
-
                 // if (
-
                 //     //!this.list_of_categories.includes(currentUserCategory)
-
-
-
                 //     //Se nella attuale lista delle categorie filtrate non sono presenti le categorie dell'utente...
-
                 //     !this.list_of_categories.includes(currentUserCategories)
-
                 // ) {
-
                 //     //...aggiungo all'oggetto dell'utente l'id della categoria per recuperarlo più facilmente dopo...
-
                 //     data.forEach((element) => {
-
                 //         const userWithCategoryId = {
-
                 //             user: element,
-
                 //             category_id: currentUserCategory,
-
                 //         };
-
                 //         //... e lo pusho nell'array degli utenti filtrati
-
                 //         this.filtered_category_user.push(
-
                 //             userWithCategoryId
-
                 //         );
-
                 //     });
-
                 //     //pusho nel'array delle categorie filtrate quella dell'utente
-
                 //     this.list_of_categories.push(currentUserCategory);
-
                 //     break;
-
                 // } else {
-
                 //     //RIMOZIONE UTENTE DA QUELLI FILTRATI
-
                 //     //mi creo un indice che mi serve dopo per lo splice
-
                 //     let index = 0;
-
                 //     //ciclo la lista degli utenti filtrati per tutta la sua lunghezza
-
                 //     for (
-
                 //         let i = 0;
-
                 //         i < this.filtered_category_user.length;
-
                 //         i++
-
                 //     ) {
-
                 //         let currentElem = this.filtered_category_user[i];
-
                 //         // se trovo un utente con l'id della categoria selezionata al click della categoria...
-
                 //         if (currentElem.category_id === id) {
-
                 //             //... mi salvo l'indice che corrisponde alla sua posizione nell'array, e fermo il ciclo con un break
-
                 //             index = i;
-
                 //             break;
-
                 //         }
-
                 //     }
-
                 //     //utilizzo l'indice per rimuoverer gli n utenti appartenenti alla categoria selezionata
-
                 //     this.filtered_category_user.splice(index, data.length);
-
                 //     //rimuovo l'id della categoria dall'array delle categorie, partendo dall'indice dell'id della categoria
-
                 //     this.list_of_categories.splice(
-
                 //         this.list_of_categories.indexOf(id),
-
                 //         1
-
                 //     );
-
                 //     break;
-
                 // }
-
             }
-
         });
-
     },
-
 },
 
 mounted() {

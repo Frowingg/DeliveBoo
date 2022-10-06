@@ -18,9 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route da fare per il frontend
-// Route::get('/users', 'Api\UserController@index');
-
 Route::get('/users/{slug}', 'Api\UserController@show');
 
 Route::get('/dishes', 'Api\DishController@index');
@@ -29,4 +26,12 @@ Route::get('/categories', 'Api\CategoryController@index');
 
 Route::get('/category/{id}', 'Api\CategoryController@showSingleCategory');
 
-// Route::get('/users/{word}', 'Api\UserController@showFilteredUser');
+
+
+// per braintreee
+Route::get('orders/generate', 'Api\Orders\OrderController@generate');
+
+Route::post('orders/makePayment', 'Api\Orders\OrderController@makePayment');
+
+Route::get('/dishess', 'Api\DishController@indexResource');
+// fine per  braintreee

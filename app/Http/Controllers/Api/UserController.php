@@ -32,7 +32,6 @@ class UserController extends Controller
     public function show($slug) {
 
         $user = User::where('slug', '=', $slug)->with(['categories'])->first();
-
         if($user) {
             $data =  [
                 'success' => true,
@@ -43,7 +42,6 @@ class UserController extends Controller
                 'success' => false
             ];
         }
-
         return response()->json($data);
     }
 
