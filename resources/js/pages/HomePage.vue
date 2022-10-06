@@ -408,7 +408,7 @@ mounted() {
 
     margin: 1.1rem 0;
 
-    overflow: hidden;
+    overflow-x: auto;
 
     width: 100%;
 

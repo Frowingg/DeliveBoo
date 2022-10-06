@@ -2205,54 +2205,20 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      localStorage.setItem('carts', JSON.stringify(this.carts)); // const storedCarts = JSON.parse(localStorage.getItem("carts"));
-      // const cartsBdg = document.getElementById("carts_bdg");
-      // const cartsBtn = document.getElementById("carts_btn");
-      // if(!cartsBtn.classList.contains("text-succes")); {
-      //     cartsBtn.classList.add("text-success");
-      // }
-      // if(cartsBdg.classList.contains("d-none")) {
-      //     cartsBdg.classList.remove("d-none");
-      // }
-      // let quantities = 0;
-      // storedCarts.forEach(element => {
-      //     quantities += element.qty;
-      // });
-      // cartsBdg.innerText = quantities;
+      console.log(this.carts);
+      localStorage.setItem('carts', JSON.stringify(this.carts));
     },
     increase: function increase(product) {
       product.qty++;
-      localStorage.setItem("carts", JSON.stringify(this.carts)); // const storedCarts = JSON.parse(localStorage.getItem("carts"));
-      // const cartsBdg = document.getElementById('carts_bdg');
-      // let quantities = 0;
-      // storedCarts.forEach(element => {
-      //     quantities += element.qty;
-      // });
-      // cartsBdg.innerText = quantities;
+      localStorage.setItem("carts", JSON.stringify(this.carts));
     },
     reduce: function reduce(product) {
       if (product.qty > 1) {
         product.qty--;
-        localStorage.setItem("carts", JSON.stringify(this.carts)); // const storedCarts = JSON.parse(localStorage.getItem("carts"));
-        // const cartsBdg = document.getElementById('carts_bdg');
-        // let quantities = 0;
-        // storedCarts.forEach(element => {
-        //     quantities += element.qty;
-        // });
-        // cartsBdg.innerText = quantities;
+        localStorage.setItem("carts", JSON.stringify(this.carts));
       } else {
         this.carts.splice(this.carts.indexOf(product), 1);
-        localStorage.setItem("carts", JSON.stringify(this.carts)); // const cartsBtn = document.getElementById("carts_btn");
-        // const cartsBdg = document.getElementById("carts_bdg");
-        // let carts = JSON.parse(localStorage.getItem("carts"));
-        // if(carts.length == 0) {
-        //     if (cartsBtn.classList.contains('text-success')) {
-        //         cartsBtn.classList.remove("text-success")
-        //     }
-        //     if (!cartsBdg.classList.contains("d-none")) {
-        //         cartsBdg.classList.add("d-none");
-        //     }
-        // }
+        localStorage.setItem("carts", JSON.stringify(this.carts));
       }
     },
     getTotal: function getTotal() {
@@ -2265,14 +2231,14 @@ __webpack_require__.r(__webpack_exports__);
     removeAllItemFromCart: function removeAllItemFromCart() {
       this.carts = [];
       localStorage.setItem("carts", JSON.stringify(this.carts));
-    } //allDishesCart(){
-    //  let totalProduct = 0;
-    //this.carts.forEach(item => {
-    //  totalProduct = item.qty + item.qty
-    // });
-    // return totalProduct;
-    // }
-
+    },
+    allCartSum: function allCartSum() {
+      var totalItem = 0;
+      this.carts.forEach(function (item) {
+        totalItem += item.qty;
+      });
+      return totalItem;
+    }
   },
   mounted: function mounted() {
     var _this = this;
@@ -2836,7 +2802,7 @@ var render = function render() {
     }
   }, [_c("span", {
     staticClass: "badge badge-light"
-  }, [_vm._v(_vm._s(_vm.carts.length))])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.allCartSum()))])]), _vm._v(" "), _c("div", {
     staticClass: "modal fade",
     attrs: {
       id: "cart"
@@ -7413,7 +7379,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".carrousel_my[data-v-04c29797] {\n  padding: 4rem 0;\n  margin: 1.1rem 0;\n  overflow: hidden;\n  width: 100%;\n}\n.responsive_my_sp[data-v-04c29797] {\n  display: none;\n}\n.responsive_my_tb[data-v-04c29797] {\n  display: none;\n}\n.slide-track_my[data-v-04c29797] {\n  margin-top: 0.5rem;\n  padding: 2rem 0;\n  overflow-x: auto;\n  margin: 0 auto;\n  width: 90%;\n}\n.slider_my[data-v-04c29797] {\n  position: relative;\n  display: flex;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n}\n.slider_my .slide-track_my[data-v-04c29797] {\n  display: flex;\n  position: relative;\n  margin: 0 1.2rem;\n}\n.slider_my .slide_my[data-v-04c29797] {\n  margin: 0 1rem;\n  display: flex;\n  align-items: center;\n}\n.slider_my a[data-v-04c29797] {\n  display: flex;\n  position: relative;\n  width: 220px;\n  height: 110px;\n  cursor: pointer;\n}\n.slider_my img[data-v-04c29797] {\n  width: 100%;\n  border-radius: 20px;\n  transition: all 0.5s;\n}\n.slider_my .layover[data-v-04c29797] {\n  background-color: black;\n  border-radius: 20px;\n  opacity: 30%;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  transition: all 0.5s;\n}\n.slider_my .name-category[data-v-04c29797] {\n  width: 100%;\n  position: absolute;\n  display: flex;\n  align-self: center;\n  color: white;\n  font-weight: 500;\n  font-size: 1.2rem;\n  padding: 0 1.5rem;\n  justify-content: center;\n  transition: all 0.5s;\n}\n.slider_my .slide_my:focus-visible img[data-v-04c29797] {\n  border-radius: 40px;\n}\n.slider_my .slide_my:focus-visible .layover[data-v-04c29797] {\n  background-color: black;\n  border-radius: 40px;\n  opacity: 55%;\n}\n.slider_my .slide_my:focus-visible .name-category[data-v-04c29797] {\n  font-weight: 700;\n  letter-spacing: 2px;\n}\n.contain[data-v-04c29797] {\n  width: 80%;\n  margin: 0 auto;\n  display: flex;\n  flex-wrap: wrap;\n}\n.card[data-v-04c29797] {\n  background-color: #ffba00;\n  overflow: hidden;\n  height: 220px;\n  width: 400px;\n  margin: 5px;\n  display: flex;\n  border-radius: 30px;\n  transition: all 0.5s;\n  position: relative;\n  cursor: pointer;\n}\n.card img[data-v-04c29797] {\n  width: 100%;\n  justify-self: center;\n  align-self: center;\n  position: absolute;\n  transition: all 0.5s;\n}\n.card-info[data-v-04c29797] {\n  padding: 1rem 1.2rem;\n  position: absolute;\n  align-self: end;\n  transition: all 0.5s;\n  bottom: 10px;\n  left: 15px;\n}\n.card-address[data-v-04c29797] {\n  color: white;\n  margin: 0.5rem 0;\n}\n.card-categories[data-v-04c29797] {\n  display: flex;\n  list-style: none;\n}\n.card-categories li[data-v-04c29797] {\n  padding: 0 0.6rem;\n  color: white;\n  font-size: 0.8rem;\n  transition: all 0.5s;\n}\n.card-title[data-v-04c29797] {\n  color: white;\n  font-weight: 500;\n  font-size: 1.4rem;\n  margin-bottom: 0.3rem;\n  transition: all 0.5s;\n}\n.card-layover[data-v-04c29797] {\n  background-color: black;\n  opacity: 25%;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  transition: all 0.5s;\n}\n.card-layover[data-v-04c29797]:hover {\n  opacity: 40%;\n}\n.card[data-v-04c29797]:hover {\n  border-radius: 40px;\n  box-shadow: 10px 14px 10px rgba(0, 0, 0, 0.2);\n}\n.card:hover .card-title[data-v-04c29797] {\n  font-size: 2rem;\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n  letter-spacing: 1px;\n  color: white;\n}\n.card:hover .card-categories li[data-v-04c29797] {\n  background-color: #ffba00;\n  font-size: 1rem;\n  font-weight: 500;\n  margin: 0.3rem;\n  border-radius: 15px;\n  padding: 0.3rem 0.7rem;\n  color: white;\n}\n.card:hover img[data-v-04c29797] {\n  width: 120%;\n}", ""]);
+exports.push([module.i, ".carrousel_my[data-v-04c29797] {\n  padding: 4rem 0;\n  margin: 1.1rem 0;\n  overflow-x: auto;\n  width: 100%;\n}\n.responsive_my_sp[data-v-04c29797] {\n  display: none;\n}\n.responsive_my_tb[data-v-04c29797] {\n  display: none;\n}\n.slide-track_my[data-v-04c29797] {\n  margin-top: 0.5rem;\n  padding: 2rem 0;\n  overflow-x: auto;\n  margin: 0 auto;\n  width: 90%;\n}\n.slider_my[data-v-04c29797] {\n  position: relative;\n  display: flex;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n}\n.slider_my .slide-track_my[data-v-04c29797] {\n  display: flex;\n  position: relative;\n  margin: 0 1.2rem;\n}\n.slider_my .slide_my[data-v-04c29797] {\n  margin: 0 1rem;\n  display: flex;\n  align-items: center;\n}\n.slider_my a[data-v-04c29797] {\n  display: flex;\n  position: relative;\n  width: 220px;\n  height: 110px;\n  cursor: pointer;\n}\n.slider_my img[data-v-04c29797] {\n  width: 100%;\n  border-radius: 20px;\n  transition: all 0.5s;\n}\n.slider_my .layover[data-v-04c29797] {\n  background-color: black;\n  border-radius: 20px;\n  opacity: 30%;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  transition: all 0.5s;\n}\n.slider_my .name-category[data-v-04c29797] {\n  width: 100%;\n  position: absolute;\n  display: flex;\n  align-self: center;\n  color: white;\n  font-weight: 500;\n  font-size: 1.2rem;\n  padding: 0 1.5rem;\n  justify-content: center;\n  transition: all 0.5s;\n}\n.slider_my .slide_my:focus-visible img[data-v-04c29797] {\n  border-radius: 40px;\n}\n.slider_my .slide_my:focus-visible .layover[data-v-04c29797] {\n  background-color: black;\n  border-radius: 40px;\n  opacity: 55%;\n}\n.slider_my .slide_my:focus-visible .name-category[data-v-04c29797] {\n  font-weight: 700;\n  letter-spacing: 2px;\n}\n.contain[data-v-04c29797] {\n  width: 80%;\n  margin: 0 auto;\n  display: flex;\n  flex-wrap: wrap;\n}\n.card[data-v-04c29797] {\n  background-color: #ffba00;\n  overflow: hidden;\n  height: 220px;\n  width: 400px;\n  margin: 5px;\n  display: flex;\n  border-radius: 30px;\n  transition: all 0.5s;\n  position: relative;\n  cursor: pointer;\n}\n.card img[data-v-04c29797] {\n  width: 100%;\n  justify-self: center;\n  align-self: center;\n  position: absolute;\n  transition: all 0.5s;\n}\n.card-info[data-v-04c29797] {\n  padding: 1rem 1.2rem;\n  position: absolute;\n  align-self: end;\n  transition: all 0.5s;\n  bottom: 10px;\n  left: 15px;\n}\n.card-address[data-v-04c29797] {\n  color: white;\n  margin: 0.5rem 0;\n}\n.card-categories[data-v-04c29797] {\n  display: flex;\n  list-style: none;\n}\n.card-categories li[data-v-04c29797] {\n  padding: 0 0.6rem;\n  color: white;\n  font-size: 0.8rem;\n  transition: all 0.5s;\n}\n.card-title[data-v-04c29797] {\n  color: white;\n  font-weight: 500;\n  font-size: 1.4rem;\n  margin-bottom: 0.3rem;\n  transition: all 0.5s;\n}\n.card-layover[data-v-04c29797] {\n  background-color: black;\n  opacity: 25%;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  transition: all 0.5s;\n}\n.card-layover[data-v-04c29797]:hover {\n  opacity: 40%;\n}\n.card[data-v-04c29797]:hover {\n  border-radius: 40px;\n  box-shadow: 10px 14px 10px rgba(0, 0, 0, 0.2);\n}\n.card:hover .card-title[data-v-04c29797] {\n  font-size: 2rem;\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n  letter-spacing: 1px;\n  color: white;\n}\n.card:hover .card-categories li[data-v-04c29797] {\n  background-color: #ffba00;\n  font-size: 1rem;\n  font-weight: 500;\n  margin: 0.3rem;\n  border-radius: 15px;\n  padding: 0.3rem 0.7rem;\n  color: white;\n}\n.card:hover img[data-v-04c29797] {\n  width: 120%;\n}", ""]);
 
 // exports
 
@@ -55361,7 +55327,7 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  mode: 'history',
+  //mode: 'history',
   routes: [{
     path: '/',
     name: 'home',

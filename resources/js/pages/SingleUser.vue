@@ -6,7 +6,7 @@
                 <div class="col-md-10">&nbsp;</div>
                 <div class="col-md-2 text-right">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#cart">
-                        <span class="badge badge-light">{{ carts.length }}</span>
+                        <span class="badge badge-light">{{  allCartSum() }}</span>
                     </button>
                     <div class="modal fade" id="cart">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -92,71 +92,27 @@ export default {
                     this.carts.push(newItem)
                 }
             } 
-
+            console.log(this.carts)
             localStorage.setItem('carts', JSON.stringify(this.carts));
 
-            // const storedCarts = JSON.parse(localStorage.getItem("carts"));
-            // const cartsBdg = document.getElementById("carts_bdg");
-            // const cartsBtn = document.getElementById("carts_btn");
 
-            // if(!cartsBtn.classList.contains("text-succes")); {
-            //     cartsBtn.classList.add("text-success");
-            // }
-            // if(cartsBdg.classList.contains("d-none")) {
-            //     cartsBdg.classList.remove("d-none");
-            // }
-            // let quantities = 0;
-
-            // storedCarts.forEach(element => {
-            //     quantities += element.qty;
-            // });
-            // cartsBdg.innerText = quantities;
         },
         increase(product) {
             product.qty++;
             localStorage.setItem("carts", JSON.stringify(this.carts));
 
-            // const storedCarts = JSON.parse(localStorage.getItem("carts"));
-            // const cartsBdg = document.getElementById('carts_bdg');
-
-            // let quantities = 0;
-
-            // storedCarts.forEach(element => {
-            //     quantities += element.qty;
-            // });
-            // cartsBdg.innerText = quantities;
         },
         reduce(product) {
             if(product.qty > 1) {
                 product.qty--;
                 localStorage.setItem("carts", JSON.stringify(this.carts));
 
-                // const storedCarts = JSON.parse(localStorage.getItem("carts"));
-                // const cartsBdg = document.getElementById('carts_bdg');
-
-                // let quantities = 0;
-
-                // storedCarts.forEach(element => {
-                //     quantities += element.qty;
-                // });
-                // cartsBdg.innerText = quantities;
+        
             } else {
                 this.carts.splice(this.carts.indexOf(product), 1) 
                 localStorage.setItem("carts", JSON.stringify(this.carts));
 
-                // const cartsBtn = document.getElementById("carts_btn");
-                // const cartsBdg = document.getElementById("carts_bdg");
-
-                // let carts = JSON.parse(localStorage.getItem("carts"));
-
-                // if(carts.length == 0) {
-                //     if (cartsBtn.classList.contains('text-success')) {
-                //         cartsBtn.classList.remove("text-success")
-                //     }
-                //     if (!cartsBdg.classList.contains("d-none")) {
-                //         cartsBdg.classList.add("d-none");
-                //     }
-                // }
+   
             }
         },
         getTotal() {
@@ -171,16 +127,13 @@ export default {
             localStorage.setItem("carts", JSON.stringify(this.carts));
         },
 
-        //allDishesCart(){
-          //  let totalProduct = 0;
-            //this.carts.forEach(item => {
-              //  totalProduct = item.qty + item.qty
-                
-           // });
-           // return totalProduct;
-            
-       // }
-        
+        allCartSum(){
+            let totalItem = 0;
+            this.carts.forEach(item => {
+                totalItem += item.qty
+            });
+            return totalItem
+        }
     },
 
     mounted() {
