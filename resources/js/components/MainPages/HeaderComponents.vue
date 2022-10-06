@@ -3,7 +3,7 @@
         <div class="container_my">
             <div class="header_top_my">
                 <div class="logo_my">
-                    <a href="#">DeliveBoo</a>
+                    <a href="/">DeliveBoo</a>
                 </div>
 
                 <div class="interface_my" v-if="userLogged">
@@ -26,16 +26,6 @@
                     <h3>A fame come siamo messi?</h3>
                     <div class="message_my">
                         Ordina i piatti che ami con DeliveBoo
-                    </div>
-                    <div class="input-group_my">
-                        <input
-                            type="search"
-                            class="search"
-                            placeholder="Cerca il ristorante che preferisci"
-                            aria-label="Search"
-                            aria-describedby="search-addon"
-                        />
-                        <a href="#" class="button_search_my">CERCA</a>
                     </div>
                 </div>
             </div>

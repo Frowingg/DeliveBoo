@@ -1,158 +1,77 @@
 <template>
     <div>
-
-<div class="carrousel_my">
-
-    <div class="slider_my">
-
-        <div class="slide-track_my">
-
-            <!-- v-on:click="isActive = !isActive" v-bind:class="{ active }" -->
-
-            <div
-
-                class="slide_my"
-
-                v-for="category in categories"
-
-                :key="category.id"
-
-                @click="getFilteredCategory(category.id)"
-
-            >
-
-                <a>
-
-                    <img
-
-                        :src="category.category_cover"
-
-                        :alt="category.name"
-
-                    />
-
-
-
-                    <div class="layover"></div>
-
-
-
-                    <div class="name-category">
-
-                        <div>
-
-                            {{ category.name }}
-
-                        </div>
-
+        <div class="carrousel_my">
+            <div class="slider_my">
+                <div class="slide-track_my">
+                    <!-- v-on:click="isActive = !isActive" v-bind:class="{ active }" -->
+                    <div
+                        class="slide_my"
+                        v-for="category in categories"
+                        :key="category.id"
+                        @click="getFilteredCategory(category.id)"
+                    >
+                        <a>
+                            <img
+                                :src="category.category_cover"
+                                :alt="category.name"
+                            />
+                            <div class="layover"></div>
+                            <div class="name-category">
+                                <div>
+                                    {{ category.name }}
+                                </div>
+                            </div>
+                        </a>
                     </div>
-
-                </a>
-
+                </div>
             </div>
-
         </div>
-
-    </div>
-
-</div>
-
-<h2>DEBUG: Categorie selezionate: {{ list_of_categories }}</h2>
-
-<div class="contain">
-
-    <div
-
-        class="card"
-
-        v-for="filteredUser in filtered_category_user"
-
-        :key="filteredUser.id"
-
-    >
-
-        <router-link
-
-            :to="{
-
-                name: 'single-user',
-
-                params: { slug: filteredUser.user.slug },
-
-            }"
-
-        >
-
-            <div class="card-layover"></div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-
-                    {{ filteredUser.user.name }}
-
-                </div>
-
-                <div class="card-address">
-
-                    {{ filteredUser.user.address }}
-
-                </div>
-
-                <span
-
-                    v-for="(categoryInfo, index) in filteredUser"
-
-                    :key="index"
-
+        <h2>DEBUG: Categorie selezionate: {{ list_of_categories }}</h2>
+        <div class="contain">
+            <div
+                class="card"
+                v-for="filteredUser in filtered_category_user"
+                :key="filteredUser.id"
+            >
+                <router-link
+                    :to="{
+                        name: 'single-user',
+                        params: { slug: filteredUser.user.slug },
+                    }"
                 >
-
-                    <ul class="card-categories">
-
-                        <li
-
-                            v-for="(
-
-                                categoryName, index
-
-                            ) in categoryInfo.categories"
-
+                    <div class="card-layover"></div>
+                    <div class="card-info">
+                        <div class="card-title">
+                            {{ filteredUser.user.name }}
+                        </div>
+                        <div class="card-address">
+                            {{ filteredUser.user.address }}
+                        </div>
+                        <span
+                            v-for="(categoryInfo, index) in filteredUser"
                             :key="index"
-
                         >
-
-                            {{ categoryName["name"] }}
-
-                        </li>
-
-                    </ul>
-
-                </span>
-
+                            <ul class="card-categories">
+                                <li
+                                    v-for="(
+                                        categoryName, index
+                                    ) in categoryInfo.categories"
+                                    :key="index"
+                                >
+                                    {{ categoryName["name"] }}
+                                </li>
+                            </ul>
+                        </span>
+                    </div>
+                </router-link>
             </div>
-
-        </router-link>
-
-    </div>
-
-</div>
-
-</div>
-
-        
+        </div>
+    </div>    
 </template>
 
 <script>
 export default {
-
 name: "HomePage",
-
-props: {
-
-    search: String,
-
-},
-
 data() {
 
     return {
@@ -589,87 +508,44 @@ mounted() {
 // CARD RESTAURANT
 
 .contain {
-
     width: 80%;
-
     margin: 0 auto;
-
     display: flex;
-
     flex-wrap: wrap;
-
 }
-
-
-
 .card {
-
     background-color: #ffba00;
-
     overflow: hidden;
-
     height: 220px;
-
     width: 400px;
-
     margin: 5px;
-
     display: flex;
-
     border-radius: 30px;
-
     transition: all 0.5s;
-
     position: relative;
-
     cursor: pointer;
-
     img {
-
         width: 100%;
-
         justify-self: center;
-
         align-self: center;
-
         position: absolute;
-
         transition: all 0.5s;
-
     }
-
 }
-
-
 
 .card-info {
-
     padding: 1rem 1.2rem;
-
     position: absolute;
-
     align-self: end;
-
     transition: all 0.5s;
-
     bottom: 10px;
-
     left: 15px;
-
 }
 
-
-
-.card-address {
-
+.card-address {         
     color: white;
-
     margin: 0.5rem 0;
-
 }
-
-
-
 .card-categories {
 
     display: flex;
@@ -678,40 +554,22 @@ mounted() {
 
 }
 
-
-
 .card-categories li {
-
     padding: 0 0.6rem;
-
     color: white;
-
     font-size: 0.8rem;
-
     transition: all 0.5s;
-
 }
-
-
 
 .card-title {
-
     color: white;
-
     font-weight: 500;
-
     font-size: 1.4rem;
-
     margin-bottom: 0.3rem;
-
     transition: all 0.5s;
-
 }
 
-
-
 .card-layover {
-
     background-color: black;
 
     opacity: 25%;

@@ -2021,9 +2021,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomePage",
-  props: {
-    search: String
-  },
   data: function data() {
     return {
       categories: [],
@@ -2170,17 +2167,31 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SingleUser",
   data: function data() {
     return {
       carts: [],
-      dishes: []
+      dishes: [],
+      error: ''
     };
   },
   methods: {
     addCart: function addCart(product) {
       var newItem = {
+        risto_id: product.user_id,
         id: product.id,
         name: product.name,
         price: product.price,
@@ -2190,6 +2201,11 @@ __webpack_require__.r(__webpack_exports__);
       if (this.carts.length == 0) {
         this.carts.push(newItem);
       } else {
+        var rist_id = _toConsumableArray(new Set(this.carts.map(function (product) {
+          return product.risto_id;
+        })));
+
+        rist_id = rist_id[0];
         var ids = this.carts.map(function (product) {
           return product.id;
         });
@@ -2201,11 +2217,10 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         } else {
-          this.carts.push(newItem);
+          newItem.risto_id == rist_id ? this.carts.push(newItem) : this.error = "Non puoi aggiungere piatti da un altro ristorante";
         }
       }
 
-      console.log(this.carts);
       localStorage.setItem('carts', JSON.stringify(this.carts));
     },
     increase: function increase(product) {
@@ -2230,6 +2245,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeAllItemFromCart: function removeAllItemFromCart() {
       this.carts = [];
+      this.error = '';
       localStorage.setItem("carts", JSON.stringify(this.carts));
     },
     allCartSum: function allCartSum() {
@@ -2249,7 +2265,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/api/users/' + this.$route.params.slug).then(function (response) {
       if (response.data.success) {
-        _this.user = response.data.results; //  console.log(this.user)
+        _this.user = response.data.results;
       } else {
         _this.$router.push({
           name: 'not-found'
@@ -2463,7 +2479,7 @@ var staticRenderFns = [function () {
     staticClass: "logo_my"
   }, [_c("a", {
     attrs: {
-      href: "#"
+      href: "/"
     }
   }, [_vm._v("DeliveBoo")])]);
 }, function () {
@@ -2509,22 +2525,7 @@ var staticRenderFns = [function () {
     staticClass: "search_bar_my"
   }, [_c("h3", [_vm._v("A fame come siamo messi?")]), _vm._v(" "), _c("div", {
     staticClass: "message_my"
-  }, [_vm._v("\n                    Ordina i piatti che ami con DeliveBoo\n                ")]), _vm._v(" "), _c("div", {
-    staticClass: "input-group_my"
-  }, [_c("input", {
-    staticClass: "search",
-    attrs: {
-      type: "search",
-      placeholder: "Cerca il ristorante che preferisci",
-      "aria-label": "Search",
-      "aria-describedby": "search-addon"
-    }
-  }), _vm._v(" "), _c("a", {
-    staticClass: "button_search_my",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("CERCA")])])])]);
+  }, [_vm._v("\n                    Ordina i piatti che ami con DeliveBoo\n                ")])])]);
 }];
 render._withStripped = true;
 
@@ -2692,7 +2693,7 @@ var render = function render() {
       staticClass: "layover"
     }), _vm._v(" "), _c("div", {
       staticClass: "name-category"
-    }, [_c("div", [_vm._v("\n\n                            " + _vm._s(category.name) + "\n\n                        ")])])])]);
+    }, [_c("div", [_vm._v("\n                                " + _vm._s(category.name) + "\n                            ")])])])]);
   }), 0)])]), _vm._v(" "), _c("h2", [_vm._v("DEBUG: Categorie selezionate: " + _vm._s(_vm.list_of_categories))]), _vm._v(" "), _c("div", {
     staticClass: "contain"
   }, _vm._l(_vm.filtered_category_user, function (filteredUser) {
@@ -2714,9 +2715,9 @@ var render = function render() {
       staticClass: "card-info"
     }, [_c("div", {
       staticClass: "card-title"
-    }, [_vm._v("\n\n                    " + _vm._s(filteredUser.user.name) + "\n\n                ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                        " + _vm._s(filteredUser.user.name) + "\n                    ")]), _vm._v(" "), _c("div", {
       staticClass: "card-address"
-    }, [_vm._v("\n\n                    " + _vm._s(filteredUser.user.address) + "\n\n                ")]), _vm._v(" "), _vm._l(filteredUser, function (categoryInfo, index) {
+    }, [_vm._v("\n                        " + _vm._s(filteredUser.user.address) + "\n                    ")]), _vm._v(" "), _vm._l(filteredUser, function (categoryInfo, index) {
       return _c("span", {
         key: index
       }, [_c("ul", {
@@ -2724,7 +2725,7 @@ var render = function render() {
       }, _vm._l(categoryInfo.categories, function (categoryName, index) {
         return _c("li", {
           key: index
-        }, [_vm._v("\n\n                            " + _vm._s(categoryName["name"]) + "\n\n                        ")]);
+        }, [_vm._v("\n                                " + _vm._s(categoryName["name"]) + "\n                            ")]);
       }), 0)]);
     })], 2)])], 1);
   }), 0)]);
@@ -2784,7 +2785,9 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_c("div", {
+  }, [_vm.error.length > 0 ? _c("div", [_c("div", {
+    staticClass: "alert alert-danger mt-5"
+  }, [_c("ul", [_c("li", [_vm._v(_vm._s(_vm.error))])])])]) : _vm._e(), _vm._v(" "), _c("div", {
     attrs: {
       id: "myproduct"
     }
@@ -55451,8 +55454,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\giuse\php-project\laravel\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\giuse\php-project\laravel\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

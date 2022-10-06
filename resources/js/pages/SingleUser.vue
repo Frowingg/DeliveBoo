@@ -1,5 +1,12 @@
 <template>
     <div class="container">
+        <div v-if="error.length > 0">
+            <div class="alert alert-danger mt-5" >
+                <ul>
+                    <li>{{ error }}</li>
+                </ul>
+            </div>
+        </div>
 
         <div id="myproduct">
             <div class="row mt-2 mb-2">
@@ -68,11 +75,13 @@ export default {
         return {
             carts: [],
             dishes: [],
+            error: ''
         }        
     },
     methods: {
         addCart(product) {
             let newItem = {
+                risto_id: product.user_id,
                 id: product.id,
                 name: product.name,
                 price: product.price,
@@ -81,6 +90,11 @@ export default {
             if(this.carts.length == 0) {
                 this.carts.push(newItem)
             } else {
+                let rist_id = [
+                    ...new Set(this.carts.map(product => product.risto_id)) // metto tutti gli id risto dei piatti in un arr e rimuovo i duplicati... ne avrò quindi sempre uno, quello del primo piatto che finisce nel carrello
+                ];
+                rist_id = rist_id[0];
+
                 let ids = this.carts.map(product => product.id);
                 if (ids.includes(newItem.id)) {
                     this.carts.forEach(element => {
@@ -89,10 +103,13 @@ export default {
                         }
                     });
                 } else {
-                    this.carts.push(newItem)
+                    newItem.risto_id == rist_id
+                        ? this.carts.push(newItem)
+                        : this.error = 
+                              "Non puoi aggiungere piatti da un altro ristorante"
+                          ;
                 }
             } 
-            console.log(this.carts)
             localStorage.setItem('carts', JSON.stringify(this.carts));
 
 
@@ -124,6 +141,7 @@ export default {
         },
         removeAllItemFromCart() {
             this.carts = []
+            this.error = '';
             localStorage.setItem("carts", JSON.stringify(this.carts));
         },
 
@@ -145,7 +163,6 @@ export default {
             
             if(response.data.success) {
                 this.user = response.data.results;
-              //  console.log(this.user)
             } else {
                 this.$router.push({name: 'not-found'});
             }
