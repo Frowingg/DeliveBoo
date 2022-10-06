@@ -26,7 +26,7 @@
 <body>
     <div class="container-fluid">
 
-        <div class="row">
+        <div class="row my-height">
             <nav class="col-md-2 d-none d-md-block sidebar py-4 col-deliveboo">
                 <div class="sidebar-sticky">
 
@@ -98,10 +98,13 @@
         font-family: 'IBM Plex Sans', sans-serif;
         box-sizing: border-box;
     }
+
+    .my-height{
+        height: 100vh;
+    }
     /* ASIDE */
     .col-deliveboo{
         background-color: #ffba00;
-        height: 100vh;
     }
 
     ul{
@@ -203,6 +206,19 @@
         font-weight: 600;
         color: #ffba00;
         margin-bottom: 2rem;
+    }
+
+    /* ORDERS */
+    .order-title{
+        margin-bottom: 1rem;
+    }
+
+    .my-orders{
+        background-color: #f4f4f4;
+        box-shadow: 6px 10px 6px rgba(116, 116, 116, 0.25);
+        padding: 1.5rem;
+        width: 50%;
+        border-radius: 25px; 
     }
 
 </style>

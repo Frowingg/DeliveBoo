@@ -6,7 +6,7 @@
                 <div class="col-md-10">&nbsp;</div>
                 <div class="col-md-2 text-right">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#cart">
-                        <span class="badge badge-light">{{carts.length}}</span>
+                        <span class="badge badge-light">{{ carts.length }}</span>
                     </button>
                     <div class="modal fade" id="cart">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -171,7 +171,18 @@ export default {
             localStorage.setItem("carts", JSON.stringify(this.carts));
         },
 
+        //allDishesCart(){
+          //  let totalProduct = 0;
+            //this.carts.forEach(item => {
+              //  totalProduct = item.qty + item.qty
+                
+           // });
+           // return totalProduct;
+            
+       // }
+        
     },
+
     mounted() {
         if(localStorage.carts) {
             this.carts = JSON.parse(localStorage.getItem("carts"))
@@ -181,7 +192,7 @@ export default {
             
             if(response.data.success) {
                 this.user = response.data.results;
-                console.log(this.user)
+              //  console.log(this.user)
             } else {
                 this.$router.push({name: 'not-found'});
             }
@@ -193,6 +204,7 @@ export default {
                 this.dishes = response.data.results;
             }
         });
+
     },
 }
 </script>

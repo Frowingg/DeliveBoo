@@ -7,10 +7,10 @@
 <span>DEBUG: {{$user->id}}</span>
 <div class="row row-cols-2">
     <div class="col">
-        <h2>I miei ordini:</h2>
+        <h2 class="order-title">I miei ordini:</h2>
         <ul>
             @foreach ($orders as $order)
-                <div class="mb-4">
+                <div class="mb-4 my-orders">
                     <div>Cliente: {{$order->name}}</div>
                     <div>Totale: {{$order->total_price}}</div>
                     <a href="#">Dettagli ordine</a>

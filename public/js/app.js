@@ -2265,7 +2265,14 @@ __webpack_require__.r(__webpack_exports__);
     removeAllItemFromCart: function removeAllItemFromCart() {
       this.carts = [];
       localStorage.setItem("carts", JSON.stringify(this.carts));
-    }
+    } //allDishesCart(){
+    //  let totalProduct = 0;
+    //this.carts.forEach(item => {
+    //  totalProduct = item.qty + item.qty
+    // });
+    // return totalProduct;
+    // }
+
   },
   mounted: function mounted() {
     var _this = this;
@@ -2276,8 +2283,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/api/users/' + this.$route.params.slug).then(function (response) {
       if (response.data.success) {
-        _this.user = response.data.results;
-        console.log(_this.user);
+        _this.user = response.data.results; //  console.log(this.user)
       } else {
         _this.$router.push({
           name: 'not-found'
@@ -55479,8 +55485,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\giuse\php-project\laravel\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\giuse\php-project\laravel\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
