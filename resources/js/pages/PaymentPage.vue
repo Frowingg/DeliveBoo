@@ -16,6 +16,7 @@ export default {
             token: ''
         }
     },
+    // dio
     mounted() {
         axios.get('http://127.0.0.1:8000/api/orders/generate')
         .then((response) => {
