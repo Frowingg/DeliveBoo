@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Rules;
-use App\Dish;
+use App\Admin\Dish;
 
 use Illuminate\Contracts\Validation\Rule;
 

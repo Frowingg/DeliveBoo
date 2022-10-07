@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomePage from './pages/HomePage.vue';
 import SingleUser from './pages/SingleUser.vue';
+import PaymentPage from './pages/PaymentPage.vue';
 import NotFound from './pages/NotFound.vue';
 
 
@@ -21,10 +22,17 @@ const router = new VueRouter({
             component: SingleUser
         },
         {
+            path: '/:slug/payment',
+            name: 'payment',
+            component: PaymentPage,
+            props:true
+        },
+        {
             path: '/*',
             name: 'not-found',
             component: NotFound
-        }
+        },
+       
     ]
 });
 

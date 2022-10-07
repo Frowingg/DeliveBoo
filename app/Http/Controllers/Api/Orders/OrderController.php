@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
 use App\Http\Requests\Orders\OrderRequest;
-use App\Dish;
+use App\Admin\Dish;
 
 class OrderController extends Controller
 {

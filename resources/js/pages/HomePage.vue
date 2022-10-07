@@ -33,12 +33,7 @@
                 v-for="filteredUser in filtered_category_user"
                 :key="filteredUser.id"
             >
-                <router-link
-                    :to="{
-                        name: 'single-user',
-                        params: { slug: filteredUser.user.slug },
-                    }"
-                >
+                <router-link :to="{ name: 'single-user', params: { slug: filteredUser.user.slug },}" >
                     <div class="card-layover"></div>
                     <div class="card-info">
                         <div class="card-title">
@@ -47,10 +42,7 @@
                         <div class="card-address">
                             {{ filteredUser.user.address }}
                         </div>
-                        <span
-                            v-for="(categoryInfo, index) in filteredUser"
-                            :key="index"
-                        >
+                        <span v-for="(categoryInfo, index) in filteredUser" :key="index">
                             <ul class="card-categories">
                                 <li
                                     v-for="(
