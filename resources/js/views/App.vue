@@ -4,9 +4,6 @@
         <router-view></router-view>
         <WorkWithUs />
         <FooterCompo />
-        <div class="responsive_my_tb">
-            <ResponsiveTablet />
-        </div>
     </div>
 </template>
 
@@ -14,14 +11,12 @@
 import HeaderComponents from "../components/MainPages/HeaderComponents.vue";
 import FooterCompo from "../components/MainPages/FooterCompo.vue";
 import WorkWithUs from "../components/MainPages/WorkWithUs.vue";
-import ResponsiveTablet from "../components/MainPages/Responsive/ResponsiveTablet.vue";
 
 export default {
     name: "App",
     components: {
         HeaderComponents,
         FooterCompo,
-        ResponsiveTablet,
         WorkWithUs,
     },
     methods: {
