@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
 use App\Http\Requests\Orders\OrderRequest;
-use App\Admin\Dish;
+// use App\Admin\Dish;
 
 class OrderController extends Controller
 {
-    public function generate(Request $request, Gateway $gateway){
+    public function generate(Request $request, Gateway $gateway) {
         $token= $gateway->clientToken()->generate();
 
         $data= [
@@ -21,11 +21,10 @@ class OrderController extends Controller
         return response()->json($data, 200);
     }
 
-    public function makePayment(OrderRequest $request,Gateway $gateway){
-        $dish = Dish::find($request->dish);
-        
+    public function makePayment(Request $request, Gateway $gateway) {
+
         $result = $gateway->transaction()->sale([
-            'amount' => $dish->price,
+            'amount' => $request->price,
             'paymentMethodNonce' => $request->token,
             'options' =>[
                 'submitForSettlement'=> true

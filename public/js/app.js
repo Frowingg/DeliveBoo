@@ -2169,17 +2169,22 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PaymentPage',
+  props: ['carts', 'cartsTotal'],
   data: function data() {
     return {
       token: ''
     };
   },
-  // dio
   mounted: function mounted() {
     var _this = this;
 
     axios.get('http://127.0.0.1:8000/api/orders/generate').then(function (response) {
-      _this.token = response;
+      _this.token = response.data.token;
+    });
+    axios.post('http://127.0.0.1:8000/api/orders/makePayment', {
+      amount: this.cartsTotal,
+      token: this.token
+    }).then(function (response) {
       console.log(response);
     });
   }
@@ -2218,7 +2223,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return {
       carts: [],
       dishes: [],
-      error: ''
+      error: '',
+      cartsTotal: 0
     };
   },
   methods: {
@@ -2274,6 +2280,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.carts.forEach(function (item) {
         total += item.qty * item.price;
       });
+      this.cartsTotal = total;
       return total;
     },
     removeAllItemFromCart: function removeAllItemFromCart() {
@@ -2816,6 +2823,13 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
+  return _vm._m(0);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
   return _c("div", {
     staticClass: "container mt-5"
   }, [_c("div", {
@@ -2827,10 +2841,8 @@ var render = function render() {
     attrs: {
       id: "submit-button"
     }
-  }, [_vm._v("Purchase")]), _vm._v("\n  " + _vm._s(this.token) + "\n\n")]);
-};
-
-var staticRenderFns = [];
+  }, [_vm._v("Purchase")]), _vm._v(" "), _c("br")]);
+}];
 render._withStripped = true;
 
 
@@ -2856,6 +2868,8 @@ var render = function render() {
   }, [_vm.error.length > 0 ? _c("div", [_c("div", {
     staticClass: "alert alert-danger mt-5"
   }, [_c("ul", [_c("li", [_vm._v(_vm._s(_vm.error))])])])]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "mt-5"
+  }, [_vm._v("\n        " + _vm._s(this.cartsTotal) + "\n    ")]), _vm._v(" "), _c("div", {
     attrs: {
       id: "myproduct"
     }
@@ -2923,7 +2937,8 @@ var render = function render() {
       to: {
         name: "payment",
         params: {
-          carts: _vm.carts
+          carts: _vm.carts,
+          cartsTotal: _vm.cartsTotal
         }
       }
     }

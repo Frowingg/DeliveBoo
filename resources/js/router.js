@@ -25,7 +25,7 @@ const router = new VueRouter({
             path: '/:slug/payment',
             name: 'payment',
             component: PaymentPage,
-            props:true
+            props: true
         },
         {
             path: '/*',

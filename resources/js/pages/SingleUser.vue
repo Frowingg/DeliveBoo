@@ -8,6 +8,10 @@
             </div>
         </div>
 
+        <div class="mt-5">
+            {{this.cartsTotal}}
+        </div>
+
         <div id="myproduct">
             <div class="row mt-2 mb-2">
                 <div class="col-md-10">&nbsp;</div>
@@ -44,7 +48,7 @@
 
                                 <div class="modal-footer">
                                     Prezzo totale: {{getTotal()}} &nbsp;
-                                    <router-link :to="{ name: 'payment', params: {carts},}">
+                                    <router-link :to="{ name: 'payment', params: {carts, cartsTotal}}">
                                         <button data-dismiss="modal" class="btn btn-primary">Checkout</button>
                                     </router-link>
                                     <button data-dismiss="modal" v-on:click="removeAllItemFromCart()" class="btn btn-primary">Elimina tutti i prodtti</button>
@@ -77,7 +81,8 @@ export default {
         return {
             carts: [],
             dishes: [],
-            error: ''
+            error: '',
+            cartsTotal: 0
         }        
     },
     methods: {
@@ -139,6 +144,7 @@ export default {
             this.carts.forEach(item => {
                 total += item.qty * item.price
             });
+            this.cartsTotal = total;
             return total
         },
         removeAllItemFromCart() {

@@ -19,12 +19,11 @@ class DishController extends Controller
         ];
 
         return response()->json($data);
-        // return DishResource::collection($data);
     }
 
 
-    public function indexResource(Request $request){
-        $dishess = Dish::all();
-        return DishResource::collection($dishess);
-    }
+    // public function indexResource(Request $request){
+    //     $dishess = Dish::all();
+    //     return DishResource::collection($dishess);
+    // }
 }

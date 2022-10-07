@@ -3,7 +3,7 @@
 
     <div id="dropin-container"></div>
     <button id="submit-button" class="button button--small button--green">Purchase</button>
-    {{this.token}}
+    <br>
 
   </div>
 </template>
@@ -11,20 +11,27 @@
 <script>
 export default {
     name: 'PaymentPage',
+    props: ['carts','cartsTotal'],
     data() {
         return {
-            token: ''
+            token: '',
         }
     },
-    // dio
     mounted() {
         axios.get('http://127.0.0.1:8000/api/orders/generate')
         .then((response) => {
-            this.token = response
+            this.token = response.data.token
+        });
+        axios.post('http://127.0.0.1:8000/api/orders/makePayment', {
+          amount: this.cartsTotal,
+          token: this.token, 
+        })
+        .then((response) => {
             console.log(response)
         });
     },
 }
+
 braintree.dropin.create({
   authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
   selector: '#dropin-container'
