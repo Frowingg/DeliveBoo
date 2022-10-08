@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Auth::routes();
 
 // routes auth
@@ -27,8 +25,6 @@ Route::middleware('auth')
     Route::get('/order', 'HomeController@show',)->name('order');
     Route::resource('dishes', 'DishController');
 });
-
-
 
 Route::get('{any?}', function () {
     return view('guest.home');

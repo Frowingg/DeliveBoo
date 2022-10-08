@@ -1,26 +1,6 @@
 <template>
     <div>
         <div class="container_my">
-            <div class="header_top_my">
-                <div class="logo_my">
-                    <a href="/">DeliveBoo</a>
-                </div>
-
-                <div class="interface_my" v-if="userLogged">
-                    <div class="registration_my">
-                        <a href="/admin">Il tuo Ristorante</a>
-                    </div>
-                </div>
-                <div class="interface_my" v-else>
-                    <div class="login_my">
-                        <a href="/login">Login</a>
-                    </div>
-                    <div class="registration_my">
-                        <a href="/register">Registrati</a>
-                    </div>
-                </div>
-            </div>
-            <!--jumbotron-->
             <div class="jumbotrone_my">
                 <div class="search_bar_my">
                     <h3>A fame come siamo messi?</h3>
@@ -32,31 +12,9 @@
         </div>
     </div>
 </template>
-
 <script>
-// import { defineComponent } from '@vue/composition-api'
-
 export default {
-    name: "HeaderComponents",
-    data() {
-        return{
-            userToSearch: '',
-            currentUser: [],
-        }
-    },
-    methods: {
-        getUsers() {
-            axios.get("/api/users").then((response) => {
-                this.currentUser = response.data.current_user;
-                console.log(this.currentUser);
-            });
-        }
-    },
-    computed: {
-        userLogged() {
-            return window.userLogged
-        }
-    }
+    name: "JumbotronPage",
 }
 </script>
 

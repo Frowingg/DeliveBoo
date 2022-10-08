@@ -1,13 +1,29 @@
 <template>
-    <div>
+    <div class="container">
         <form action="">
-            <div class="container mt-5">
+            <div class="form-group">
+                <label for="name">Nome </label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nome">
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Cognome</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Cognome">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Indirizzo</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Indirizzo">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+            </div>
+
+            <div class="container">
                 <div id="dropin-container"></div>
-                <button
-                    id="submit-button"
-                    @click="makePay()"
-                    class="button button--small button--green"
-                >
+                <button id="submit-button" @click="makePay()" class="button button--small button--green">
                     Purchase
                 </button>
             </div>
@@ -22,7 +38,7 @@ export default {
     data() {
         return {
             token: "",
-            //carts: this.$route.params.carts
+            
         };
     },
 
@@ -47,10 +63,9 @@ export default {
 
     methods: {
         makePay() {
-            axios
-                .post("http://127.0.0.1:8000/api/orders/makePayment", {
+            axios.post("http://127.0.0.1:8000/api/orders/makePayment", {
                     token: this.token,
-                    price: this.cartsTotal, //"20,00"
+                    price: this.cartsTotal,
                 })
                 .then((response) => {
                     console.log(response);

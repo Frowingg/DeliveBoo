@@ -6,6 +6,6 @@
 
 <script>
 export default {
-    name: 'HomePage',
+    name: 'NotFound',
 }
 </script>

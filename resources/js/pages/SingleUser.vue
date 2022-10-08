@@ -103,15 +103,6 @@
             </div>
         </div>
 
-        <!-- <div v-for="(dish, index) in dishes" :key="index" class="mt-5">
-            <div v-if="dish.user_id === user.id">
-                {{ dish }}
-                <button class="btn btn-primary" @click="addCart(dish)">
-                    Aggiungi al carrello
-                </button>
-            </div>
-        </div> -->
-
         <div v-for="dish in dishes" :key="dish.id" class="mt-5">
             {{ dish }}
             <button class="btn btn-primary" @click="addCart(dish)">
@@ -205,21 +196,14 @@ export default {
         if (localStorage.carts) {
             this.carts = JSON.parse(localStorage.getItem("carts"));
         }
+        console.log(this.$route.params.slug)
         axios.get("/api/users/" + this.$route.params.slug).then((response) => {
             if (response.data.success) {
-                //this.user = response.data.results;
                 this.dishes = response.data.results;
             } else {
                 this.$router.push({ name: "not-found" });
             }
         });
-        // axios.get('/api/dishes/')
-        // .then((response) => {
-
-        //     if(response.data.success) {
-        //         this.dishes = response.data.results;
-        //     }
-        // });
     },
 };
 </script>

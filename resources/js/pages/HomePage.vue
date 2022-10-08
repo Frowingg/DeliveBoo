@@ -1,5 +1,6 @@
 <template>
     <div>
+        <JumbotronPage />
         <div class="carrousel_my">
             <div class="slider_my">
                 <div class="slide-track_my">
@@ -42,12 +43,20 @@
                 </router-link>
             </div>
         </div>
+
+       <WorkWithUs />
     </div>    
 </template>
 
 <script>
+import WorkWithUs from "../components/MainPages/WorkWithUs.vue";
+import JumbotronPage from "../components/MainPages/JumbotronPage.vue";
 export default {
 name: "HomePage",
+components: {
+         WorkWithUs,
+        JumbotronPage,
+    },
 data() {
     return {
         categories: [],

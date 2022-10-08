@@ -17,12 +17,12 @@ const router = new VueRouter({
             component: HomePage
         },
         {
-            path: '/:slug',
+            path: '/restaurnat/:slug',
             name: 'single-user',
             component: SingleUser
         },
         {
-            path: '/:slug/payment',
+            path: '/restaurnat/:slug/payment',
             name: 'payment',
             component: PaymentPage,
             props: true
