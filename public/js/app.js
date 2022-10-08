@@ -2074,6 +2074,7 @@ __webpack_require__.r(__webpack_exports__);
       token: ""
     };
   },
+  // bububaba
   mounted: function mounted() {
     var _this = this;
 

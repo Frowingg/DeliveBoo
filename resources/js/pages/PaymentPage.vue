@@ -38,10 +38,10 @@ export default {
     data() {
         return {
             token: "",
-            
+
         };
     },
-
+// bububaba
     mounted() {
         braintree.dropin.create({
             authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
