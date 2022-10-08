@@ -21,11 +21,11 @@ class OrderController extends Controller
         return response()->json($data, 200);
     }
 
-    public function makePayment(Request $request, Gateway $gateway) {
+    public function makePayment(OrderRequest $request, Gateway $gateway) {
 
         $result = $gateway->transaction()->sale([
             'amount' => $request->price,
-            'paymentMethodNonce' => $request->token,
+            'paymentMethodNonce' => 'fake-valid-nonce',
             'options' =>[
                 'submitForSettlement'=> true
             ]

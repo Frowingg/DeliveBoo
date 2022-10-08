@@ -26,6 +26,8 @@ Route::get('/categories', 'Api\CategoryController@index');
 
 Route::get('/category/{id}', 'Api\CategoryController@showSingleCategory');
 
+Route::get('/filter-categories', 'Api\CategoryController@getFilteredCategories');
+
 // per braintreee
 Route::get('orders/generate', 'Api\Orders\OrderController@generate');
 

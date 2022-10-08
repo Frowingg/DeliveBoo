@@ -1,41 +1,60 @@
 <template>
-  <div class="container mt-5">
-
-    <div id="dropin-container"></div>
-    <button id="submit-button" class="button button--small button--green">Purchase</button>
-    <br>
-
-  </div>
+<div>
+  <form action="">
+    
+    <div class="container mt-5">
+      <div id="dropin-container"></div>
+      <button id="submit-button" @click="makePay()" class="button button--small button--green">Purchase</button>
+    </div>
+  </form>
+  
+</div>
+  
 </template>
 
 <script>
 export default {
     name: 'PaymentPage',
-    props: ['carts','cartsTotal'],
+    // props:["carts" , "cartsTotal"],
     data() {
         return {
             token: '',
+            carts: this.$route.params.carts
+
         }
     },
+    
     mounted() {
-        axios.get('http://127.0.0.1:8000/api/orders/generate')
-        .then((response) => {
-            this.token = response.data.token
-        });
-        axios.post('http://127.0.0.1:8000/api/orders/makePayment', {
-          amount: this.cartsTotal,
-          token: this.token, 
-        })
-        .then((response) => {
-            console.log(response)
-        });
-    },
-}
+      braintree.dropin.create({
+      authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
+      selector: '#dropin-container'
+      });
 
-braintree.dropin.create({
-  authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
-  selector: '#dropin-container'
-});
+      $.ajaxSetup({
+        headers: {
+            'X-XSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+      axios.get('http://127.0.0.1:8000/api/orders/generate')
+      .then((response) => {
+          this.token = response
+      }); 
+    },
+
+    methods:{
+        makePay(){
+          axios.post('http://127.0.0.1:8000/api/orders/makePayment',{
+            token: this.token,
+            price: "20,00"
+          })
+          .then((response) => {
+            console.log(response)
+          })
+        }
+    } 
+ }
+
 
 </script>
 

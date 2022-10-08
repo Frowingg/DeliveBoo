@@ -48,8 +48,8 @@
 
                                 <div class="modal-footer">
                                     Prezzo totale: {{getTotal()}} &nbsp;
-                                    <router-link :to="{ name: 'payment', params: {carts, cartsTotal}}">
-                                        <button data-dismiss="modal" class="btn btn-primary">Checkout</button>
+                                    <router-link :to="{ name: 'payment', params: {carts, cartsTotal} }">
+                                        <button v-if="carts.length > 0" data-dismiss="modal" class="btn btn-primary">Checkout</button>
                                     </router-link>
                                     <button data-dismiss="modal" v-on:click="removeAllItemFromCart()" class="btn btn-primary">Elimina tutti i prodtti</button>
 

@@ -2049,95 +2049,26 @@ __webpack_require__.r(__webpack_exports__);
         this.list_of_categories.splice(this.list_of_categories.indexOf(id), 1);
       }
 
-      var help_list_of_user = [];
-      axios.get("/api/category/" + id).then(function (response) {
-        var data = response.data.results; //variabili d'aiuto
+      if (this.list_of_categories.length == 0) {
+        this.filtered_category_user = [];
+        return;
+      }
 
-        var devoFiltrarelLUtente = true; //Per ogni utente...
-
-        var _loop = function _loop(i) {
-          devoFiltrarelLUtente = true;
-          var currentUser = data[i]; //const currentUserCategory = currentUser.pivot.category_id;
-
-          var currentUserCategories = []; //Recupero l'elenco delle categorie dell'utente attuale
-
-          currentUser.categories.forEach(function (category) {
-            currentUserCategories.push(category.id);
-          }); //controllo che le categorie per cui è applicato un filtro siano tutte presenti delle categorie dell'utente
-
-          for (var _i = 0; _i < _this2.list_of_categories.length; _i++) {
-            if (!currentUserCategories.includes(_this2.list_of_categories[_i])) {
-              //Se non trovo una categoria tra quelle filtrate, mi segno che questo utente non lo devo aggiungere tra quelli filtrati
-              devoFiltrarelLUtente = false;
-              break;
-            }
-          }
-
-          if (devoFiltrarelLUtente) {
-            //DA MIGLIORARE
-            //uso un array di appoggio per evitare dei flash in pagina quando aggiorno l'array
-            help_list_of_user.push({
-              user: currentUser
-            });
-          }
-
-          _this2.filtered_category_user = help_list_of_user; //this.list_of_categories.push(currentUserCategories);
-          // if (
-          //     //!this.list_of_categories.includes(currentUserCategory)
-          //     //Se nella attuale lista delle categorie filtrate non sono presenti le categorie dell'utente...
-          //     !this.list_of_categories.includes(currentUserCategories)
-          // ) {
-          //     //...aggiungo all'oggetto dell'utente l'id della categoria per recuperarlo più facilmente dopo...
-          //     data.forEach((element) => {
-          //         const userWithCategoryId = {
-          //             user: element,
-          //             category_id: currentUserCategory,
-          //         };
-          //         //... e lo pusho nell'array degli utenti filtrati
-          //         this.filtered_category_user.push(
-          //             userWithCategoryId
-          //         );
-          //     });
-          //     //pusho nel'array delle categorie filtrate quella dell'utente
-          //     this.list_of_categories.push(currentUserCategory);
-          //     break;
-          // } else {
-          //     //RIMOZIONE UTENTE DA QUELLI FILTRATI
-          //     //mi creo un indice che mi serve dopo per lo splice
-          //     let index = 0;
-          //     //ciclo la lista degli utenti filtrati per tutta la sua lunghezza
-          //     for (
-          //         let i = 0;
-          //         i < this.filtered_category_user.length;
-          //         i++
-          //     ) {
-          //         let currentElem = this.filtered_category_user[i];
-          //         // se trovo un utente con l'id della categoria selezionata al click della categoria...
-          //         if (currentElem.category_id === id) {
-          //             //... mi salvo l'indice che corrisponde alla sua posizione nell'array, e fermo il ciclo con un break
-          //             index = i;
-          //             break;
-          //         }
-          //     }
-          //     //utilizzo l'indice per rimuoverer gli n utenti appartenenti alla categoria selezionata
-          //     this.filtered_category_user.splice(index, data.length);
-          //     //rimuovo l'id della categoria dall'array delle categorie, partendo dall'indice dell'id della categoria
-          //     this.list_of_categories.splice(
-          //         this.list_of_categories.indexOf(id),
-          //         1
-          //     );
-          //     break;
-          // }
-        };
-
-        for (var i = 0; i < data.length; i++) {
-          _loop(i);
+      axios.get("/api/filter-categories", {
+        //list_of_ids: data,
+        params: {
+          list_of_ids: this.list_of_categories.join()
         }
+      }).then(function (response) {
+        _this2.filtered_category_user = response.data.results;
+      })["catch"](function (err) {
+        return console.log(err);
       });
     }
   },
   mounted: function mounted() {
     this.getCategories();
+    console.log(this.filtered_category_user);
   }
 });
 
@@ -2169,29 +2100,39 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PaymentPage',
-  props: ['carts', 'cartsTotal'],
+  // props:["carts" , "cartsTotal"],
   data: function data() {
     return {
-      token: ''
+      token: '',
+      carts: this.$route.params.carts
     };
   },
   mounted: function mounted() {
     var _this = this;
 
+    braintree.dropin.create({
+      authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
+      selector: '#dropin-container'
+    });
+    $.ajaxSetup({
+      headers: {
+        'X-XSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
     axios.get('http://127.0.0.1:8000/api/orders/generate').then(function (response) {
-      _this.token = response.data.token;
+      _this.token = response;
     });
-    axios.post('http://127.0.0.1:8000/api/orders/makePayment', {
-      amount: this.cartsTotal,
-      token: this.token
-    }).then(function (response) {
-      console.log(response);
-    });
+  },
+  methods: {
+    makePay: function makePay() {
+      axios.post('http://127.0.0.1:8000/api/orders/makePayment', {
+        token: this.token,
+        price: "20,00"
+      }).then(function (response) {
+        console.log(response);
+      });
+    }
   }
-});
-braintree.dropin.create({
-  authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
-  selector: '#dropin-container'
 });
 
 /***/ }),
@@ -2734,7 +2675,7 @@ var render = function render() {
     }), _vm._v(" "), _c("div", {
       staticClass: "name-category"
     }, [_c("div", [_vm._v("\n                                " + _vm._s(category.name) + "\n                            ")])])])]);
-  }), 0)])]), _vm._v(" "), _c("h2", [_vm._v("DEBUG: Categorie selezionate: " + _vm._s(_vm.list_of_categories))]), _vm._v(" "), _c("div", {
+  }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "contain"
   }, _vm._l(_vm.filtered_category_user, function (filteredUser) {
     return _c("div", {
@@ -2745,7 +2686,7 @@ var render = function render() {
         to: {
           name: "single-user",
           params: {
-            slug: filteredUser.user.slug
+            slug: filteredUser.user_slug
           }
         }
       }
@@ -2755,19 +2696,15 @@ var render = function render() {
       staticClass: "card-info"
     }, [_c("div", {
       staticClass: "card-title"
-    }, [_vm._v("\n                        " + _vm._s(filteredUser.user.name) + "\n                    ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                        " + _vm._s(filteredUser.user_name) + "\n                    ")]), _vm._v(" "), _c("div", {
       staticClass: "card-address"
-    }, [_vm._v("\n                        " + _vm._s(filteredUser.user.address) + "\n                    ")]), _vm._v(" "), _vm._l(filteredUser, function (categoryInfo, index) {
-      return _c("span", {
+    }, [_vm._v("\n                        " + _vm._s(filteredUser.user_address) + "\n                    ")]), _vm._v(" "), _c("span", [_c("ul", {
+      staticClass: "card-categories"
+    }, _vm._l(filteredUser.user_categories, function (categoryName, index) {
+      return _c("li", {
         key: index
-      }, [_c("ul", {
-        staticClass: "card-categories"
-      }, _vm._l(categoryInfo.categories, function (categoryName, index) {
-        return _c("li", {
-          key: index
-        }, [_vm._v("\n                                " + _vm._s(categoryName["name"]) + "\n                            ")]);
-      }), 0)]);
-    })], 2)])], 1);
+      }, [_vm._v("\n                                " + _vm._s(categoryName.name) + " \n                            ")]);
+    }), 0)])])])], 1);
   }), 0)]);
 };
 
@@ -2823,14 +2760,11 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
+  return _c("div", [_c("form", {
+    attrs: {
+      action: ""
+    }
+  }, [_c("div", {
     staticClass: "container mt-5"
   }, [_c("div", {
     attrs: {
@@ -2840,9 +2774,16 @@ var staticRenderFns = [function () {
     staticClass: "button button--small button--green",
     attrs: {
       id: "submit-button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.makePay();
+      }
     }
-  }, [_vm._v("Purchase")]), _vm._v(" "), _c("br")]);
-}];
+  }, [_vm._v("Purchase")])])])]);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -2942,12 +2883,12 @@ var render = function render() {
         }
       }
     }
-  }, [_c("button", {
+  }, [_vm.carts.length > 0 ? _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       "data-dismiss": "modal"
     }
-  }, [_vm._v("Checkout")])]), _vm._v(" "), _c("button", {
+  }, [_vm._v("Checkout")]) : _vm._e()]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       "data-dismiss": "modal"
@@ -55689,8 +55630,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
