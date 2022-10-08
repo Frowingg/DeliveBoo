@@ -43,7 +43,7 @@
                             Prezzo *
                         </div>
                     </div>
-                    <input type="number" class="my-input" id="price" name="price" value="{{ old('price') ? old('price') : $dish->price }}">
+                    <input type="number" step="0.01" class="my-input" id="price" name="price" value="{{ old('price') ? old('price') : $dish->price }}">
                 </div>
             </div>
 

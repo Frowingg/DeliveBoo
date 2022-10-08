@@ -45,7 +45,7 @@
                             Prezzo *
                         </div>
                     </div>
-                    <input type="number" placeholder="Inserisci il prezzo (es. 9,99)" class="my-input" id="price" name="price" value="{{ old('price') }}">
+                    <input type="number" step="0.01" placeholder="Inserisci il prezzo (es. 9,99)" class="my-input" id="price" name="price" value="{{ old('price') }}">
                 </div>
             </div>
 
