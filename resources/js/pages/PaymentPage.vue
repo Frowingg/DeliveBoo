@@ -3,7 +3,7 @@
         <form action="">
             <div class="form-group">
                 <label for="name">Nome </label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Nome">
+                <input type="text" class="form-control" id="name"   name="name" placeholder="Nome">
             </div>
 
             <div class="form-group">
@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group">
-                <label for="email">Email address</label>
+                <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
             </div>
 
@@ -27,6 +27,8 @@
                     Purchase
                 </button>
             </div>
+
+            {{piatto}}
         </form>
     </div>
 </template>
@@ -38,7 +40,10 @@ export default {
     data() {
         return {
             token: "",
-
+            userName:'',
+            userLastname:'',
+            userAddress:'',
+            userEmail:'',    
         };
     },
 // bububaba
@@ -66,9 +71,12 @@ export default {
             axios.post("http://127.0.0.1:8000/api/orders/makePayment", {
                     token: this.token,
                     price: this.cartsTotal,
+                    dish: this.carts.name,
+                    quantity: this.carts.qty,
+                    resturant_id: this.carts.risto_id
                 })
                 .then((response) => {
-                    console.log(response);
+                   
                 });
         },
     },

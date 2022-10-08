@@ -2071,7 +2071,11 @@ __webpack_require__.r(__webpack_exports__);
   props: ["carts", "cartsTotal"],
   data: function data() {
     return {
-      token: ""
+      token: "",
+      userName: '',
+      userLastname: '',
+      userAddress: '',
+      userEmail: ''
     };
   },
   // bububaba
@@ -2095,10 +2099,11 @@ __webpack_require__.r(__webpack_exports__);
     makePay: function makePay() {
       axios.post("http://127.0.0.1:8000/api/orders/makePayment", {
         token: this.token,
-        price: this.cartsTotal
-      }).then(function (response) {
-        console.log(response);
-      });
+        price: this.cartsTotal,
+        dish: this.carts.name,
+        quantity: this.carts.qty,
+        resturant_id: this.carts.risto_id
+      }).then(function (response) {});
     }
   }
 });
@@ -2733,7 +2738,7 @@ var render = function render() {
         return _vm.makePay();
       }
     }
-  }, [_vm._v("\n                Purchase\n            ")])])])]);
+  }, [_vm._v("\n                Purchase\n            ")])]), _vm._v("\n\n        " + _vm._s(_vm.piatto) + "\n    ")])]);
 };
 
 var staticRenderFns = [function () {
@@ -2803,7 +2808,7 @@ var staticRenderFns = [function () {
     attrs: {
       "for": "email"
     }
-  }, [_vm._v("Email address")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("Email")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
       type: "email",
