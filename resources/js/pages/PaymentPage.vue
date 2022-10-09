@@ -40,8 +40,6 @@ export default {
     props: ["carts", "cartsTotal"],
     data() {
         return {
-            // checkoutCarts: this.carts,
-            // checkoutCartsTotal: this.totalCarts,
             token: "",
             order: {
                 name:'Giacomino',
@@ -54,12 +52,7 @@ export default {
         };
     },
     mounted() {
-        // if (localStorage.checkoutCarts) {
-        //     this.checkoutCarts = JSON.parse(localStorage.getItem("carts"));
-        // };
-        // if(localStorage.checkoutCartsTotal) {
-        //     this.checkoutCartsTotal = JSON.parse(localStorage.getItem("cartsTotal"));
-        // };
+        
 
         braintree.dropin.create({
             authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",

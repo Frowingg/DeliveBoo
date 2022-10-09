@@ -5,6 +5,7 @@
                 <ul>
                     <li>{{ error }}</li>
                 </ul>
+                <button class="btn btn-danger" @click="removeAllItemFromCart()">Svuota carrello</button>
             </div>
         </div>
 

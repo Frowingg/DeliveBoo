@@ -2071,8 +2071,6 @@ __webpack_require__.r(__webpack_exports__);
   props: ["carts", "cartsTotal"],
   data: function data() {
     return {
-      // checkoutCarts: this.carts,
-      // checkoutCartsTotal: this.totalCarts,
       token: "",
       order: {
         name: 'Giacomino',
@@ -2087,12 +2085,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    // if (localStorage.checkoutCarts) {
-    //     this.checkoutCarts = JSON.parse(localStorage.getItem("carts"));
-    // };
-    // if(localStorage.checkoutCartsTotal) {
-    //     this.checkoutCartsTotal = JSON.parse(localStorage.getItem("cartsTotal"));
-    // };
     braintree.dropin.create({
       authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
       selector: "#dropin-container"
@@ -2912,7 +2904,14 @@ var render = function render() {
     staticClass: "container"
   }, [_vm.error.length > 0 ? _c("div", [_c("div", {
     staticClass: "alert alert-danger mt-5"
-  }, [_c("ul", [_c("li", [_vm._v(_vm._s(_vm.error))])])])]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_c("ul", [_c("li", [_vm._v(_vm._s(_vm.error))])]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-danger",
+    on: {
+      click: function click($event) {
+        return _vm.removeAllItemFromCart();
+      }
+    }
+  }, [_vm._v("Svuota carrello")])])]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "mt-5"
   }, [_vm._v("\n        " + _vm._s(this.cartsTotal) + "\n    ")]), _vm._v(" "), _c("div", {
     attrs: {
