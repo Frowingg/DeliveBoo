@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
 use App\Http\Requests\Orders\OrderRequest;
+use App\Order;
 // use App\Admin\Dish;
 
 class OrderController extends Controller
@@ -45,5 +46,17 @@ class OrderController extends Controller
 
             return response()->json($data, 401);
         }
+    }
+
+    public function store(Request $request) {
+
+        $data = $request->all();
+
+        $response = Order::create($data);
+
+        return response()->json([
+            'success' => true,
+            'result' => $response
+        ], 200);
     }
 }

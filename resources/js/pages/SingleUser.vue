@@ -196,7 +196,7 @@ export default {
         if (localStorage.carts) {
             this.carts = JSON.parse(localStorage.getItem("carts"));
         }
-        console.log(this.$route.params.slug)
+        // console.log(this.$route.params.slug)
         axios.get("/api/users/" + this.$route.params.slug).then((response) => {
             if (response.data.success) {
                 this.dishes = response.data.results;

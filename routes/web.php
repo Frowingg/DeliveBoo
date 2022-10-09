@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Orders\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::middleware('auth')
 Route::get('{any?}', function () {
     return view('guest.home');
 })->where('any', '.*');
+
+Route::post('/orders/create', 'Api\Orders\OrderController@store');

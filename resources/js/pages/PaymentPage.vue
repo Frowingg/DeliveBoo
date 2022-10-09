@@ -1,34 +1,35 @@
 <template>
     <div class="container">
-        <form action="">
+
+        <form @submit.prevent="makePay()" action="">
             <div class="form-group">
                 <label for="name">Nome </label>
-                <input type="text" class="form-control" id="name"   name="name" placeholder="Nome">
+                <input type="text"  class="form-control" id="name" v-model="order.name"  name="name" placeholder="Nome">
             </div>
 
             <div class="form-group">
                 <label for="lastname">Cognome</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Cognome">
+                <input type="text" class="form-control" id="lastname" v-model="order.lastname" name="lastname" placeholder="Cognome">
             </div>
 
             <div class="form-group">
                 <label for="address">Indirizzo</label>
-                <input type="text" class="form-control" id="address" name="address" placeholder="Indirizzo">
+                <input type="text" class="form-control" id="address" v-model="order.address" name="address" placeholder="Indirizzo">
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                <input type="email" class="form-control" id="email" v-model="order.email" name="email" placeholder="name@example.com">
             </div>
 
             <div class="container">
                 <div id="dropin-container"></div>
-                <button id="submit-button" @click="makePay()" class="button button--small button--green">
+                <!-- <button id="submit-button" @click="makePay()" class="button button--small button--green"> -->
+                <button id="submit-button" class="button button--small button--green">
                     Purchase
                 </button>
             </div>
 
-            {{piatto}}
         </form>
     </div>
 </template>
@@ -39,15 +40,27 @@ export default {
     props: ["carts", "cartsTotal"],
     data() {
         return {
+            // checkoutCarts: this.carts,
+            // checkoutCartsTotal: this.totalCarts,
             token: "",
-            userName:'',
-            userLastname:'',
-            userAddress:'',
-            userEmail:'',    
+            order: {
+                name:'Giacomino',
+                lastname:'Pane&Vino',
+                address:'Via Roma',
+                email:'acaso@gmail.com',
+                total_price: Number(this.cartsTotal),
+                user_id : this.carts[0].risto_id
+            }               
         };
     },
-// bububaba
     mounted() {
+        // if (localStorage.checkoutCarts) {
+        //     this.checkoutCarts = JSON.parse(localStorage.getItem("carts"));
+        // };
+        // if(localStorage.checkoutCartsTotal) {
+        //     this.checkoutCartsTotal = JSON.parse(localStorage.getItem("cartsTotal"));
+        // };
+
         braintree.dropin.create({
             authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
             selector: "#dropin-container",
@@ -68,6 +81,7 @@ export default {
 
     methods: {
         makePay() {
+            // pagamento
             axios.post("http://127.0.0.1:8000/api/orders/makePayment", {
                     token: this.token,
                     price: this.cartsTotal,
@@ -76,8 +90,16 @@ export default {
                     resturant_id: this.carts.risto_id
                 })
                 .then((response) => {
-                   
+                   console.log(response)
                 });
+            // salvataggio ordine
+            axios.post("/orders/create", this.order).then(
+                response => {
+                    console.log(response);
+                }
+            ).catch(error => {
+                console.log('error');
+            })
         },
     },
 };

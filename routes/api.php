@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,5 +34,4 @@ Route::get('orders/generate', 'Api\Orders\OrderController@generate');
 
 Route::post('orders/makePayment', 'Api\Orders\OrderController@makePayment');
 
-// Route::get('/dishess', 'Api\DishController@indexResource');
-// fine per  braintreee
+

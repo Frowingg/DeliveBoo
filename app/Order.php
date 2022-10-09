@@ -10,8 +10,9 @@ class Order extends Model
         'name',
         'lastname',
         'address',
-        'total_price',
         'email',
+        'total_price',
+        'user_id'
     ];
 
     public function user() {

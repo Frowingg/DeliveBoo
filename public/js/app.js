@@ -2071,17 +2071,28 @@ __webpack_require__.r(__webpack_exports__);
   props: ["carts", "cartsTotal"],
   data: function data() {
     return {
+      // checkoutCarts: this.carts,
+      // checkoutCartsTotal: this.totalCarts,
       token: "",
-      userName: '',
-      userLastname: '',
-      userAddress: '',
-      userEmail: ''
+      order: {
+        name: 'Giacomino',
+        lastname: 'Pane&Vino',
+        address: 'Via Roma',
+        email: 'acaso@gmail.com',
+        total_price: Number(this.cartsTotal),
+        user_id: this.carts[0].risto_id
+      }
     };
   },
-  // bububaba
   mounted: function mounted() {
     var _this = this;
 
+    // if (localStorage.checkoutCarts) {
+    //     this.checkoutCarts = JSON.parse(localStorage.getItem("carts"));
+    // };
+    // if(localStorage.checkoutCartsTotal) {
+    //     this.checkoutCartsTotal = JSON.parse(localStorage.getItem("cartsTotal"));
+    // };
     braintree.dropin.create({
       authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
       selector: "#dropin-container"
@@ -2097,13 +2108,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     makePay: function makePay() {
+      // pagamento
       axios.post("http://127.0.0.1:8000/api/orders/makePayment", {
         token: this.token,
         price: this.cartsTotal,
         dish: this.carts.name,
         quantity: this.carts.qty,
         resturant_id: this.carts.risto_id
-      }).then(function (response) {});
+      }).then(function (response) {
+        console.log(response);
+      }); // salvataggio ordine
+
+      axios.post("/orders/create", this.order).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log('error');
+      });
     }
   }
 });
@@ -2215,9 +2235,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     if (localStorage.carts) {
       this.carts = JSON.parse(localStorage.getItem("carts"));
-    }
+    } // console.log(this.$route.params.slug)
 
-    console.log(this.$route.params.slug);
+
     axios.get("/api/users/" + this.$route.params.slug).then(function (response) {
       if (response.data.success) {
         _this.dishes = response.data.results;
@@ -2721,8 +2741,141 @@ var render = function render() {
   }, [_c("form", {
     attrs: {
       action: ""
+    },
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.makePay();
+      }
     }
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "name"
+    }
+  }, [_vm._v("Nome ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.order.name,
+      expression: "order.name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "name",
+      name: "name",
+      placeholder: "Nome"
+    },
+    domProps: {
+      value: _vm.order.name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.order, "name", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "lastname"
+    }
+  }, [_vm._v("Cognome")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.order.lastname,
+      expression: "order.lastname"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "lastname",
+      name: "lastname",
+      placeholder: "Cognome"
+    },
+    domProps: {
+      value: _vm.order.lastname
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.order, "lastname", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "address"
+    }
+  }, [_vm._v("Indirizzo")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.order.address,
+      expression: "order.address"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "address",
+      name: "address",
+      placeholder: "Indirizzo"
+    },
+    domProps: {
+      value: _vm.order.address
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.order, "address", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "email"
+    }
+  }, [_vm._v("Email")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.order.email,
+      expression: "order.email"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "email",
+      id: "email",
+      name: "email",
+      placeholder: "name@example.com"
+    },
+    domProps: {
+      value: _vm.order.email
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.order, "email", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _vm._m(0)])]);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "container"
   }, [_c("div", {
     attrs: {
@@ -2732,91 +2885,8 @@ var render = function render() {
     staticClass: "button button--small button--green",
     attrs: {
       id: "submit-button"
-    },
-    on: {
-      click: function click($event) {
-        return _vm.makePay();
-      }
     }
-  }, [_vm._v("\n                Purchase\n            ")])]), _vm._v("\n\n        " + _vm._s(_vm.piatto) + "\n    ")])]);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "name"
-    }
-  }, [_vm._v("Nome ")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "name",
-      name: "name",
-      placeholder: "Nome"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "lastname"
-    }
-  }, [_vm._v("Cognome")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "lastname",
-      name: "lastname",
-      placeholder: "Cognome"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "address"
-    }
-  }, [_vm._v("Indirizzo")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "address",
-      name: "address",
-      placeholder: "Indirizzo"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "email"
-    }
-  }, [_vm._v("Email")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "email",
-      id: "email",
-      name: "email",
-      placeholder: "name@example.com"
-    }
-  })]);
+  }, [_vm._v("\n                Purchase\n            ")])]);
 }];
 render._withStripped = true;
 
@@ -55661,8 +55731,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
