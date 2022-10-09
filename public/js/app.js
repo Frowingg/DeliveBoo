@@ -2037,6 +2037,11 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getCategories();
     console.log(this.filtered_category_user);
+  },
+  computed: {
+    userLogged: function userLogged() {
+      return window.userLogged;
+    }
   }
 });
 
@@ -2618,7 +2623,9 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("JumbotronPage"), _vm._v(" "), _c("div", {
+  return _c("div", [_c("JumbotronPage"), _vm._v(" "), !_vm.userLogged ? _c("div", {
+    staticClass: "mt-5"
+  }, [_c("div", [_vm._v("Sei un ristoratore? Aderisci alla nostra piattaforma!")])]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "carrousel_my"
   }, [_c("div", {
     staticClass: "slider_my"
