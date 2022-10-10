@@ -76,8 +76,13 @@ export default {
             userEmail: "",
         };
     },
-    // bububaba
     mounted() {
+        if (localStorage.carts) {
+            this.carts = JSON.parse(localStorage.getItem("carts"));
+        }
+        if (localStorage.cartsTotal) {
+            this.cartsTotal = JSON.parse(localStorage.getItem("cartsTotal"));
+        }
         braintree.dropin.create({
             authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
             selector: "#dropin-container",
@@ -119,7 +124,7 @@ export default {
                 .then((response) => {
                     console.log(response)
                 });
-                 axios.post("http://127.0.0.1:8000/api/add-order", order);
+                axios.post("http://127.0.0.1:8000/api/add-order", order);
         },
     },
 };

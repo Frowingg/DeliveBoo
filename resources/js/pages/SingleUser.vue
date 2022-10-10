@@ -112,7 +112,9 @@ export default {
                 this.carts.push(newItem);
             } else {
                 let rist_id = [
-                    ...new Set(this.carts.map((product) => product.risto_id)), // metto tutti gli id risto dei piatti in un arr e rimuovo i duplicati... ne avrò quindi sempre uno, quello del primo piatto che finisce nel carrello
+                    // metto tutti gli id risto dei piatti in un arr e rimuovo i duplicati... 
+                    // ne avrò quindi sempre uno, quello del primo piatto che finisce nel carrello
+                    ...new Set(this.carts.map((product) => product.risto_id)), 
                 ];
                 rist_id = rist_id[0];
 

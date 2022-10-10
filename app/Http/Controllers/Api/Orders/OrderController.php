@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Braintree\Gateway;
 use App\Http\Requests\Orders\OrderRequest;
 use App\Order;
+use App\DishOrder;
 
 class OrderController extends Controller
 {
@@ -51,6 +52,7 @@ class OrderController extends Controller
     }
 
     public function addOrderToRestaurant(Request $request){
+
         $data = $request->all();
 
             $order = $data['user_info'];
@@ -72,13 +74,26 @@ class OrderController extends Controller
             $new_order->user_id = $risto_id;
 
             $new_order->save();
-                        
+
+
             $dishes_id = [];
             foreach($data['cart'] as $dish){
                 array_push($dishes_id, $dish['id']);
             }
-                
-            $new_order->dishes()->sync($dishes_id);
+
+            $dishes_qty = [];
+            foreach($data['cart'] as $dish){
+                array_push($dishes_qty, $dish['qty']);
+            }
+
+            for ($i=0; $i < count($dishes_id); $i++) { 
+                $new_order_dish = new DishOrder();
+                $new_order_dish->order_id = $new_order->id;
+                $new_order_dish->dish_id = $dishes_id[$i];
+                $new_order_dish->qty = $dishes_qty[$i];
+                $new_order_dish->timestamps = false;
+                $new_order_dish->save();
+            };
 
         return response()->json($data, 200);
     }
