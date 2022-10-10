@@ -19,15 +19,7 @@ class DishesTableSeeder extends Seeder
                 'ingredients' => 'Pasta Olio ',
                 'price' => 20,
                 'available' => 1,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'
-            ],
-            [
-                'name' => 'Pasta al pomodoro',
-                'description' => 'Pasta al pomodoro fresco',
-                'ingredients' => 'Pasta pomodoro ',
-                'price' => 30,
-                'available' => 1,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'
+                'dish_cover' => ''
             ],
             [
                 'name' => 'Pasta all\'olio',
@@ -35,7 +27,7 @@ class DishesTableSeeder extends Seeder
                 'ingredients' => 'Pasta Olio',
                 'price' => 15,
                 'available' => 0,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'
+                'dish_cover' => ''
             ],         
             [
                 'name' => 'Pasta al tonno',
@@ -43,7 +35,7 @@ class DishesTableSeeder extends Seeder
                 'ingredients' => 'Pasta tonno ',
                 'price' => 100,
                 'available' => 0,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'
+                'dish_cover' => ''
             ],
             [
                 'name' => 'Pasta al pesto',
@@ -51,7 +43,7 @@ class DishesTableSeeder extends Seeder
                 'ingredients' => 'Pasta pesto ',
                 'price' => 50,
                 'available' => 1,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'
+                'dish_cover' => ''
             ],
             [
                 'name' => 'Patatine Fritte',
@@ -59,7 +51,7 @@ class DishesTableSeeder extends Seeder
                 'ingredients' => 'patate ',
                 'price' => 4,
                 'available' => 1,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'
+                'dish_cover' => ''
             ],            
             [
                 'name' => 'Panzetorri',
@@ -67,7 +59,7 @@ class DishesTableSeeder extends Seeder
                 'ingredients' => 'pomodoro mozzarella',
                 'price' => 5,
                 'available' => 1,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'            
+                'dish_cover' => ''            
             ],
             [
                 'name' => 'Crocchette di patate ',
@@ -75,7 +67,7 @@ class DishesTableSeeder extends Seeder
                 'ingredients' => 'patata menta ',
                 'price' => 30,
                 'available' => 1,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'
+                'dish_cover' => ''
             ],            
             [
                 'name' => 'Arancina',
@@ -83,48 +75,8 @@ class DishesTableSeeder extends Seeder
                 'ingredients' => 'riso mozzarella ragù piselli ',
                 'price' => 60,
                 'available' => 1,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'
-            ],           
-            [
-                'name' => 'pizza diavola',
-                'description' => 'pizza con salame piccante',
-                'ingredients' => 'salame piccante, mozzarella, pomodoro',
-                'price' => 8,
-                'available' => 1,
-                'dish_cover' => 'dish_cover/piatto_vuoto.jpg'
-            ],
-            [
-                'name' => 'pizza margherita',
-                'description' => 'pizza con mozzarella',
-                'ingredients' => 'mozzarella, pomodoro, basilico',
-                'price' => 6,
-                'available' => 1,
-                'dish_cover' => 'dish_cover/piatto_vuoto.jpg'
-            ],
-            [
-                'name' => 'pizza crostino',
-                'description' => 'pizza con prosciutto cotto e mozzarella',
-                'ingredients' => 'prosciutto cotto, mozzarella',
-                'price' => 7,
-                'available' => 1,
-                'dish_cover' => 'dish_cover/piatto_vuoto.jpg'
-            ],
-            [
-                'name' => 'pizza 4 formaggi',
-                'description' => 'pizza con 4 formaggi diversi ',
-                'ingredients' => 'fontina, grana padano, scamorza, gorgonzola',
-                'price' => 9,
-                'available' => 0,
-                'dish_cover' => 'dish_cover/piatto_vuoto.jpg'
-            ],
-            [
-                'name' => 'pizza 4 carbonara',
-                'description' => 'pizza con carbonara',
-                'ingredients' => 'uova, guanciale, pecorino, pepe',
-                'price' => 10,
-                'available' => 1,
-                'dish_cover' => 'dish_cover/piatto_vuoto.jpg'
-            ]
+                'dish_cover' => ''
+            ],  
         ];
 
         foreach($dishes as $dish) {

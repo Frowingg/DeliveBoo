@@ -61,31 +61,28 @@
             </div>
         </div>
         <div class="container_my">
-            <div  class="card-container_my flex_my">
-                <div  v-for="dish in dishes" :key="dish.id">
-                        <div class="title_my">
-                            <strong>{{ dish.name }}</strong>
-                        </div>
-                        <div class="img_my" v-if="dish_cover != null">
-                            <!-- <img :src="{ dish_cover }" :alt="{ name }"> -->
-                        </div>
-                        <div class="img_my" v-else>
-                            <!-- <img src="../components/img/work/sushi-pizza-scaled.jpg" alt="img"> -->
-                        </div>
-                        <div class="description_my">
-                            {{ dish.description }}
-                        </div>
-                
-                        <div class="price_my">
-                            {{  dish.price}} 
-                        </div>
-             
-                    <button class="btn btn_my" @click="addCart(dish)">
-                        Aggiungi al carrello
-                    </button>
-                </div>  
-            </div>
-
+            <div class="card_my_cart"  v-for="dish in dishes" :key="dish.id">
+                    <div class="title_my">
+                        <strong>{{ dish.name }}</strong>
+                    </div>
+                    <div class="img_my" >
+                        <img :src="'/storage/' + dish.dish_cover" :alt=" dish.name ">
+                    </div>
+                    <!-- <div class="img_my" v-else>
+                        <img src="../img/work/sushi-pizza-scaled.jpg" alt="img">
+                    </div> -->
+                    <div class="description_my">
+                        {{ dish.description }}
+                    </div>
+            
+                    <div class="price_my">
+                        {{  dish.price}} 
+                    </div>
+            
+                <button class="btn btn_my" @click="addCart(dish)">
+                    Aggiungi al carrello
+                </button>
+            </div>  
         </div>
     </div>
 </template>
@@ -247,15 +244,19 @@ export default {
      font-size: 18px;
      width: 400px;
     }
-    .flex_my{
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .card-container_my{
-        width: calc(100% / 3);
-        display: flex;
-        flex-direction: column;
-    }
+
+    .container_my{
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: center;
+ }
+ .card_my-cart{
+    width: calc(100% / 2 - 20px);
+    margin-right: 20px;
+
+ }
+   
  .cart_my{
     background-color: #fbba00;
     color: white;

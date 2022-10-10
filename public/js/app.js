@@ -2998,30 +2998,32 @@ var render = function render() {
     }
   }, [_vm._v("\n                                    Elimina tutti i prodtti\n                                ")])], 1)])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "container_my"
-  }, [_c("div", {
-    staticClass: "card-container_my flex_my"
   }, _vm._l(_vm.dishes, function (dish) {
     return _c("div", {
-      key: dish.id
+      key: dish.id,
+      staticClass: "card_my_cart"
     }, [_c("div", {
       staticClass: "title_my"
-    }, [_c("strong", [_vm._v(_vm._s(dish.name))])]), _vm._v(" "), _vm.dish_cover != null ? _c("div", {
+    }, [_c("strong", [_vm._v(_vm._s(dish.name))])]), _vm._v(" "), _c("div", {
       staticClass: "img_my"
-    }) : _c("div", {
-      staticClass: "img_my"
-    }), _vm._v(" "), _c("div", {
+    }, [_c("img", {
+      attrs: {
+        src: "/storage/" + dish.dish_cover,
+        alt: dish.name
+      }
+    })]), _vm._v(" "), _c("div", {
       staticClass: "description_my"
-    }, [_vm._v("\n                        " + _vm._s(dish.description) + "\n                    ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                    " + _vm._s(dish.description) + "\n                ")]), _vm._v(" "), _c("div", {
       staticClass: "price_my"
-    }, [_vm._v("\n                        " + _vm._s(dish.price) + " \n                    ")]), _vm._v(" "), _c("button", {
+    }, [_vm._v("\n                    " + _vm._s(dish.price) + " \n                ")]), _vm._v(" "), _c("button", {
       staticClass: "btn btn_my",
       on: {
         click: function click($event) {
           return _vm.addCart(dish);
         }
       }
-    }, [_vm._v("\n                    Aggiungi al carrello\n                ")])]);
-  }), 0)])]);
+    }, [_vm._v("\n                Aggiungi al carrello\n            ")])]);
+  }), 0)]);
 };
 
 var staticRenderFns = [function () {
@@ -7581,7 +7583,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.title_my[data-v-2aca00fc]{\n       font-size:  20px;\n       color: chocolate;\n       margin-bottom: 30px;\n       margin-top: 30px;\n}\n.addcart_my[data-v-2aca00fc]{\n       border: 2px solid #fbba00;\n       border-radius: 30px;\n       color: #9d9d9c;\n       font-size: 18px;\n}\n.addcart_my[data-v-2aca00fc]:hover{\n       border: 2px solid white;\n       background-color: #fbba00;\n       color: white;\n}\n.removecar_my[data-v-2aca00fc]{\n       border: 2px solid #fbba00;\n       border-radius: 30px;\n       color: #9d9d9c;\n       font-size: 18px;\n}\n.removecar_my[data-v-2aca00fc]:hover{\n       border: 2px solid white;\n       background-color: #fbba00;\n       color: white;\n}\n.price_my[data-v-2aca00fc]{\n       font-size: 20px;\n       color: #9d9d9c;\n}\nimg[data-v-2aca00fc]{\n       width: 100%;\n       border: 1px solid;\n       border-radius: 20px;\n       margin-bottom: 25px;\n}\n.img_my[data-v-2aca00fc]{\n       width: 200px;\n}\n.btn_my[data-v-2aca00fc]{\n       background-color: #fbba00;\n       border: 1px solid #fbba00;\n       color:white ;\n       border-radius: 20px;\n}\n.btn_my[data-v-2aca00fc]:hover{\n       background-color: white;\n       color:#fbba00 ;\n}\n.description_my[data-v-2aca00fc]{\n    color: #9d9d9c;\n    font-size: 18px;\n    width: 400px;\n}\n.flex_my[data-v-2aca00fc]{\n       display: flex;\n       flex-wrap: wrap;\n}\n.card-container_my[data-v-2aca00fc]{\n       width: calc(100% / 3);\n       display: flex;\n       flex-direction: column;\n}\n.cart_my[data-v-2aca00fc]{\n   background-color: #fbba00;\n   color: white;\n}\n", ""]);
+exports.push([module.i, "\n.title_my[data-v-2aca00fc]{\n       font-size:  20px;\n       color: chocolate;\n       margin-bottom: 30px;\n       margin-top: 30px;\n}\n.addcart_my[data-v-2aca00fc]{\n       border: 2px solid #fbba00;\n       border-radius: 30px;\n       color: #9d9d9c;\n       font-size: 18px;\n}\n.addcart_my[data-v-2aca00fc]:hover{\n       border: 2px solid white;\n       background-color: #fbba00;\n       color: white;\n}\n.removecar_my[data-v-2aca00fc]{\n       border: 2px solid #fbba00;\n       border-radius: 30px;\n       color: #9d9d9c;\n       font-size: 18px;\n}\n.removecar_my[data-v-2aca00fc]:hover{\n       border: 2px solid white;\n       background-color: #fbba00;\n       color: white;\n}\n.price_my[data-v-2aca00fc]{\n       font-size: 20px;\n       color: #9d9d9c;\n}\nimg[data-v-2aca00fc]{\n       width: 100%;\n       border: 1px solid;\n       border-radius: 20px;\n       margin-bottom: 25px;\n}\n.img_my[data-v-2aca00fc]{\n       width: 200px;\n}\n.btn_my[data-v-2aca00fc]{\n       background-color: #fbba00;\n       border: 1px solid #fbba00;\n       color:white ;\n       border-radius: 20px;\n}\n.btn_my[data-v-2aca00fc]:hover{\n       background-color: white;\n       color:#fbba00 ;\n}\n.description_my[data-v-2aca00fc]{\n    color: #9d9d9c;\n    font-size: 18px;\n    width: 400px;\n}\n.container_my[data-v-2aca00fc]{\n   display: flex;\n   flex-wrap: wrap;\n   /* align-items: center; */\n   justify-content: center;\n}\n.card_my-cart[data-v-2aca00fc]{\n   width: calc(100% / 2 - 20px);\n   margin-right: 20px;\n}\n.cart_my[data-v-2aca00fc]{\n   background-color: #fbba00;\n   color: white;\n}\n", ""]);
 
 // exports
 
@@ -55805,8 +55807,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
