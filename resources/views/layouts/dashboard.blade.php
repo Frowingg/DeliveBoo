@@ -57,6 +57,12 @@
                                 <span class="name-off">Crea Nuovo Piatto</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('admin.orderList') }}">
+                                <i class="fa-solid fa-list-timeline"></i>
+                                <span class="name-off">Cronologia ordini</span>
+                            </a>
+                        </li>
                         <li class="nav-item d-md-none">
                             <a class="out-btn" href="{{ route('logout') }}"
                             onclick="event.preventDefault();

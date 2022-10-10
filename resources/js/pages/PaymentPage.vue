@@ -10,6 +10,7 @@
                     v-model="userName"
                     name="name"
                     placeholder="Nome"
+                    maxlength="30"
                 />
             </div>
 
@@ -22,6 +23,7 @@
                     v-model="userLastname"
                     name="lastname"
                     placeholder="Cognome"
+                    maxlength="30"
                 />
             </div>
 
@@ -34,6 +36,7 @@
                     v-model="userAddress"
                     name="address"
                     placeholder="Indirizzo"
+                    maxlength="255"
                 />
             </div>
 
@@ -46,10 +49,11 @@
                     v-model="userEmail"
                     name="email"
                     placeholder="name@example.com"
+                    maxlength="100"
                 />
             </div>
 
-            <div class="container">
+            <div class="container_my">
                 <div id="dropin-container"></div>
                 <button
                     id="submit-button"
@@ -76,13 +80,8 @@ export default {
             userEmail: "",
         };
     },
+    // bububaba
     mounted() {
-        if (localStorage.carts) {
-            this.carts = JSON.parse(localStorage.getItem("carts"));
-        }
-        if (localStorage.cartsTotal) {
-            this.cartsTotal = JSON.parse(localStorage.getItem("cartsTotal"));
-        }
         braintree.dropin.create({
             authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
             selector: "#dropin-container",
@@ -121,10 +120,10 @@ export default {
                     quantity: this.carts.qty,
                     resturant_id: this.carts.risto_id,
                 })
-                .then((response) => {
-                    console.log(response)
-                });
-                axios.post("http://127.0.0.1:8000/api/add-order", order);
+                // .then((response) => {
+                   
+                // });
+                 axios.post("http://127.0.0.1:8000/api/add-order", order);
         },
     },
 };
@@ -154,14 +153,15 @@ export default {
 
 .button--green {
     outline: none;
-    background-color: #64d18a;
-    border-color: #64d18a;
+    background-color: #fbba00;
+    border-color: #d0d0d0;
     color: white;
     transition: all 200ms ease;
+    border-radius: 20px;
 }
 
 .button--green:hover {
-    background-color: #8bdda8;
-    color: white;
+    background-color: white;
+    color: #fbba00;
 }
 </style>

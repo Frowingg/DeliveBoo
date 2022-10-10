@@ -28,12 +28,14 @@ class OrderController extends Controller
         
         $result = $gateway->transaction()->sale([
             'amount' => $request->price,
-            'paymentMethodNonce' => 'fake-valid-nonce',
+            'paymentMethodNonce' => $request->token,
+            // 'paymentMethodNonce' => 'fake-valid-nonce',
             'options' =>[
                 'submitForSettlement'=> true
             ]
         ]);
-        if($result->success){
+
+        if($result) {
 
             $data= [
                 'success' => true,
@@ -41,7 +43,8 @@ class OrderController extends Controller
             ];
 
             return response()->json($data, 200);
-        }else{
+            
+        } else {
             $data= [
                 'success' => false,
                 'message' => 'Transazione FALLITA'
@@ -98,8 +101,5 @@ class OrderController extends Controller
         return response()->json($data, 200);
     }
 
-    public function restaurant_orders(){
-        
-    }
 }
 

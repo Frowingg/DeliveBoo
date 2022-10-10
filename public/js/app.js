@@ -2083,16 +2083,9 @@ __webpack_require__.r(__webpack_exports__);
       userEmail: ""
     };
   },
+  // bububaba
   mounted: function mounted() {
     var _this = this;
-
-    if (localStorage.carts) {
-      this.carts = JSON.parse(localStorage.getItem("carts"));
-    }
-
-    if (localStorage.cartsTotal) {
-      this.cartsTotal = JSON.parse(localStorage.getItem("cartsTotal"));
-    }
 
     braintree.dropin.create({
       authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
@@ -2126,9 +2119,9 @@ __webpack_require__.r(__webpack_exports__);
         dish: this.carts.name,
         quantity: this.carts.qty,
         resturant_id: this.carts.risto_id
-      }).then(function (response) {
-        console.log(response);
-      });
+      }); // .then((response) => {
+      // });
+
       axios.post("http://127.0.0.1:8000/api/add-order", order);
     }
   }
@@ -2648,7 +2641,13 @@ var render = function render() {
           return _vm.getFilteredCategory(category.id);
         }
       }
-    }, [_c("a", [_c("img", {
+    }, [_c("a", {
+      on: {
+        click: function click(e) {
+          return e.target.parentNode.classList.toggle("active");
+        }
+      }
+    }, [_c("img", {
       attrs: {
         src: category.category_cover,
         alt: category.name
@@ -2768,7 +2767,8 @@ var render = function render() {
       type: "text",
       id: "name",
       name: "name",
-      placeholder: "Nome"
+      placeholder: "Nome",
+      maxlength: "30"
     },
     domProps: {
       value: _vm.userName
@@ -2797,7 +2797,8 @@ var render = function render() {
       type: "text",
       id: "lastname",
       name: "lastname",
-      placeholder: "Cognome"
+      placeholder: "Cognome",
+      maxlength: "30"
     },
     domProps: {
       value: _vm.userLastname
@@ -2826,7 +2827,8 @@ var render = function render() {
       type: "text",
       id: "address",
       name: "address",
-      placeholder: "Indirizzo"
+      placeholder: "Indirizzo",
+      maxlength: "255"
     },
     domProps: {
       value: _vm.userAddress
@@ -2855,7 +2857,8 @@ var render = function render() {
       type: "email",
       id: "email",
       name: "email",
-      placeholder: "name@example.com"
+      placeholder: "name@example.com",
+      maxlength: "100"
     },
     domProps: {
       value: _vm.userEmail
@@ -2867,7 +2870,7 @@ var render = function render() {
       }
     }
   })]), _vm._v(" "), _c("div", {
-    staticClass: "container"
+    staticClass: "container_my"
   }, [_c("div", {
     attrs: {
       id: "dropin-container"
@@ -7532,7 +7535,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".carrousel_my[data-v-04c29797] {\n  padding: 4rem 0;\n  margin: 1.1rem 0;\n  overflow-x: auto;\n  width: 100%;\n}\n.responsive_my_sp[data-v-04c29797] {\n  display: none;\n}\n.responsive_my_tb[data-v-04c29797] {\n  display: none;\n}\n.slide-track_my[data-v-04c29797] {\n  margin-top: 0.5rem;\n  padding: 2rem 0;\n  overflow-x: auto;\n  margin: 0 auto;\n  width: 90%;\n}\n.slider_my[data-v-04c29797] {\n  position: relative;\n  display: flex;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n}\n.slider_my .slide-track_my[data-v-04c29797] {\n  display: flex;\n  position: relative;\n  margin: 0 1.2rem;\n}\n.slider_my .slide_my[data-v-04c29797] {\n  margin: 0 1rem;\n  display: flex;\n  align-items: center;\n}\n.slider_my a[data-v-04c29797] {\n  display: flex;\n  position: relative;\n  width: 220px;\n  height: 110px;\n  cursor: pointer;\n}\n.slider_my img[data-v-04c29797] {\n  width: 100%;\n  border-radius: 20px;\n  transition: all 0.5s;\n}\n.slider_my .layover[data-v-04c29797] {\n  background-color: black;\n  border-radius: 20px;\n  opacity: 30%;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  transition: all 0.5s;\n}\n.slider_my .name-category[data-v-04c29797] {\n  width: 100%;\n  position: absolute;\n  display: flex;\n  align-self: center;\n  color: white;\n  font-weight: 500;\n  font-size: 1.2rem;\n  padding: 0 1.5rem;\n  justify-content: center;\n  transition: all 0.5s;\n}\n.slider_my .slide_my:focus-visible img[data-v-04c29797] {\n  border-radius: 40px;\n}\n.slider_my .slide_my:focus-visible .layover[data-v-04c29797] {\n  background-color: black;\n  border-radius: 40px;\n  opacity: 55%;\n}\n.slider_my .slide_my:focus-visible .name-category[data-v-04c29797] {\n  font-weight: 700;\n  letter-spacing: 2px;\n}\n.contain[data-v-04c29797] {\n  width: 80%;\n  margin: 0 auto;\n  display: flex;\n  flex-wrap: wrap;\n}\n.card[data-v-04c29797] {\n  background-color: #ffba00;\n  overflow: hidden;\n  height: 220px;\n  width: 400px;\n  margin: 5px;\n  display: flex;\n  border-radius: 30px;\n  transition: all 0.5s;\n  position: relative;\n  cursor: pointer;\n}\n.card img[data-v-04c29797] {\n  width: 100%;\n  justify-self: center;\n  align-self: center;\n  position: absolute;\n  transition: all 0.5s;\n}\n.card-info[data-v-04c29797] {\n  padding: 1rem 1.2rem;\n  position: absolute;\n  align-self: end;\n  transition: all 0.5s;\n  bottom: 10px;\n  left: 15px;\n}\n.card-address[data-v-04c29797] {\n  color: white;\n  margin: 0.5rem 0;\n}\n.card-categories[data-v-04c29797] {\n  display: flex;\n  list-style: none;\n}\n.card-categories li[data-v-04c29797] {\n  padding: 0 0.6rem;\n  color: white;\n  font-size: 0.8rem;\n  transition: all 0.5s;\n}\n.card-title[data-v-04c29797] {\n  color: white;\n  font-weight: 500;\n  font-size: 1.4rem;\n  margin-bottom: 0.3rem;\n  transition: all 0.5s;\n}\n.card-layover[data-v-04c29797] {\n  background-color: black;\n  opacity: 25%;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  transition: all 0.5s;\n}\n.card-layover[data-v-04c29797]:hover {\n  opacity: 40%;\n}\n.card[data-v-04c29797]:hover {\n  border-radius: 40px;\n  box-shadow: 10px 14px 10px rgba(0, 0, 0, 0.2);\n}\n.card:hover .card-title[data-v-04c29797] {\n  font-size: 2rem;\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n  letter-spacing: 1px;\n  color: white;\n}\n.card:hover .card-categories li[data-v-04c29797] {\n  background-color: #ffba00;\n  font-size: 1rem;\n  font-weight: 500;\n  margin: 0.3rem;\n  border-radius: 15px;\n  padding: 0.3rem 0.7rem;\n  color: white;\n}\n.card:hover img[data-v-04c29797] {\n  width: 120%;\n}", ""]);
+exports.push([module.i, ".active .tag-mine[data-v-04c29797] {\n  border: 2px solid #ffba00;\n  border-radius: 40px;\n}\n.active img[data-v-04c29797] {\n  border-radius: 40px;\n  box-shadow: 10px 14px 10px rgba(0, 0, 0, 0.2);\n}\n.active .layover[data-v-04c29797] {\n  background-color: black;\n  border-radius: 40px;\n  border: 15px solid #ffba00;\n  opacity: 55%;\n}\n.active .name-category[data-v-04c29797] {\n  font-weight: 700;\n  letter-spacing: 2px;\n}\n.carrousel_my[data-v-04c29797] {\n  padding: 4rem 0;\n  margin: 1.1rem 0;\n  overflow-x: auto;\n  width: 100%;\n}\n.responsive_my_sp[data-v-04c29797] {\n  display: none;\n}\n.responsive_my_tb[data-v-04c29797] {\n  display: none;\n}\n.slide-track_my[data-v-04c29797] {\n  margin-top: 0.5rem;\n  padding: 2rem 0;\n  overflow-x: auto;\n  margin: 0 auto;\n  width: 90%;\n}\n.slider_my[data-v-04c29797] {\n  position: relative;\n  display: flex;\n  justify-content: center;\n  box-sizing: border-box;\n  width: 100%;\n}\n.slider_my .slide-track_my[data-v-04c29797] {\n  display: flex;\n  position: relative;\n  margin: 0 1.2rem;\n}\n.slider_my .slide_my[data-v-04c29797] {\n  margin: 0 1rem;\n  display: flex;\n  align-items: center;\n}\n.slider_my a[data-v-04c29797] {\n  display: flex;\n  position: relative;\n  width: 220px;\n  height: 110px;\n  cursor: pointer;\n}\n.slider_my img[data-v-04c29797] {\n  width: 100%;\n  border-radius: 20px;\n  transition: all 0.5s;\n}\n.slider_my .layover[data-v-04c29797] {\n  background-color: black;\n  border-radius: 20px;\n  opacity: 30%;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  transition: all 0.5s;\n}\n.slider_my .name-category[data-v-04c29797] {\n  width: 100%;\n  position: absolute;\n  display: flex;\n  align-self: center;\n  color: white;\n  font-weight: 500;\n  font-size: 1.2rem;\n  padding: 0 1.5rem;\n  justify-content: center;\n  transition: all 0.5s;\n}\n.slider_my .slide_my:focus-visible img[data-v-04c29797] {\n  border-radius: 40px;\n}\n.slider_my .slide_my:focus-visible .layover[data-v-04c29797] {\n  background-color: black;\n  border-radius: 40px;\n  opacity: 55%;\n}\n.slider_my .slide_my:focus-visible .name-category[data-v-04c29797] {\n  font-weight: 700;\n  letter-spacing: 2px;\n}\n.contain[data-v-04c29797] {\n  width: 80%;\n  margin: 0 auto;\n  display: flex;\n  flex-wrap: wrap;\n}\n.card[data-v-04c29797] {\n  background-color: #ffba00;\n  overflow: hidden;\n  height: 220px;\n  width: 400px;\n  margin: 5px;\n  display: flex;\n  border-radius: 30px;\n  transition: all 0.5s;\n  position: relative;\n  cursor: pointer;\n}\n.card img[data-v-04c29797] {\n  width: 100%;\n  justify-self: center;\n  align-self: center;\n  position: absolute;\n  transition: all 0.5s;\n}\n.card-info[data-v-04c29797] {\n  padding: 1rem 1.2rem;\n  position: absolute;\n  align-self: end;\n  transition: all 0.5s;\n  bottom: 10px;\n  left: 15px;\n}\n.card-address[data-v-04c29797] {\n  color: white;\n  margin: 0.5rem 0;\n}\n.card-categories[data-v-04c29797] {\n  display: flex;\n  list-style: none;\n}\n.card-categories li[data-v-04c29797] {\n  padding: 0 0.6rem;\n  color: white;\n  font-size: 0.8rem;\n  transition: all 0.5s;\n}\n.card-title[data-v-04c29797] {\n  color: white;\n  font-weight: 500;\n  font-size: 1.4rem;\n  margin-bottom: 0.3rem;\n  transition: all 0.5s;\n}\n.card-layover[data-v-04c29797] {\n  background-color: black;\n  opacity: 25%;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  transition: all 0.5s;\n}\n.card-layover[data-v-04c29797]:hover {\n  opacity: 40%;\n}\n.card[data-v-04c29797]:hover {\n  border-radius: 40px;\n  box-shadow: 10px 14px 10px rgba(0, 0, 0, 0.2);\n}\n.card:hover .card-title[data-v-04c29797] {\n  font-size: 2rem;\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n  letter-spacing: 1px;\n  color: white;\n}\n.card:hover .card-categories li[data-v-04c29797] {\n  background-color: #ffba00;\n  font-size: 1rem;\n  font-weight: 500;\n  margin: 0.3rem;\n  border-radius: 15px;\n  padding: 0.3rem 0.7rem;\n  color: white;\n}\n.card:hover img[data-v-04c29797] {\n  width: 120%;\n}", ""]);
 
 // exports
 
@@ -7571,7 +7574,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.button {\r\n    cursor: pointer;\r\n    font-weight: 500;\r\n    left: 3px;\r\n    line-height: inherit;\r\n    position: relative;\r\n    text-decoration: none;\r\n    text-align: center;\r\n    border-style: solid;\r\n    border-width: 1px;\r\n    border-radius: 3px;\r\n    -webkit-appearance: none;\r\n    -moz-appearance: none;\r\n    display: inline-block;\n}\n.button--small {\r\n    padding: 10px 20px;\r\n    font-size: 0.875rem;\n}\n.button--green {\r\n    outline: none;\r\n    background-color: #64d18a;\r\n    border-color: #64d18a;\r\n    color: white;\r\n    transition: all 200ms ease;\n}\n.button--green:hover {\r\n    background-color: #8bdda8;\r\n    color: white;\n}\r\n", ""]);
+exports.push([module.i, "\n.button {\r\n    cursor: pointer;\r\n    font-weight: 500;\r\n    left: 3px;\r\n    line-height: inherit;\r\n    position: relative;\r\n    text-decoration: none;\r\n    text-align: center;\r\n    border-style: solid;\r\n    border-width: 1px;\r\n    border-radius: 3px;\r\n    -webkit-appearance: none;\r\n    -moz-appearance: none;\r\n    display: inline-block;\n}\n.button--small {\r\n    padding: 10px 20px;\r\n    font-size: 0.875rem;\n}\n.button--green {\r\n    outline: none;\r\n    background-color: #fbba00;\r\n    border-color: #d0d0d0;\r\n    color: white;\r\n    transition: all 200ms ease;\r\n    border-radius: 20px;\n}\n.button--green:hover {\r\n    background-color: white;\r\n    color: #fbba00;\n}\r\n", ""]);
 
 // exports
 
@@ -7590,7 +7593,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.title_my[data-v-2aca00fc]{\n       font-size:  20px;\n       color: chocolate;\n       margin-bottom: 30px;\n       margin-top: 30px;\n}\n.addcart_my[data-v-2aca00fc]{\n       border: 2px solid #fbba00;\n       border-radius: 30px;\n       color: #9d9d9c;\n       font-size: 18px;\n}\n.addcart_my[data-v-2aca00fc]:hover{\n       border: 2px solid white;\n       background-color: #fbba00;\n       color: white;\n}\n.removecar_my[data-v-2aca00fc]{\n       border: 2px solid #fbba00;\n       border-radius: 30px;\n       color: #9d9d9c;\n       font-size: 18px;\n}\n.removecar_my[data-v-2aca00fc]:hover{\n       border: 2px solid white;\n       background-color: #fbba00;\n       color: white;\n}\n.price_my[data-v-2aca00fc]{\n       font-size: 20px;\n       color: #9d9d9c;\n}\nimg[data-v-2aca00fc]{\n       width: 100%;\n       border: 1px solid;\n       border-radius: 20px;\n       margin-bottom: 25px;\n}\n.img_my[data-v-2aca00fc]{\n       width: 200px;\n}\n.btn_my[data-v-2aca00fc]{\n       background-color: #fbba00;\n       border: 1px solid #fbba00;\n       color:white ;\n       border-radius: 20px;\n}\n.btn_my[data-v-2aca00fc]:hover{\n       background-color: white;\n       color:#fbba00 ;\n}\n.description_my[data-v-2aca00fc]{\n    color: #9d9d9c;\n    font-size: 18px;\n    width: 400px;\n}\n.container_my[data-v-2aca00fc]{\n   display: flex;\n   flex-wrap: wrap;\n   /* align-items: center; */\n   justify-content: center;\n}\n.card_my-cart[data-v-2aca00fc]{\n   width: calc(100% / 2 - 20px);\n   margin-right: 20px;\n}\n.cart_my[data-v-2aca00fc]{\n   background-color: #fbba00;\n   color: white;\n}\n", ""]);
+exports.push([module.i, "\n.modal-title[data-v-2aca00fc]{\n       color: #fbba00;\n}\n.title_my[data-v-2aca00fc]{\n       font-size:  20px;\n       color: chocolate;\n       margin-bottom: 30px;\n       margin-top: 30px;\n}\n.addcart_my[data-v-2aca00fc]{\n       border: 2px solid #fbba00;\n       border-radius: 30px;\n       color: #9d9d9c;\n       font-size: 18px;\n}\n.addcart_my[data-v-2aca00fc]:hover{\n       border: 2px solid white;\n       background-color: #fbba00;\n       color: white;\n}\n.removecar_my[data-v-2aca00fc]{\n       border: 2px solid #fbba00;\n       border-radius: 30px;\n       color: #9d9d9c;\n       font-size: 18px;\n}\n.removecar_my[data-v-2aca00fc]:hover{\n       border: 2px solid white;\n       background-color: #fbba00;\n       color: white;\n}\n.price_my[data-v-2aca00fc]{\n       font-size: 20px;\n       color: #9d9d9c;\n}\nimg[data-v-2aca00fc]{\n       width: 100%;\n       border: 1px solid;\n       border-radius: 20px;\n       margin-bottom: 25px;\n}\n.img_my[data-v-2aca00fc]{\n       width: 200px;\n}\n.btn_my[data-v-2aca00fc]{\n       background-color: #fbba00;\n       border: 1px solid #fbba00;\n       color:white ;\n       border-radius: 20px;\n}\n.btn_my[data-v-2aca00fc]:hover{\n       background-color: white;\n       color:#fbba00 ;\n}\n.description_my[data-v-2aca00fc]{\n    color: #9d9d9c;\n    font-size: 18px;\n    width: 400px;\n}\n.container_my[data-v-2aca00fc]{\n   display: flex;\n   flex-wrap: wrap;\n   /* align-items: center; */\n   justify-content: center;\n}\n.card_my-cart[data-v-2aca00fc]{\n   width: calc(100% / 2 - 20px);\n   margin-right: 20px;\n}\n.cart_my[data-v-2aca00fc]{\n   background-color: #fbba00;\n   color: white;\n}\n", ""]);
 
 // exports
 

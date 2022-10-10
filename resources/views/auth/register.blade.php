@@ -95,11 +95,15 @@
                         <div class="needs-validation">
                             @foreach($categories as $category)
                             <div class="form-check">
-                                
-                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" name="categories[]" >
-                                <label class="form-check-label" for="category-{{ $category->id }}">
-                                    {{ $category->name }}
-                                </label>
+                                <ul>
+                                    <li  class="check_my">
+                                        <input class="form-check-input" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" name="categories[]" >
+                                        <label class="form-check-label" for="category-{{ $category->id }}">
+                                            {{ $category->name }}
+                                        </label>
+                                    </li>
+                                </ul>
+                      
                                 
                             </div>
                             @endforeach     
@@ -137,7 +141,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn_my">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -163,4 +167,29 @@
         </script>
 </div>
 
+<style>
+    ul{
+        list-style-type: none;
+    }
+    .check_my{
+        text-align: center;
+        
+    }
+    .btn_my{
+        background-color: #fbba00;
+        color: white;
+        border: 1px solid #fbba00;
+        border-radius: 20px;
+    }
+    .btn_my:hover{
+        background-color: white;
+        color: #fbba00;
+    }
+    .card-header{
+        background-color: #fbba00;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+    }
+</style>
 @endsection

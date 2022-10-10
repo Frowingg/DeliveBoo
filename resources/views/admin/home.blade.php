@@ -23,7 +23,7 @@
     <div class="col-lg-6 col-sm-12">
         <h2 class="order-title">I miei ordini:</h2>
         <ul>
-            @foreach ($orders as $order)
+            @foreach ($orders->take(3) as $order)
                 <div class="mb-4 my-orders">
                     <div>Cliente: {{$order->name}}</div>
                     <div>Totale: {{$order->total_price}}</div>

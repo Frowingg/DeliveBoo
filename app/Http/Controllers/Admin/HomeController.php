@@ -20,7 +20,7 @@ class HomeController extends Controller
             $all_dishes = [];
 
             //Questo è l'utente che ha fatto l'ordine
-            $user_info = Order::all()->where('user_id', '=',$user->id);
+            $user_info = Order::where('user_id', '=',$user->id)->orderBydesc('created_at')->get();
             foreach($user_info as $data){
                 //Mi salvo gli id degli utenti che ci hanno fatto un ordine
                 array_push($orders_user_id, $data->id);

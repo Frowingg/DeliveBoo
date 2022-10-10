@@ -186,6 +186,9 @@ export default {
 </script>
 
 <style scoped>
+    .modal-title{
+        color: #fbba00;
+    }
     .title_my{
         font-size:  20px;
         color: chocolate;
