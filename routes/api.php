@@ -28,8 +28,12 @@ Route::get('/category/{id}', 'Api\CategoryController@showSingleCategory');
 
 Route::get('/filter-categories', 'Api\CategoryController@getFilteredCategories');
 
+Route::get('all-orders','Api\Orders\OrderController@restaurant_orders');
+
 // per braintreee
 Route::get('orders/generate', 'Api\Orders\OrderController@generate');
+
+Route::post('add-order', 'Api\Orders\OrderController@addOrderToRestaurant');
 
 Route::post('orders/makePayment', 'Api\Orders\OrderController@makePayment');
 

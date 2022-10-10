@@ -19,6 +19,6 @@ class Order extends Model
     }
 
     public function dishes(){
-        return $this->belongsToMany('App\Admin\Dish','dish_id');
+        return $this->belongsToMany('App\Admin\Dish');
     }
 }

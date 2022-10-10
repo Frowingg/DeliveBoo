@@ -1,71 +1,42 @@
 <template>
     <div class="container">
         <div v-if="error.length > 0">
-            <div class="alert alert-danger mt-5">
+            <div class="alert alert-danger mt-5" >
                 <ul>
                     <li>{{ error }}</li>
                 </ul>
+                <button class="btn btn-danger" @click="removeAllItemFromCart()">Svuota carrello</button>
             </div>
-        </div>
-
-        <div class="mt-5">
-            {{ this.cartsTotal }}
         </div>
 
         <div id="myproduct">
             <div class="row mt-2 mb-2">
                 <div class="col-md-10">&nbsp;</div>
                 <div class="col-md-2 text-right">
-                    <button
-                        class="btn btn-primary"
-                        data-toggle="modal"
-                        data-target="#cart"
-                    >
-                        <span class="badge badge-light">{{
-                            allCartSum()
-                        }}</span>
+                    <button class="btn cart_my" data-toggle="modal" data-target="#cart">
+                        <span class="">{{  allCartSum() }}</span>
                     </button>
                     <div class="modal fade" id="cart">
-                        <div
-                            class="modal-dialog modal-dialog-centered modal-lg"
-                        >
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
+
                                 <div class="modal-header">
                                     <h5 class="modal-title">Il tuo carrello</h5>
-                                    <button class="close" data-dismiss="modal">
-                                        &times;
-                                    </button>
+                                    <button class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
                                 <div class="modal-body">
-                                    <table
-                                        class="table table striped text-left"
-                                    >
+                                    <table class="table table striped text-left">
                                         <tbody>
-                                            <tr
-                                                v-for="cart in carts"
-                                                v-bind:key="cart.id"
-                                            >
-                                                <td>{{ cart.name }}</td>
-                                                <td>{{ cart.price }}</td>
-                                                <td width="100">
-                                                    {{ cart.qty }}
+                                            <tr v-for="cart in carts" v-bind:key="cart.id">
+                                                <td>{{cart.name}}</td>
+                                                <td>{{cart.price}}</td>
+                                                <td width="100">{{cart.qty}}</td>
+                                                <td width="60">
+                                                    <button @click="increase(cart)" class="btn addcart_my">+</button>
                                                 </td>
                                                 <td width="60">
-                                                    <button
-                                                        @click="increase(cart)"
-                                                        class="btn btn-success btn-small"
-                                                    >
-                                                        +
-                                                    </button>
-                                                </td>
-                                                <td width="60">
-                                                    <button
-                                                        @click="reduce(cart)"
-                                                        class="btn btn-danger btn-small"
-                                                    >
-                                                        -
-                                                    </button>
+                                                    <button @click="reduce(cart)" class="btn removecar_my">-</button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -73,28 +44,15 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    Prezzo totale: {{ getTotal() }} &nbsp;
-                                    <router-link
-                                        :to="{
-                                            name: 'payment',
-                                            params: { carts, cartsTotal },
-                                        }"
-                                    >
-                                        <button
-                                            v-if="carts.length > 0"
-                                            data-dismiss="modal"
-                                            class="btn btn-primary"
-                                        >
+                                    Prezzo totale: {{getTotal()}} &nbsp;
+                                    <router-link :to="{ name: 'payment' , params: { carts, cartsTotal }, }">
+                                        <button v-if="carts.length > 0" data-dismiss="modal" class="btn btn_my" >
                                             Checkout
                                         </button>
                                     </router-link>
-                                    <button
-                                        data-dismiss="modal"
-                                        v-on:click="removeAllItemFromCart()"
-                                        class="btn btn-primary"
-                                    >
+                                    <button data-dismiss="modal" v-on:click="removeAllItemFromCart()" class="btn btn_my">
                                         Elimina tutti i prodtti
-                                    </button>
+                                    </button>   
                                 </div>
                             </div>
                         </div>
@@ -102,15 +60,36 @@
                 </div>
             </div>
         </div>
+        <div class="container_my">
+            <div  class="card-container_my flex_my">
+                <div  v-for="dish in dishes" :key="dish.id">
+                        <div class="title_my">
+                            <strong>{{ dish.name }}</strong>
+                        </div>
+                        <div class="img_my" v-if="dish_cover != null">
+                            <!-- <img :src="{ dish_cover }" :alt="{ name }"> -->
+                        </div>
+                        <div class="img_my" v-else>
+                            <!-- <img src="../components/img/work/sushi-pizza-scaled.jpg" alt="img"> -->
+                        </div>
+                        <div class="description_my">
+                            {{ dish.description }}
+                        </div>
+                
+                        <div class="price_my">
+                            {{  dish.price}} $
+                        </div>
+             
+                    <button class="btn btn_my" @click="addCart(dish)">
+                        Aggiungi al carrello
+                    </button>
+                </div>  
+            </div>
 
-        <div v-for="dish in dishes" :key="dish.id" class="mt-5">
-            {{ dish }}
-            <button class="btn btn-primary" @click="addCart(dish)">
-                Aggiungi al carrello
-            </button>
         </div>
     </div>
 </template>
+
 
 <script>
 export default {
@@ -208,4 +187,78 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+    .title_my{
+        font-size:  20px;
+        color: chocolate;
+        margin-bottom: 30px;
+        margin-top: 30px;
+    }
+
+    .addcart_my{
+        border: 2px solid #fbba00;
+        border-radius: 30px;
+        color: #9d9d9c;
+        font-size: 18px;
+    }
+    .addcart_my:hover{
+        border: 2px solid white;
+        background-color: #fbba00;
+        color: white;
+
+    }
+    .removecar_my{
+        border: 2px solid #fbba00;
+        border-radius: 30px;
+        color: #9d9d9c;
+        font-size: 18px; 
+    }
+    .removecar_my:hover{
+        border: 2px solid white;
+        background-color: #fbba00;
+        color: white;
+    }
+    .price_my{
+        font-size: 20px;
+        color: #9d9d9c;
+    }
+    img{
+        width: 100%;
+        border: 1px solid;
+        border-radius: 20px;
+        margin-bottom: 25px;
+        
+    }
+    .img_my{
+        width: 200px;
+        
+    }
+    .btn_my{
+        background-color: #fbba00;
+        border: 1px solid #fbba00;
+        color:white ;
+        border-radius: 20px;
+    }
+    .btn_my:hover{
+        background-color: white;
+        color:#fbba00 ;
+    }
+    .description_my{
+     color: #9d9d9c;
+     font-size: 18px;
+     width: 400px;
+    }
+    .flex_my{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .card-container_my{
+        width: calc(100% / 3);
+        display: flex;
+        flex-direction: column;
+    }
+ .cart_my{
+    background-color: #fbba00;
+    color: white;
+ }
+</style>

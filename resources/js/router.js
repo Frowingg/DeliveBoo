@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomePage from './pages/HomePage.vue';
-import SingleUser from './pages/SingleUser.vue';
-import PaymentPage from './pages/PaymentPage.vue';
 import NotFound from './pages/NotFound.vue';
+import PaymentPage from './pages/PaymentPage.vue';
+import SingleUser from './pages/SingleUser.vue';
 
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-   //mode: 'history',
+    //mode: 'history',
     routes: [
         {
             path: '/',
@@ -17,12 +17,12 @@ const router = new VueRouter({
             component: HomePage
         },
         {
-            path: '/restaurnat/:slug',
+            path: '/restaurant/:slug',
             name: 'single-user',
             component: SingleUser
         },
         {
-            path: '/restaurnat/:slug/payment',
+            path: '/restaurant/:slug/payment',
             name: 'payment',
             component: PaymentPage,
             props: true
@@ -32,7 +32,7 @@ const router = new VueRouter({
             name: 'not-found',
             component: NotFound
         },
-       
+
     ]
 });
 

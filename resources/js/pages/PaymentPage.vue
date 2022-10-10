@@ -1,34 +1,64 @@
 <template>
     <div class="container">
-        <form action="">
+        <form action="" method="dialog">
             <div class="form-group">
                 <label for="name">Nome </label>
-                <input type="text" class="form-control" id="name"   name="name" placeholder="Nome">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    v-model="userName"
+                    name="name"
+                    placeholder="Nome"
+                />
             </div>
 
             <div class="form-group">
                 <label for="lastname">Cognome</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Cognome">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="lastname"
+                    v-model="userLastname"
+                    name="lastname"
+                    placeholder="Cognome"
+                />
             </div>
 
             <div class="form-group">
                 <label for="address">Indirizzo</label>
-                <input type="text" class="form-control" id="address" name="address" placeholder="Indirizzo">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    v-model="userAddress"
+                    name="address"
+                    placeholder="Indirizzo"
+                />
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    v-model="userEmail"
+                    name="email"
+                    placeholder="name@example.com"
+                />
             </div>
 
             <div class="container">
                 <div id="dropin-container"></div>
-                <button id="submit-button" @click="makePay()" class="button button--small button--green">
+                <button
+                    id="submit-button"
+                    @click="makePay()"
+                    class="button button--small button--green"
+                >
                     Purchase
                 </button>
             </div>
-
-            {{piatto}}
         </form>
     </div>
 </template>
@@ -40,13 +70,13 @@ export default {
     data() {
         return {
             token: "",
-            userName:'',
-            userLastname:'',
-            userAddress:'',
-            userEmail:'',    
+            userName: "",
+            userLastname: "",
+            userAddress: "",
+            userEmail: "",
         };
     },
-// bububaba
+    // bububaba
     mounted() {
         braintree.dropin.create({
             authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
@@ -68,16 +98,28 @@ export default {
 
     methods: {
         makePay() {
-            axios.post("http://127.0.0.1:8000/api/orders/makePayment", {
+            //TEST
+            const user_info = {
+                name: this.userName,
+                lastname: this.userLastname,
+                address: this.userAddress,
+                email: this.userEmail,
+            };
+
+            const order = { user_info: user_info, cart: this.carts };
+
+            axios
+                .post("http://127.0.0.1:8000/api/orders/makePayment", {
                     token: this.token,
                     price: this.cartsTotal,
                     dish: this.carts.name,
                     quantity: this.carts.qty,
-                    resturant_id: this.carts.risto_id
+                    resturant_id: this.carts.risto_id,
                 })
-                .then((response) => {
+                // .then((response) => {
                    
-                });
+                // });
+                 axios.post("http://127.0.0.1:8000/api/add-order", order);
         },
     },
 };

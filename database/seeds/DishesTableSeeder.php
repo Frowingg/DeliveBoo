@@ -67,8 +67,8 @@ class DishesTableSeeder extends Seeder
                 'ingredients' => 'pomodoro mozzarella',
                 'price' => 5,
                 'available' => 1,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'             ],
-        
+                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'            
+            ],
             [
                 'name' => 'Crocchette di patate ',
                 'description' => 'crocchetta di patate con menta ',
@@ -85,14 +85,6 @@ class DishesTableSeeder extends Seeder
                 'available' => 1,
                 'dish_cover' => 'dish-covers/piatto_vuoto.jpg'
             ],           
-            [
-                'name' => 'cazzo con le patate',
-                'description' => 'un bel cazzo con le patate ',
-                'ingredients' => 'Cazzo Patate ',
-                'price' => 666,
-                'available' => 1,
-                'dish_cover' => 'dish-covers/piatto_vuoto.jpg'
-            ],
             [
                 'name' => 'pizza diavola',
                 'description' => 'pizza con salame piccante',
