@@ -126,28 +126,6 @@ computed:{
 <style scoped lang="scss">
 @import "../components/sass/variable.scss";
 
-.active {
-        .tag-mine{
-          border: 2px solid #ffba00;
-          border-radius: 40px;
-        }
-        img{
-            border-radius: 40px;
-            box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
-        }
-        .layover{
-            background-color: black;
-            border-radius: 40px;
-            border: 15px solid #ffba00;
-            opacity: 55%;
-        }
-        
-        .name-category{
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-    }
-
 // BUTTON CATEGORY
 
 .carrousel_my {
@@ -195,6 +173,28 @@ computed:{
 
 
 .slider_my {
+
+    .active {
+        .tag-mine{
+          border: 2px solid #ffba00;
+          border-radius: 40px;
+        }
+        img{
+            border-radius: 40px;
+            box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
+        }
+        .layover{
+            background-color: black;
+            border-radius: 40px;
+            border: 15px solid #ffba00;
+            opacity: 55%;
+        }
+        
+        .name-category{
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+    }
 
     position: relative;
 
