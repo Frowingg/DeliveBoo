@@ -116,9 +116,9 @@ export default {
                     quantity: this.carts.qty,
                     resturant_id: this.carts.risto_id,
                 })
-                // .then((response) => {
-                   
-                // });
+                .then((response) => {
+                    console.log(response)
+                });
                  axios.post("http://127.0.0.1:8000/api/add-order", order);
         },
     },

@@ -2037,6 +2037,11 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getCategories();
     console.log(this.filtered_category_user);
+  },
+  computed: {
+    userLogged: function userLogged() {
+      return window.userLogged;
+    }
   }
 });
 
@@ -2114,9 +2119,9 @@ __webpack_require__.r(__webpack_exports__);
         dish: this.carts.name,
         quantity: this.carts.qty,
         resturant_id: this.carts.risto_id
-      }); // .then((response) => {
-      // });
-
+      }).then(function (response) {
+        console.log(response);
+      });
       axios.post("http://127.0.0.1:8000/api/add-order", order);
     }
   }
@@ -2231,7 +2236,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.carts = JSON.parse(localStorage.getItem("carts"));
     }
 
-    console.log(this.$route.params.slug);
     axios.get("/api/users/" + this.$route.params.slug).then(function (response) {
       if (response.data.success) {
         _this.dishes = response.data.results;
@@ -2620,7 +2624,9 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("JumbotronPage"), _vm._v(" "), _c("div", {
+  return _c("div", [_c("JumbotronPage"), _vm._v(" "), !_vm.userLogged ? _c("div", {
+    staticClass: "mt-5"
+  }, [_vm._v("\n        Sei un ristoratore? Aderisci al nostro sito!\n    ")]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "carrousel_my"
   }, [_c("div", {
     staticClass: "slider_my"
@@ -3007,7 +3013,7 @@ var render = function render() {
       staticClass: "description_my"
     }, [_vm._v("\n                        " + _vm._s(dish.description) + "\n                    ")]), _vm._v(" "), _c("div", {
       staticClass: "price_my"
-    }, [_vm._v("\n                        " + _vm._s(dish.price) + " $\n                    ")]), _vm._v(" "), _c("button", {
+    }, [_vm._v("\n                        " + _vm._s(dish.price) + " \n                    ")]), _vm._v(" "), _c("button", {
       staticClass: "btn btn_my",
       on: {
         click: function click($event) {
@@ -7556,7 +7562,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.button {\n    cursor: pointer;\n    font-weight: 500;\n    left: 3px;\n    line-height: inherit;\n    position: relative;\n    text-decoration: none;\n    text-align: center;\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 3px;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    display: inline-block;\n}\n.button--small {\n    padding: 10px 20px;\n    font-size: 0.875rem;\n}\n.button--green {\n    outline: none;\n    background-color: #64d18a;\n    border-color: #64d18a;\n    color: white;\n    transition: all 200ms ease;\n}\n.button--green:hover {\n    background-color: #8bdda8;\n    color: white;\n}\n", ""]);
+exports.push([module.i, "\n.button {\r\n    cursor: pointer;\r\n    font-weight: 500;\r\n    left: 3px;\r\n    line-height: inherit;\r\n    position: relative;\r\n    text-decoration: none;\r\n    text-align: center;\r\n    border-style: solid;\r\n    border-width: 1px;\r\n    border-radius: 3px;\r\n    -webkit-appearance: none;\r\n    -moz-appearance: none;\r\n    display: inline-block;\n}\n.button--small {\r\n    padding: 10px 20px;\r\n    font-size: 0.875rem;\n}\n.button--green {\r\n    outline: none;\r\n    background-color: #64d18a;\r\n    border-color: #64d18a;\r\n    color: white;\r\n    transition: all 200ms ease;\n}\n.button--green:hover {\r\n    background-color: #8bdda8;\r\n    color: white;\n}\r\n", ""]);
 
 // exports
 
@@ -55799,8 +55805,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

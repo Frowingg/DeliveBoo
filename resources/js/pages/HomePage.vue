@@ -1,6 +1,9 @@
 <template>
     <div>
         <JumbotronPage />
+        <div v-if="!userLogged" class="mt-5">
+            Sei un ristoratore? Aderisci al nostro sito!
+        </div>
         <div class="carrousel_my">
             <div class="slider_my">
                 <div class="slide-track_my">
@@ -110,6 +113,11 @@ mounted() {
     this.getCategories();
     console.log(this.filtered_category_user)
 },
+computed:{
+    userLogged() {
+        return window.userLogged
+    }
+}
 
 };
 
