@@ -1,9 +1,6 @@
 <template>
     <div>
         <JumbotronPage />
-        <div v-if="!userLogged" class="mt-5">
-            Sei un ristoratore? Aderisci al nostro sito!
-        </div>
         <div class="carrousel_my">
             <div class="slider_my">
                 <div class="slide-track_my">
@@ -44,6 +41,22 @@
                         </span>
                     </div>
                 </router-link>
+            </div>
+        </div>
+
+        <div v-if="!userLogged" class="mt-5">
+            <div class="banner-user-cta">
+                <div class="user-cta-contain">
+                    <div class="my-left-col">
+                        <div class="user-jumbo-text">
+                            Sei un ristoratore? Aderisci a DeliveBoo!
+                        </div>
+                        <a class="jumbo-btn" href="/register">Registrati</a>
+                    </div>
+                    <div class="my-right-col">
+                        <img src="../components/img/jumbotron/Chef.png" alt="">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -129,27 +142,18 @@ computed:{
 // BUTTON CATEGORY
 
 .carrousel_my {
-
     padding: 4rem 0;
-
     margin: 1.1rem 0;
-
     overflow-x: auto;
-
     width: 100%;
-
 }
 
 .responsive_my_sp {
-
     display: none;
-
 }
 
 .responsive_my_tb {
-
     display: none;
-
 }
 
 
@@ -157,20 +161,12 @@ computed:{
 // Styling
 
 .slide-track_my {
-
     margin-top: 0.5rem;
-
     padding: 2rem 0;
-
     overflow-x: auto;
-
     margin: 0 auto;
-
     width: 90%;
-
 }
-
-
 
 .slider_my {
 
@@ -197,142 +193,80 @@ computed:{
     }
 
     position: relative;
-
     display: flex;
-
     justify-content: center;
-
     box-sizing: border-box;
-
     width: 100%;
 
-
-
     .slide-track_my {
-
         display: flex;
-
         position: relative;
-
         margin: 0 1.2rem;
-
     }
 
-
-
     .slide_my {
-
         margin: 0 1rem;
-
         display: flex;
-
         align-items: center;
-
     }
 
     a {
-
         display: flex;
-
         position: relative;
-
         width: 220px;
-
         height: 110px;
-
         cursor: pointer;
-
     }
 
     img {
-
         width: 100%;
-
         border-radius: 20px;
-
         transition: all 0.5s;
-
     }
 
     .layover {
-
         background-color: black;
-
         border-radius: 20px;
-
         opacity: 30%;
-
         position: absolute;
-
         width: 100%;
-
         height: 100%;
-
         transition: all 0.5s;
-
     }
 
     .name-category {
-
         width: 100%;
-
         position: absolute;
-
         display: flex;
-
         align-self: center;
-
         color: white;
-
         font-weight: 500;
-
         font-size: 1.2rem;
-
         padding: 0 1.5rem;
-
         justify-content: center;
-
         transition: all 0.5s;
-
     }
 
-
-
     .slide_my:focus-visible {
-
         img {
-
             border-radius: 40px;
-
             // box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
-
         }
 
         .layover {
-
             background-color: black;
-
             border-radius: 40px;
-
             opacity: 55%;
-
         }
 
 
 
         .name-category {
-
             font-weight: 700;
-
             letter-spacing: 2px;
-
         }
-
     }
-
 }
-
-
 
 // CARD RESTAURANT
 
@@ -376,11 +310,8 @@ computed:{
     margin: 0.5rem 0;
 }
 .card-categories {
-
     display: flex;
-
     list-style: none;
-
 }
 
 .card-categories li {
@@ -400,77 +331,92 @@ computed:{
 
 .card-layover {
     background-color: black;
-
     opacity: 25%;
-
     width: 100%;
-
     height: 100%;
-
     position: absolute;
-
     transition: all 0.5s;
-
 }
 
 
 
 .card-layover:hover {
-
     opacity: 40%;
-
 }
 
 
 
 .card:hover {
-
     border-radius: 40px;
-
     box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
 
     .card-title {
-
         font-size: 2rem;
-
         font-weight: 700;
-
         margin-bottom: 0.5rem;
-
         letter-spacing: 1px;
-
         color: white;
-
     }
 
     .card-categories {
-
         li {
-
             background-color: #ffba00;
-
             font-size: 1rem;
-
             font-weight: 500;
-
             margin: 0.3rem;
-
             border-radius: 15px;
-
             padding: 0.3rem 0.7rem;
-
             color: white;
-
         }
 
     }
 
     img {
-
         width: 120%;
-
     }
+}
 
+// CTA USER
+.banner-user-cta{
+    background-color: #ffba00;
+    margin-top: 6rem;
+    padding: 2rem 0;
+}
+
+.user-cta-contain{
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+}
+
+.user-jumbo-text{
+    color: white;
+    font-weight: 600;
+    font-size: 2.5rem;
+    text-align: left;
+    margin: 2rem 0;
+}
+
+.jumbo-btn a{
+    text-decoration: none;
+}
+
+.jumbo-btn{
+    padding: 0.6rem 1.4rem;
+    background-color: white;
+    color: #ffba00;
+    border-radius: 30px;
+    font-size: 1.2rem;
+
+}
+
+.my-right-col img{
+    width: 50%;
+}
+
+.my-right-col{
+    display: flex;
+    justify-content: center;
 }
 
 </style>

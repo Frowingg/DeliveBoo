@@ -66,7 +66,7 @@
                         <strong>{{ dish.name }}</strong>
                     </div>
                     <div class="img_my" >
-                        <img :src="'/storage/' + dish.dish_cover" :alt=" dish.name ">
+                         <img :src="'/storage/' + dish.dish_cover" :alt=" dish.name ">
                     </div>
                     <!-- <div class="img_my" v-else>
                         <img src="../img/work/sushi-pizza-scaled.jpg" alt="img">
