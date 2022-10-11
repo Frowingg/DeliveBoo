@@ -25,6 +25,7 @@ class HomeController extends Controller
                 //Mi salvo gli id degli utenti che ci hanno fatto un ordine
                 array_push($orders_user_id, $data->id);
             }
+            
 
             //*recuperiamo tutti gli ordini degli utenti
             $all_dishes_ids = DishOrder::all()->whereIn('order_id',$orders_user_id);

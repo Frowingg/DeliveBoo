@@ -28,8 +28,7 @@ class OrderController extends Controller
         
         $result = $gateway->transaction()->sale([
             'amount' => $request->price,
-            'paymentMethodNonce' => $request->token,
-            // 'paymentMethodNonce' => 'fake-valid-nonce',
+            'paymentMethodNonce' => 'fake-valid-nonce',
             'options' =>[
                 'submitForSettlement'=> true
             ]
@@ -72,8 +71,6 @@ class OrderController extends Controller
             $new_order->address = $order['address'];
             $new_order->email = $order['email'];
             $new_order->total_price = $total_price;
-            //vedete voi come gestirla qui
-            // $new_order->quantity = $order['quantity'];
             $new_order->user_id = $risto_id;
 
             $new_order->save();
@@ -83,12 +80,12 @@ class OrderController extends Controller
             foreach($data['cart'] as $dish){
                 array_push($dishes_id, $dish['id']);
             }
-
+            
             $dishes_qty = [];
             foreach($data['cart'] as $dish){
                 array_push($dishes_qty, $dish['qty']);
             }
-
+           
             for ($i=0; $i < count($dishes_id); $i++) { 
                 $new_order_dish = new DishOrder();
                 $new_order_dish->order_id = $new_order->id;
@@ -96,6 +93,7 @@ class OrderController extends Controller
                 $new_order_dish->qty = $dishes_qty[$i];
                 $new_order_dish->timestamps = false;
                 $new_order_dish->save();
+
             };
 
         return response()->json($data, 200);

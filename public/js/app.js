@@ -2077,10 +2077,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       token: "",
-      userName: "",
-      userLastname: "",
-      userAddress: "",
-      userEmail: ""
+      userName: "davide",
+      userLastname: "davide",
+      userAddress: "davide",
+      userEmail: "davide@mail.com"
     };
   },
   // bububaba
@@ -2119,10 +2119,16 @@ __webpack_require__.r(__webpack_exports__);
         dish: this.carts.name,
         quantity: this.carts.qty,
         resturant_id: this.carts.risto_id
-      }); // .then((response) => {
-      // });
+      }).then(function (response) {
+        console.log(response);
 
-      axios.post("http://127.0.0.1:8000/api/add-order", order);
+        if (response.data.success == true) {
+          axios.post("http://127.0.0.1:8000/api/add-order", order);
+          document.getElementById('pop-up').style.display = 'block';
+        } else {
+          document.getElementById('pop-up-alert').style.display = 'block';
+        }
+      });
     }
   }
 });
@@ -2885,10 +2891,48 @@ var render = function render() {
         return _vm.makePay();
       }
     }
-  }, [_vm._v("\n                Purchase\n            ")])])])]);
+  }, [_vm._v("\n                Paga Adesso\n            ")])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    attrs: {
+      id: "pop-up"
+    }
+  }, [_c("div", [_c("h3", {
+    staticClass: "quest"
+  }, [_vm._v("Pagamento avvenuto con successo")]), _vm._v(" "), _c("div", {
+    staticClass: "pop-up-action"
+  }, [_c("button", {
+    staticClass: "cancelbtn btn btn-mine mr-3",
+    attrs: {
+      type: "button",
+      onClick: "document.getElementById('pop-up').style.display='none'"
+    }
+  }, [_vm._v("Ok")])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    attrs: {
+      id: "pop-up-alert"
+    }
+  }, [_c("div", [_c("h3", {
+    staticClass: "quest"
+  }, [_vm._v("Pagamento non avvenuto ")]), _vm._v(" "), _c("div", {
+    staticClass: "pop-up-action"
+  }, [_c("button", {
+    staticClass: "cancelbtn btn btn-mine mr-3",
+    attrs: {
+      type: "button",
+      onClick: "document.getElementById('pop-up').style.display='none'"
+    }
+  }, [_vm._v("Ok")])])])]);
+}];
 render._withStripped = true;
 
 
@@ -7574,7 +7618,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.button {\r\n    cursor: pointer;\r\n    font-weight: 500;\r\n    left: 3px;\r\n    line-height: inherit;\r\n    position: relative;\r\n    text-decoration: none;\r\n    text-align: center;\r\n    border-style: solid;\r\n    border-width: 1px;\r\n    border-radius: 3px;\r\n    -webkit-appearance: none;\r\n    -moz-appearance: none;\r\n    display: inline-block;\n}\n.button--small {\r\n    padding: 10px 20px;\r\n    font-size: 0.875rem;\n}\n.button--green {\r\n    outline: none;\r\n    background-color: #fbba00;\r\n    border-color: #d0d0d0;\r\n    color: white;\r\n    transition: all 200ms ease;\r\n    border-radius: 20px;\n}\n.button--green:hover {\r\n    background-color: white;\r\n    color: #fbba00;\n}\r\n", ""]);
+exports.push([module.i, "\n#pop-up{\n        display: none;\n        position: fixed;\n        top: 50%;\n        left: 50%;\n        transform: translate(-50%,-50%);\n        background-color: #f4f4f4;\n        border: 2px solid #ffba00;\n        z-index: 100;\n        border-radius: 25px;\n        padding: 30px;\n        box-shadow: 10px 14px 10px rgba(116, 116, 116, 0.25)\n}\n#pop-up-alert{\n        display: none;\n        position: fixed;\n        top: 50%;\n        left: 50%;\n        transform: translate(-50%,-50%);\n        background-color: #f4f4f4;\n        border: 2px solid red;\n        z-index: 100;\n        border-radius: 25px;\n        padding: 30px;\n        box-shadow: 10px 14px 10px rgba(116, 116, 116, 0.25)\n}\n.btn-mine{\n        border: 1px solid #3490dc !important;\n        color: #3490dc !important;\n}\n.button {\n    cursor: pointer;\n    font-weight: 500;\n    left: 3px;\n    line-height: inherit;\n    position: relative;\n    text-decoration: none;\n    text-align: center;\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 3px;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    display: inline-block;\n}\n.button--small {\n    padding: 10px 20px;\n    font-size: 0.875rem;\n}\n.button--green {\n    outline: none;\n    background-color: #fbba00;\n    border-color: #d0d0d0;\n    color: white;\n    transition: all 200ms ease;\n    border-radius: 20px;\n}\n.button--green:hover {\n    background-color: white;\n    color: #fbba00;\n}\n", ""]);
 
 // exports
 
@@ -55817,8 +55861,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\edbin\boolean_projects\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Davide96\Boolean_class66\Laravel-project\DeliveBoo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

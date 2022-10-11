@@ -55,15 +55,31 @@
 
             <div class="container_my">
                 <div id="dropin-container"></div>
-                <button
-                    id="submit-button"
-                    @click="makePay()"
-                    class="button button--small button--green"
-                >
-                    Purchase
+                <button id="submit-button"  @click="makePay()" class="button button--small button--green">
+                    Paga Adesso
                 </button>
             </div>
         </form>
+
+        <div id="pop-up">
+            <div>
+                    <h3 class="quest">Pagamento avvenuto con successo</h3>
+
+                    <div class="pop-up-action">
+                    <button type="button" class="cancelbtn btn btn-mine mr-3" onClick="document.getElementById('pop-up').style.display='none'">Ok</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="pop-up-alert">
+            <div>
+                    <h3 class="quest">Pagamento non avvenuto </h3>
+
+                    <div class="pop-up-action">
+                    <button type="button" class="cancelbtn btn btn-mine mr-3" onClick="document.getElementById('pop-up').style.display='none'">Ok</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -74,10 +90,10 @@ export default {
     data() {
         return {
             token: "",
-            userName: "",
-            userLastname: "",
-            userAddress: "",
-            userEmail: "",
+            userName: "davide",
+            userLastname: "davide",
+            userAddress: "davide",
+            userEmail: "davide@mail.com",
         };
     },
     // bububaba
@@ -120,16 +136,57 @@ export default {
                     quantity: this.carts.qty,
                     resturant_id: this.carts.risto_id,
                 })
-                // .then((response) => {
-                   
-                // });
-                 axios.post("http://127.0.0.1:8000/api/add-order", order);
+                .then((response) => {
+                    console.log(response)
+                   if(response.data.success == true){
+                        axios.post("http://127.0.0.1:8000/api/add-order", order);
+                        document.getElementById('pop-up').style.display='block'
+                   } else {
+                        document.getElementById('pop-up-alert').style.display='block'
+                   }
+                });
+                 
         },
     },
 };
 </script>
 
 <style>
+
+ #pop-up{
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: #f4f4f4;
+        border: 2px solid #ffba00;
+        z-index: 100;
+        border-radius: 25px;
+        padding: 30px;
+        box-shadow: 10px 14px 10px rgba(116, 116, 116, 0.25)
+    }
+
+     #pop-up-alert{
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: #f4f4f4;
+        border: 2px solid red;
+        z-index: 100;
+        border-radius: 25px;
+        padding: 30px;
+        box-shadow: 10px 14px 10px rgba(116, 116, 116, 0.25)
+    }
+
+    .btn-mine{
+        border: 1px solid #3490dc !important;
+        color: #3490dc !important;
+    }
+
+
 .button {
     cursor: pointer;
     font-weight: 500;

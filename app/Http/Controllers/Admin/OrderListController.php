@@ -20,7 +20,7 @@ class OrderListController extends Controller
         $all_dishes = [];
 
         //Questo è l'utente che ha fatto l'ordine
-        $user_info = Order::where('user_id', '=',$user->id)->orderBydesc('created_at')->get();
+        $user_info = Order::with('dishes')->where('user_id', '=',$user->id)->orderBydesc('created_at')->get();
         foreach($user_info as $data){
             //Mi salvo gli id degli utenti che ci hanno fatto un ordine
             array_push($orders_user_id, $data->id);
@@ -40,7 +40,8 @@ class OrderListController extends Controller
         $data = [
             'user' => $user,
             'orders' => $user_info,
-            'dishes' => $all_dishes
+            'dishes' => $all_dishes,
+            'all_dishes_ids' => $all_dishes_ids,
         ];
         
         return view('admin.orderList', $data);
