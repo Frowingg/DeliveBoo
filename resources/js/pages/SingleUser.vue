@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <!-- <h2>{{user.name}}</h2> -->
         <div v-if="error.length > 0">
             <div class="alert alert-danger mt-5" >
                 <ul>

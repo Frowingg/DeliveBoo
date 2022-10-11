@@ -7,7 +7,7 @@
             </button>
             
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div v-if="userLogged">
+                <div v-if="userLogged" class="navbar-nav ms-auto my-pad">
                     <div>
                         <a href="/admin">Il tuo Ristorante</a>
                     </div>

@@ -23,6 +23,7 @@ Route::middleware('auth')
 ->group(function(){
     Route::get('/', 'HomeController@index',)->name('home');
     Route::get('/orderList', 'OrderListController@index',)->name('orderList');
+    Route::get('/chart', 'ChartController@index',)->name('chart');
     Route::get('/order', 'HomeController@show',)->name('order');
     Route::resource('dishes', 'DishController');
 });

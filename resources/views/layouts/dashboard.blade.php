@@ -60,7 +60,14 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.orderList') }}">
                                 <i class="fa-solid fa-list-timeline"></i>
-                                <span class="name-off">Cronologia ordini</span>
+                                <span class="name-off">Cronologia Ordini</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('admin.chart') }}">
+                                <i class="fa-solid fa-list-timeline"></i>
+                                <span class="name-off">Andamento Negozio</span>
                             </a>
                         </li>
                         <li class="nav-item d-md-none">

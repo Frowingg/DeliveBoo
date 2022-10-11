@@ -2323,7 +2323,9 @@ var render = function render() {
     attrs: {
       id: "navbarCollapse"
     }
-  }, [_vm.userLogged ? _c("div", [_vm._m(1)]) : _c("div", {
+  }, [_vm.userLogged ? _c("div", {
+    staticClass: "navbar-nav ms-auto my-pad"
+  }, [_vm._m(1)]) : _c("div", {
     staticClass: "navbar-nav ms-auto my-pad"
   }, [_c("a", {
     staticClass: "nav-item nav-link my-log",
