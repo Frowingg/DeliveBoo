@@ -10,6 +10,8 @@ use App\Order;
 use App\DishOrder;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmedPaymentToUserEmail;
+use App\Mail\ConfirmedPaymentToCostumerEmail;
+
 
 class OrderController extends Controller
 {
@@ -99,6 +101,8 @@ class OrderController extends Controller
             };
 
         Mail::to('admin@boolpress.it')->send(new ConfirmedPaymentToUserEmail($new_order));
+
+        Mail::to($order['email'])->send(new ConfirmedPaymentToCostumerEmail());
 
         return response()->json($data, 200);
     }
