@@ -13,7 +13,7 @@ class ChartController extends Controller
     public function index() {
 
         $user = Auth::user();
-        // prendo tuttiglim ordini per mese  
+        // prendo tutti gli ordini per mese  
         $monthly_orders = 'SELECT COUNT(id) as orders_month, created_at FROM orders 
          WHERE user_id = ' . $user->id . '
          GROUP BY month(created_at) ORDER BY created_at DESC';
