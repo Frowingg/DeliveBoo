@@ -8,6 +8,8 @@ use Braintree\Gateway;
 use App\Http\Requests\Orders\OrderRequest;
 use App\Order;
 use App\DishOrder;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConfirmedPaymentToUserEmail;
 
 class OrderController extends Controller
 {
@@ -95,6 +97,8 @@ class OrderController extends Controller
                 $new_order_dish->save();
 
             };
+
+        Mail::to('admin@boolpress.it')->send(new ConfirmedPaymentToUserEmail($new_order));
 
         return response()->json($data, 200);
     }

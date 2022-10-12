@@ -10,9 +10,6 @@
 
     <script>
         const labels = <?php echo json_encode(array_reverse($time_stamp));?>
-        
-        
-        
       
         const data = {
           labels: labels,
