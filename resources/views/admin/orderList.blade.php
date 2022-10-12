@@ -1,18 +1,32 @@
 @extends('layouts.dashboard')
 @section('content')
 
-<h1>Lista Ordini:</h1>
+<h1>Cronologia Ordini:</h1>
 
 <div class="col-lg-6 col-sm-12">
 
         <ul>
+
             @foreach ($orders as $order)
+            
                 <div class="mb-4 my-orders">
                     {{$order['name']}} {{$order['lastname']}} <br>
-                    {{$order['address']}}
-                    {{$order['total_price']}}ì
-                    {{$order['email']}}
-
+                    <div>
+                        Indirizzo:
+                        {{$order['address']}}
+                    </div>
+                    <div>
+                        Email:
+                        {{$order['email']}}
+                    </div>
+                    <div>
+                        Tootale:
+                        {{$order['total_price']}}€
+                    </div>
+                    <div>
+                        Data e ora:
+                        {{ $order['created_at'] }}
+                    </div>
 
                     @foreach ($all_dishes_ids as $dish_info)
 
@@ -32,7 +46,9 @@
 
                     @endforeach
                 </div>
+            
             @endforeach 
+
         </ul>
 
 </div>

@@ -81,23 +81,27 @@ body {
 .responsive_my_tb {
     display: none;
 }
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 460px) {
+    .container_my{
+        height: 20vh !important;
+    }
     .carrousel_my {
-        display: none;
+        margin: 1rem 0 !important;
+        padding: 0 !important;
     }
     .responsive_my_tb {
         display: block;
     }
 }
-@media screen and (max-width: 620px) {
-    .responsive_my_tb {
-        display: none;
-    }
-    .carrousel_my {
-        display: none;
-    }
-    .responsive_my_sp {
-        display: block;
-    }
-}
+// @media screen and (max-width: 620px) {
+//     .responsive_my_tb {
+//         // display: none;
+//     }
+//     .carrousel_my {
+//         // display: none;
+//     }
+//     .responsive_my_sp {
+//         // display: block;
+//     }
+// }
 </style>

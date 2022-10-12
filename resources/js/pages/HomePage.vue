@@ -142,18 +142,27 @@ computed:{
 // BUTTON CATEGORY
 
 .carrousel_my {
+
     padding: 4rem 0;
+
     margin: 1.1rem 0;
+
     overflow-x: auto;
+
     width: 100%;
+
 }
 
 .responsive_my_sp {
+
     display: none;
+
 }
 
 .responsive_my_tb {
+
     display: none;
+
 }
 
 
@@ -161,12 +170,20 @@ computed:{
 // Styling
 
 .slide-track_my {
+
     margin-top: 0.5rem;
+
     padding: 2rem 0;
+
     overflow-x: auto;
+
     margin: 0 auto;
+
     width: 90%;
+
 }
+
+
 
 .slider_my {
 
@@ -193,80 +210,142 @@ computed:{
     }
 
     position: relative;
+
     display: flex;
+
     justify-content: center;
+
     box-sizing: border-box;
+
     width: 100%;
 
+
+
     .slide-track_my {
+
         display: flex;
+
         position: relative;
+
         margin: 0 1.2rem;
+
     }
 
+
+
     .slide_my {
+
         margin: 0 1rem;
+
         display: flex;
+
         align-items: center;
+
     }
 
     a {
+
         display: flex;
+
         position: relative;
+
         width: 220px;
+
         height: 110px;
+
         cursor: pointer;
+
     }
 
     img {
+
         width: 100%;
+
         border-radius: 20px;
+
         transition: all 0.5s;
+
     }
 
     .layover {
+
         background-color: black;
+
         border-radius: 20px;
+
         opacity: 30%;
+
         position: absolute;
+
         width: 100%;
+
         height: 100%;
+
         transition: all 0.5s;
+
     }
 
     .name-category {
+
         width: 100%;
+
         position: absolute;
+
         display: flex;
+
         align-self: center;
+
         color: white;
+
         font-weight: 500;
+
         font-size: 1.2rem;
+
         padding: 0 1.5rem;
+
         justify-content: center;
+
         transition: all 0.5s;
+
     }
 
+
+
     .slide_my:focus-visible {
+
         img {
+
             border-radius: 40px;
+
             // box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
+
         }
 
         .layover {
+
             background-color: black;
+
             border-radius: 40px;
+
             opacity: 55%;
+
         }
 
 
 
         .name-category {
+
             font-weight: 700;
+
             letter-spacing: 2px;
+
         }
+
     }
+
 }
+
+
 
 // CARD RESTAURANT
 
@@ -310,8 +389,11 @@ computed:{
     margin: 0.5rem 0;
 }
 .card-categories {
+
     display: flex;
+
     list-style: none;
+
 }
 
 .card-categories li {
@@ -331,51 +413,162 @@ computed:{
 
 .card-layover {
     background-color: black;
+
     opacity: 25%;
+
     width: 100%;
+
     height: 100%;
+
     position: absolute;
+
     transition: all 0.5s;
+
 }
 
 
 
 .card-layover:hover {
+
     opacity: 40%;
+
 }
 
 
 
 .card:hover {
+
     border-radius: 40px;
+
     box-shadow: 10px 14px 10px rgba($color: #000000, $alpha: 0.2);
 
     .card-title {
+
         font-size: 2rem;
+
         font-weight: 700;
+
         margin-bottom: 0.5rem;
+
         letter-spacing: 1px;
+
         color: white;
+
     }
 
     .card-categories {
+
         li {
+
             background-color: #ffba00;
+
             font-size: 1rem;
+
             font-weight: 500;
+
             margin: 0.3rem;
+
             border-radius: 15px;
+
             padding: 0.3rem 0.7rem;
+
             color: white;
+
         }
 
     }
 
     img {
+
         width: 120%;
+
+    }
+
+}
+@media screen and (max-width: 460px) {
+    .slide-track_my{
+        padding: 1.2rem 0;
+        width: 95%;
+    }
+
+    .slide_my{
+        margin: 0 0.5rem !important;
+        a {
+        width: 130px;
+        height: 50px;
+        }
+
+        img {
+            display: none;
+            width: 100%;
+
+            border-radius: 15px;
+
+            transition: all 0.5s;
+
+        }
+
+        .layover {
+
+            background-color: #ffba00;
+
+            border-radius: 15px;
+
+            opacity: 100%;
+
+            position: absolute;
+
+            width: 100%;
+
+            height: 100%;
+
+            transition: all 0.5s;
+
+        }
+
+        .name-category {
+
+            width: 100%;
+
+            position: absolute;
+
+            display: flex;
+
+            align-self: center;
+
+            color: white;
+
+            font-weight: 500;
+
+            font-size: 1rem;
+
+            padding: 0 1.5rem;
+
+            justify-content: center;
+
+            transition: all 0.5s;
+
+        }
+
+        .active {
+            .tag-mine{
+            border-radius: 30px;
+            }
+            .layover{
+                background-color: #ffba00;
+                border-radius: 30px;
+                opacity: 45%;
+                box-shadow: 7px 10px 7px rgba($color: #000000, $alpha: 0.2);
+            }
+            
+            .name-category{
+                font-weight: 700;
+                letter-spacing: 2px;
+            }
+    }
+
     }
 }
-
 // CTA USER
 .banner-user-cta{
     background-color: #ffba00;
