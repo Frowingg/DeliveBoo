@@ -10,7 +10,7 @@ use App\Http\Resources\DishResource;
 class DishController extends Controller
 {
     public function index() {
-        // $dishes = Dish::paginate(6);
+
         $dishes = Dish::all();
         
         $data = [
@@ -21,9 +21,4 @@ class DishController extends Controller
         return response()->json($data);
     }
 
-
-    // public function indexResource(Request $request){
-    //     $dishess = Dish::all();
-    //     return DishResource::collection($dishess);
-    // }
 }

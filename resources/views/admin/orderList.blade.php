@@ -3,19 +3,19 @@
 
 <h1>Cronologia Ordini:</h1>
 
-<div class="col-lg-6 col-sm-12">
+<div >
 
-        <ul>
-
+    <ul>
+        <li class="container-order_my">
             @foreach ($orders as $order)
             
                 <div class="mb-4 my-orders">
                     {{$order['name']}} {{$order['lastname']}} <br>
-                    <div>
+                    <div class="order_my">
                         Indirizzo:
                         {{$order['address']}}
                     </div>
-                    <div>
+                    <div class="order_my">
                         Email:
                         {{$order['email']}}
                     </div>
@@ -23,7 +23,7 @@
                         Tootale:
                         {{$order['total_price']}}€
                     </div>
-                    <div>
+                    <div class="order_my">
                         Data e ora:
                         {{ $order['created_at'] }}
                     </div>
@@ -48,9 +48,41 @@
                 </div>
             
             @endforeach 
+        </li>
+    </ul>
 
-        </ul>
+    <div class="mt-3">
+        {{ $orders->links() }}
+    </div>
 
 </div>
 
+<style scped>
+ul{
+    list-style-type: none;
+}
+.container-order_my{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.page-item.active .page-link{
+            background-color:#fbba00 !important;
+            color: white !important;
+            border-color: #fbba00  !important;
+        }
+        .page-link {
+
+         color: #fbba00 !important;
+    }
+    .page-link:hover{
+        background-color:#ffe8ab !important;
+        color: white !important;
+        border-color: #ffe8ab  !important;
+    }
+
+</style>
+
 @endsection
+
+

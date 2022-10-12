@@ -9,27 +9,6 @@ use App\Admin\Dish;
 
 class UserController extends Controller
 {
-    // public function index() {
-
-    //     $users = User::with(['categories'])->get();
-    //     $current_user = Auth::user()->id;
-
-    //     foreach($users as $user) {
-    //         if($user->user_cover) {
-    //             $user->user_cover = asset('storage/' . $user->user_cover);
-    //         }
-    //     }
-
-    //     $data = [
-    //         'success' => true,
-    //         'results' => $users,
-    //         'current_user' => $current_user
-    //     ];
-
-    //     return response()->json($data);
-        
-    // }
-
     public function show($slug) {
 
         $user = User::where('slug', '=', $slug)->with(['categories'])->first();
@@ -37,7 +16,6 @@ class UserController extends Controller
 
         $dishes = Dish::where('user_id', '=', $user_id)->get();
 
-        //dd($dishes);
         if($user) {
             $data =  [
                 'success' => true,

@@ -37,8 +37,6 @@ class User extends Authenticatable
         return $this->belongsTo('App\Dish');
     }
 
-
-
     /**
      * The attributes that should be hidden for arrays.
      *

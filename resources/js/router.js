@@ -9,7 +9,6 @@ import SingleUser from './pages/SingleUser.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-    //mode: 'history',
     routes: [
         {
             path: '/',

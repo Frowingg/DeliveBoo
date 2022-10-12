@@ -36,6 +36,3 @@ Route::get('orders/generate', 'Api\Orders\OrderController@generate');
 Route::post('add-order', 'Api\Orders\OrderController@addOrderToRestaurant');
 
 Route::post('orders/makePayment', 'Api\Orders\OrderController@makePayment');
-
-// Route::get('/dishess', 'Api\DishController@indexResource');
-// fine per  braintreee

@@ -197,8 +197,8 @@ li a{
 }
 @media screen and (max-width: 720px) {
     .foot-credit{
-    width: 20px;
-    margin-left: 20px;
-}
+        width: 20px;
+        margin-left: 20px;
+    }
 }
 </style>

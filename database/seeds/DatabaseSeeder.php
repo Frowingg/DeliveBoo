@@ -13,23 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->createUser();
         $this->call(CategoriesTableSeeder::class);
-        $this->call(DishesTableSeeder::class);
-        $this->call(OrdersTableSeeder::class);
     }
-
-    public function createUser(){
-        return User::create([
-            'name' => 'Alessandro',
-            'email' => 'alessandro.scolozzi@email.it',
-            'address' => 'via a caso di Ascoli',
-            'VAT_number' => 12345678901,
-            'slug' => $this->getSlug('Alessandro'),
-            'password' => Hash::make('password'),
-        ]);
-    }
-
 
     //custom function
     protected function getSlug($title) {

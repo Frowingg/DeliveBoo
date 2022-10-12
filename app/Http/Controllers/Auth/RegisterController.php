@@ -58,9 +58,7 @@ class RegisterController extends Controller
             'VAT_number' => ['required', 'string', 'max:11', 'min:11','unique:users'],
             'user_cover' => ['mimes:jpeg,jpg,png', 'max:1024'],
             'categories' => ['required'],
-            // 'user_cover' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            // 'password' => ['required', 'string'],
         ]);
     }
 
@@ -73,11 +71,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {      
-
-        // if(isset($data['user_cover'])){
-        //     $img_path = Storage::put('user-covers', $data['user_cover']);
-        //     $data['user_cover'] = $img_path;
-        // }
 
         if(isset($data['user_cover'])){
 

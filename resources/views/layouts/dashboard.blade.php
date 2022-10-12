@@ -46,7 +46,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.dishes.index') }}">
-                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> --}}
                                 <i class="fa-solid fa-utensils"></i>
                                 <span class="name-off">Tutti i Piatti</span>
                             </a>
@@ -59,14 +58,14 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.orderList') }}">
-                                <i class="fa-solid fa-list-timeline"></i>
+                                <i class="fa-regular fa-chart-bar"></i>
                                 <span class="name-off">Cronologia Ordini</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.chart') }}">
-                                <i class="fa-solid fa-list-timeline"></i>
+                                <i class="fa-solid fa-chart-line"></i>
                                 <span class="name-off">Andamento Negozio</span>
                             </a>
                         </li>
@@ -265,8 +264,9 @@
         background-color: #f4f4f4;
         box-shadow: 6px 10px 6px rgba(116, 116, 116, 0.25);
         padding: 1.5rem;
-        width: 50%;
+        width: calc(100% / 3 - 20px);
         border-radius: 25px; 
+        margin-left: 20px;
     }
 
     @media screen and (max-width: 560px) {
@@ -306,6 +306,30 @@
         margin: 1.2rem 0;
     }
 }
+@media screen and (max-width: 920px) {
+    ul{
+        padding: 0;
+    }
+    .my-orders{
+        background-color: #f4f4f4;
+        box-shadow: 6px 10px 6px rgba(116, 116, 116, 0.25);
+        padding: 1.5rem;
+        width: calc(100% / 2 - 20px);
+        border-radius: 25px; 
+        margin-left: 20px;
+        
+    }
+}
+@media screen and (max-width: 720px) {
+    .my-orders{
+        background-color: #f4f4f4;
+        box-shadow: 6px 10px 6px rgba(116, 116, 116, 0.25);
+        padding: 1.5rem;
+        width: calc(100%);
+        border-radius: 25px; 
+        margin-left: 20px;
+    }
+}
 @media screen and (max-width: 1235px) {
     .my-label{
         width: 40%;
@@ -313,4 +337,3 @@
 }
 
 </style>
-

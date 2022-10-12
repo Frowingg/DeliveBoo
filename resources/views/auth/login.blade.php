@@ -73,18 +73,9 @@
         </div>
     </div>
 </div>
+
 <style>
-    /*
-        body{
-            height: 100vh;
-        }
-        #app{
-            height: 100%;
-        }
-        main{
-            height: 100%;
-        }    ******da controllare per centrare    *******/
-        .btn_my{
+    .btn_my{
         background-color: #fbba00;
         color: white;
         border: 1px solid #fbba00;

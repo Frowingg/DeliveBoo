@@ -11,15 +11,14 @@
     <title>Document</title>
 </head>
 <body>
-        {{-- @guest
-        <h1>guest</h1>
-        @endguest --}}
-        @auth
+    @auth
         <script>
             window.userLogged = true;
         </script>
-        @endauth
+    @endauth
+
     <div id="root"></div>
+    
     <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

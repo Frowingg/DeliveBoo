@@ -4,9 +4,12 @@
 <div class="container">
     
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+        <div class="col-md-8 mt-5">
+            <div class="card my_form">
+                <div class="card-header">
+                    <div class="name-head">DeliveBoo</div>
+                    <div class="deliveboo-page">{{ __('Register') }}</div>
+                </div>
 
                 <div class="card-body">
                     <div class="mb-4">I campi contrassegnati con * sono obbligatori</div>
@@ -92,12 +95,12 @@
                         </div>
 
                         Categorie: *      
-                        <div class="needs-validation">
+                        <div class="needs-validation deliveboo-list">
                             @foreach($categories as $category)
-                            <div class="form-check">
+                            <div class="form-check deliveboo-category">
                                 <ul>
                                     <li  class="check_my">
-                                        <input class="form-check-input" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" name="categories[]" >
+                                        <input class="form-check-input my-input-check" type="checkbox" value="{{ $category->id }}" id="category-{{ $category->id }}" name="categories[]" >
                                         <label class="form-check-label" for="category-{{ $category->id }}">
                                             {{ $category->name }}
                                         </label>
@@ -168,13 +171,27 @@
 </div>
 
 <style>
+    /* LAYOUT */
+    .my-input-check{
+        border: none !important;
+    }
+    .my_form{
+        border-radius: 30px;
+    }
+
+    .name-head{
+        font-family: pacifico;
+        font-size: 2rem;
+    }
+
+    .deliveboo-page{
+        font-size: 0.8rem;
+    }
     ul{
         list-style-type: none;
+        margin: 0 !important;
     }
-    .check_my{
-        text-align: center;
-        
-    }
+
     .btn_my{
         background-color: #fbba00;
         color: white;
@@ -190,6 +207,23 @@
         color: white;
         font-size: 20px;
         text-align: center;
+    }
+
+    /* NEW STYLE */
+    .deliveboo-list{
+        display: flex;
+        width: 90%;
+        flex-wrap: wrap;
+    }
+
+    .deliveboo-category{
+        text-align: center;
+        border: 1px solid #ffba00;
+        background-color: #fbba00;
+        color: white;
+        border-radius: 20px;
+        padding: 0.4rem 1.4rem !important;
+        margin: 0.3rem;
     }
 </style>
 @endsection

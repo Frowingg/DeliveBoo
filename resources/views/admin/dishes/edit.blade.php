@@ -49,7 +49,7 @@
 
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" id="available" name="available" value=1 {{ old('available', $dish->available)  ? 'checked' : '' }}> 
-                <label class="custom-control-label" for="available">DisponibilitÃ </label>
+                <label class="custom-control-label" for="available">Disponibilità</label>
             </div>
 
             <div class="mb-3">

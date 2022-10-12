@@ -61,24 +61,23 @@
             </div>
         </form>
 
-        <div class="pop_up_container" >
-            <div id="pop-up">
-                <h3 class="quest">Pagamento avvenuto con successo</h3>
+        <div id="pop-up">
+                <div>
+                    <div class="our-logo">DeliveBoo</div>
+                    <h3 class="quest our-title">Pagamento avvenuto con successo</h3>
 
-                <div class="pop-up-action">
-                    <router-link :to="{ name: 'home'}">
-                        <button type="button" class="cancelbtn btn btn-mine mr-3" onClick="document.querySelector('.pop_up_container').style.display='none'">Ok</button>
-                    </router-link>
+                    <div class="pop-up-action">
+                    <button type="button" class="cancelbtn btn btn-mine mr-3" onClick="document.getElementById('pop-up').style.display='none'">Ok</button>
                 </div>
             </div>
         </div>
 
-        <div class="pop_up_container ms_alert">
-            <div id="pop-up-alert">
-                <h3 class="quest">Pagamento non avvenuto </h3>
+        <div id="pop-up-alert">
+            <div>
+                    <h3 class="quest">Pagamento non avvenuto </h3>
 
-                <div class="pop-up-action">
-                    <button type="button" class="cancelbtn btn btn-mine mr-3" onClick="document.querySelector('.pop_up_container ms_alert').style.display='none'">Ok</button>
+                    <div class="pop-up-action">
+                    <button type="button" class="cancelbtn btn btn-mine mr-3" onClick="document.getElementById('pop-up').style.display='none'">Ok</button>
                 </div>
             </div>
         </div>
@@ -92,12 +91,13 @@ export default {
     data() {
         return {
             token: "",
-            userName: "ok",
-            userLastname: "ok",
-            userAddress: "ok",
-            userEmail: "ok@gmail.it",
+            userName: "davide",
+            userLastname: "davide",
+            userAddress: "davide",
+            userEmail: "davide@mail.com",
         };
     },
+    // bububaba
     mounted() {
         braintree.dropin.create({
             authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
@@ -141,10 +141,9 @@ export default {
                     console.log(response)
                    if(response.data.success == true){
                         axios.post("http://127.0.0.1:8000/api/add-order", order);
-                        document.querySelector('.pop_up_container').style.display='block';
-                        localStorage.clear(this.carts);
+                        document.getElementById('pop-up').style.display='block'
                    } else {
-                    document.querySelector('.ms_alert').style.display='block';
+                        document.getElementById('pop-up-alert').style.display='block'
                    }
                 });
                  
@@ -153,26 +152,17 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
-.pop_up_container{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100vh;
-    z-index: 999;
-    display: none;
+<style>
 
-    #pop-up {
-        
-        position: absolute;
+ #pop-up{
+        display: none;
+        position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
         background-color: #f4f4f4;
         border: 2px solid #ffba00;
-        z-index: 9999;
+        z-index: 100;
         border-radius: 25px;
         padding: 30px;
         box-shadow: 10px 14px 10px rgba(116, 116, 116, 0.25)
@@ -192,11 +182,29 @@ export default {
         box-shadow: 10px 14px 10px rgba(116, 116, 116, 0.25)
     }
 
-    .btn-mine{
-        border: 1px solid #3490dc !important;
-        color: #3490dc !important;
+    .our-logo{
+        text-align: center;
+        font-family: pacifico;
+        color: #fbba00;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
     }
-}
+
+    .our-title{
+        font-weight: 400;
+        color: #a8a8a8;
+    }
+
+    .pop-up-action{
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .btn-mine{
+        border: 1px solid #fbba00 !important;
+        color: #fbba00 !important;
+    }
+
 
 .button {
     cursor: pointer;
@@ -232,5 +240,4 @@ export default {
     background-color: white;
     color: #fbba00;
 }
-
 </style>

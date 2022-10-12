@@ -47,10 +47,6 @@
 <script>
 export default {
     name: 'WorkWithUs',
-    
-    // props: {
-    //     headerLinks: Array,
-    // }
 }
 
 </script>
@@ -94,20 +90,6 @@ h2{
     justify-content: space-around;
     flex-direction: row;
 }
-
-// .job-card{
-//     background-color: black;
-//     width: 500px;
-//     height: 500px;
-//     margin: 2rem;
-//     border-radius: 60px;
-//     box-sizing: border-box;
-//     overflow: hidden;
-//     display: flex;
-//     background-position: center;
-//     position: relative;
-//     padding: 2.3rem;
-// }
 
 .job-card{
     // background-color: black;
@@ -161,14 +143,6 @@ h2{
     text-align: center;
 }
 
-// .job-card:before {
-//   content: "";
-//   position: absolute;
-//   left: 0; right: 0;
-//   top: 0; bottom: 0;
-//   background: rgba(0,0,0,.5);
-// }
-
 .layover{
     width: 100%;
     height: 100%;
@@ -200,95 +174,94 @@ h2{
 }
 
 @media screen and (max-width: 440px) {
-  h2{
-    color: #fbba00;
-    text-align: center;
-    margin-top: 3rem;
-    font-weight: 400;
-    font-size: 1.6rem;
-}
-.name-logo{
-    font-family: 'Pacifico', cursive;
-    font-size: 2.6rem;
-}
+    h2{
+        color: #fbba00;
+        text-align: center;
+        margin-top: 3rem;
+        font-weight: 400;
+        font-size: 1.6rem;
+    }
+    .name-logo{
+        font-family: 'Pacifico', cursive;
+        font-size: 2.6rem;
+    }
 
-.job-contain{
-    width: 75%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-content: center;
-}
+    .job-contain{
+        width: 75%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+    }
 
-.job-card{
-    // background-color: black;
-    overflow: hidden;
-    width: 350px;
-    height: 350px;
-    margin: 1.6rem;
-    position: relative;
-    cursor: pointer;
-    img{
-        height: 100%;
-        width: 100%;
-        justify-self: center;
+    .job-card{
+        // background-color: black;
+        overflow: hidden;
+        width: 350px;
+        height: 350px;
+        margin: 1.6rem;
+        position: relative;
+        cursor: pointer;
+        img{
+            height: 100%;
+            width: 100%;
+            justify-self: center;
+            align-self: center;
+            position: absolute;
+        }
+    }
+
+
+    .job-text{
+        display: flex;
+        flex-direction: column;
+        align-self: end;
+        h3{
+            font-size: 2.5rem;
+            line-height: 0.5rem;
+            color: white;
+        }
+        p{
+            color: white;
+            font-size: 1.5rem;
+        }
+    }
+
+    .job-card-promo{
+        background-color: #fbba00;
+        width: 350px;
+        height: 350px;
+        margin: 2rem;
+        border-radius: 60px;
+        box-sizing: border-box;
+        display: flex;
+        background-color: #fbba00;
+        padding: 2.3rem;
+        flex-direction: column;
+        img{
+            height: 70%;
+            padding: 1rem;
+        }
+    }
+
+    .promo-text{
+        font-size: 1rem;
+    }
+
+    .btn-mine{
         align-self: center;
-        position: absolute;
-    }
-}
-
-
-.job-text{
-    display: flex;
-    flex-direction: column;
-    align-self: end;
-    h3{
-        font-size: 2.5rem;
-        line-height: 0.5rem;
+        text-decoration: none;
         color: white;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        font-weight: 700;
+        background-color: #fbba00;
+        border-radius: 25px;
+        width: 40%;
+        text-align: center;
+        margin-top: 1rem;
     }
-    p{
-        color: white;
-        font-size: 1.5rem;
-    }
-}
-
-.job-card-promo{
-    background-color: #fbba00;
-    width: 350px;
-    height: 350px;
-    margin: 2rem;
-    border-radius: 60px;
-    box-sizing: border-box;
-    display: flex;
-    background-color: #fbba00;
-    padding: 2.3rem;
-    flex-direction: column;
-    img{
-        height: 70%;
-        padding: 1rem;
-    }
-}
-
-.promo-text{
-    font-size: 1rem;
-}
-
-.btn-mine{
-    align-self: center;
-    text-decoration: none;
-    color: white;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    font-weight: 700;
-    background-color: #fbba00;
-    border-radius: 25px;
-    width: 40%;
-    text-align: center;
-    margin-top: 1rem;
-}
-
 }
 
 </style>

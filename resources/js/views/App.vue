@@ -93,15 +93,4 @@ body {
         display: block;
     }
 }
-// @media screen and (max-width: 620px) {
-//     .responsive_my_tb {
-//         // display: none;
-//     }
-//     .carrousel_my {
-//         // display: none;
-//     }
-//     .responsive_my_sp {
-//         // display: block;
-//     }
-// }
 </style>

@@ -10,8 +10,6 @@ use App\Order;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Mail;
-// use App\Mail\NewPostAdminEmail;
 use Carbon\Carbon;
 
 class DishController extends Controller
@@ -83,11 +81,8 @@ class DishController extends Controller
 
         $new_dish -> fill($form_data);
         
-        // $new_dish->slug = $this->getSlug($new_dish->title);
         $new_dish->save();
     
-        // Mail::to('admin@boolpress.com')->send(new NewPostAdminEmail($new_dish));
-
         $data = [
             'created' => 'yes',
             'dish' => $new_dish->id
@@ -180,17 +175,7 @@ class DishController extends Controller
             $form_data['dish_cover'] = $img_path;
         }
 
-        // if ($form_data['title'] !== $post_to_update->title) {
-        //     $form_data['slug'] = $this->getSlug($form_data['title']);
-        //    }else{
-        //     $form_data['slug'] = $post_to_update->slug;
-        // }
-
         $dish_to_update->update($form_data);
-
-
-        // $request_info= $request->all();
-        // $updated_message = isset($request_info['updated']) ? $request_info['updated'] : null;
 
         $data = [
             'dish' => $dish_to_update->id,
@@ -211,7 +196,6 @@ class DishController extends Controller
     {
         {
             $delete_dish = Dish::findOrFail($id);
-            // $delete_dish->tags()->sync([]);
 
             if($delete_dish->dish_cover){
                 Storage::delete($delete_dish->dish_cover);
@@ -233,10 +217,4 @@ class DishController extends Controller
         ];
     }
 
-    // protected function getDifferentDay($dishes){
-    //     $today = Carbon::now();
-    //     foreach($dishes as $dish){
-    //         $dish['updated_days_ago'] = $dish -> updated_at-> diffInDays($today);
-    //     }
-    // }
 }
