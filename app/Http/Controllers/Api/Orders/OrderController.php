@@ -100,8 +100,10 @@ class OrderController extends Controller
 
             };
 
+        // mail di conferma per lo user
         Mail::to('admin@boolpress.it')->send(new ConfirmedPaymentToUserEmail($new_order));
 
+        // mail di conferma per il guest
         Mail::to($order['email'])->send(new ConfirmedPaymentToCostumerEmail());
 
         return response()->json($data, 200);
