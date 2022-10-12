@@ -92,10 +92,10 @@ export default {
     data() {
         return {
             token: "",
-            userName: "",
-            userLastname: "",
-            userAddress: "",
-            userEmail: "",
+            userName: "ok",
+            userLastname: "ok",
+            userAddress: "ok",
+            userEmail: "ok@gmail.it",
         };
     },
     mounted() {
@@ -142,7 +142,7 @@ export default {
                    if(response.data.success == true){
                         axios.post("http://127.0.0.1:8000/api/add-order", order);
                         document.querySelector('.pop_up_container').style.display='block';
-                        
+                        localStorage.clear(this.carts);
                    } else {
                     document.querySelector('.ms_alert').style.display='block';
                    }

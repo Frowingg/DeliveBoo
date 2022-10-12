@@ -2077,10 +2077,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       token: "",
-      userName: "",
-      userLastname: "",
-      userAddress: "",
-      userEmail: ""
+      userName: "ok",
+      userLastname: "ok",
+      userAddress: "ok",
+      userEmail: "ok@gmail.it"
     };
   },
   mounted: function mounted() {
@@ -2101,6 +2101,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     makePay: function makePay() {
+      var _this2 = this;
+
       //TEST
       var user_info = {
         name: this.userName,
@@ -2124,6 +2126,7 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data.success == true) {
           axios.post("http://127.0.0.1:8000/api/add-order", order);
           document.querySelector('.pop_up_container').style.display = 'block';
+          localStorage.clear(_this2.carts);
         } else {
           document.querySelector('.ms_alert').style.display = 'block';
         }
