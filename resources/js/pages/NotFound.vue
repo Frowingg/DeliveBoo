@@ -1,5 +1,7 @@
 <template>
-    <div class="container_my"> </div>
+    <div class="container_my">
+        <img src="../components/img/work/bg_not_found.gif" alt="">
+    </div>
 </template>
 
 <script>
@@ -10,11 +12,20 @@ export default {
 
 <style scoped>
 .container_my{
-    height: 130vh;
-    width: 100vw;
-    background-image: url('../components/img/work/bg_not_found.gif');
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.container_my img{
+    width: 100%;
+    border-radius: 40px;
+}
+
+@media screen and (max-width: 460px){
+    .container_my{
+        margin: 0 auto;
+        width: 80%;
+        margin-bottom: 2rem;
+    }
 }
 </style>

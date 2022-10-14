@@ -26,54 +26,70 @@
 <body>
     {{-- NEW NAV TRY --}}
     <div class="container-fluid overflow-hidden">
-        <div class="row vh-100 overflow-auto">
-            <div class="col-12 col-sm-3 my-nav col-xl-2 px-sm-2 px-0 d-flex nav-orange sticky-top">
-                <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+        <div class="row my-row vh-100 overflow-auto">
+            <div class="col-12 col-sm-3 my-nav col-xl-2 px-sm-2 px-0 d-flex nav-orange sticky-top personal-vh">
+                <div class="d-flex flex-sm-column flex-row align-items-center align-items-sm-start px-3 pt-2 text-white my-overflow">
                     <div class="admin-head">
-                        <div class="delive-logo">
-                            <a href="/">DeliveBoo</a> 
+                        <div class="query-desk d-sm-none d-lg-block">
+                            <div class="delive-logo">
+                                <a href="/">DeliveBoo</a> 
+                            </div>
+                            <div class="admin-logo">
+                                Admin Panel
+                            </div>
                         </div>
-                        <div class="admin-logo">
-                            Admin Panel
-                        </div>
+                        {{-- <div class="query-mobile d-lg-none d-sm-block">
+                            <a href="/">
+                                <i class="fa-solid fa-house"></i>
+                            </a>
+                        </div> --}}
                     </div>
                     <ul class="nav my-bg col-deliveboo flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+                        {{-- TEST --}}
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link active" href="/">
+                                <i class="fa-solid fa-house"></i>
+                                <span class="name-off my-d-none"> Home</span>
+                            </a>
+                        </li>
+
+                        {{-- FINE TEST BAR UPDATE --}}
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.home') }}">
                                 <i class="fa-solid fa-user"></i>
-                               <span class="name-off"> Profilo Ristorante</span>
+                               <span class="name-off my-d-none"> Profilo Ristorante</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.dishes.index') }}">
                                 <i class="fa-solid fa-utensils"></i>
-                                <span class="name-off">Tutti i Piatti</span>
+                                <span class="name-off my-d-none">Tutti i Piatti</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.dishes.create') }}">
                                 <i class="fa-solid fa-plus"></i>
-                                <span class="name-off">Crea Nuovo Piatto</span>
+                                <span class="name-off my-d-none">Crea Nuovo Piatto</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.orderList') }}">
                                 <i class="fa-regular fa-chart-bar"></i>
-                                <span class="name-off">Cronologia Ordini</span>
+                                <span class="name-off my-d-none">Cronologia Ordini</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.chart') }}">
                                 <i class="fa-solid fa-chart-line"></i>
-                                <span class="name-off">Andamento Negozio</span>
+                                <span class="name-off my-d-none">Andamento Negozio</span>
                             </a>
                         </li>
-                        <li class="nav-item d-md-none">
-                            <a class="out-btn" href="{{ route('logout') }}"
+                        <li class="nav-item">
+                            <a class="out-btn nav-link active" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                                Logout
+                                <i class="fa-solid fa-right-from-bracket"></i>
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
@@ -86,18 +102,18 @@
                 <main class="row overflow-auto my-dash">
                     {{-- HEAD --}}
                     <nav class="navbar navbar-expand-md flex-md-nowrap p-0 nav-deliveboo">
-                        <ul class="navbar-nav px-3 ml-auto">
+                        {{-- <ul class="navbar-nav px-3 ml-auto">
                             <li class="nav-item my-log-btn">
                                 <a class="nav-link out-btn" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                    Logout
+                                    <i class="fa-solid fa-right-from-bracket"></i>
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </nav>
                     {{-- END HEAD --}}
 
@@ -213,8 +229,7 @@
     .out-btn{
         background-color: #ffba00;
         color: white;
-        padding: 1rem 1rem;
-        display: inline;
+        /* padding: 1rem 1rem; */
     }
 
     .out-btn:hover{
@@ -265,8 +280,8 @@
         box-shadow: 6px 10px 6px rgba(116, 116, 116, 0.25);
         padding: 1.5rem;
         width: calc(100% / 3 - 20px);
-        border-radius: 25px; 
-        margin-left: 20px;
+        border-radius: 25px;
+        margin: 0.6rem;
     }
 
     @media screen and (max-width: 560px) {
@@ -306,6 +321,23 @@
         margin: 1.2rem 0;
     }
 }
+@media screen and (max-width: 575px) {
+    .row{
+        display: block !important;
+    }
+    .my-overflow{
+        overflow-x: auto;
+    }
+
+    .personal-vh{
+        height: 15vh !important;
+    }
+
+    .my-d-none{
+        display: none;
+    }
+}
+
 @media screen and (max-width: 920px) {
     ul{
         padding: 0;
@@ -315,24 +347,32 @@
         box-shadow: 6px 10px 6px rgba(116, 116, 116, 0.25);
         padding: 1.5rem;
         width: calc(100% / 2 - 20px);
-        border-radius: 25px; 
-        margin-left: 20px;
-        
+        border-radius: 25px;
     }
 }
 @media screen and (max-width: 720px) {
+    .query-desk{
+        display: none;
+    }
+
     .my-orders{
         background-color: #f4f4f4;
         box-shadow: 6px 10px 6px rgba(116, 116, 116, 0.25);
         padding: 1.5rem;
         width: calc(100%);
-        border-radius: 25px; 
-        margin-left: 20px;
+        border-radius: 25px;
     }
+
 }
 @media screen and (max-width: 1235px) {
     .my-label{
         width: 40%;
+    }
+    .row{
+        flex-wrap: nowrap !important;
+    }
+    .my-dishes-row{
+        flex-wrap: wrap !important;
     }
 }
 

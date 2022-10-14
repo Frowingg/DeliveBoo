@@ -20,6 +20,7 @@ class UserController extends Controller
             $data =  [
                 'success' => true,
                 'results' => $dishes,
+                'user' => $user,
             ];
         } else {
             $data = [

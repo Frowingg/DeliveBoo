@@ -23,6 +23,7 @@
             <div class="card" v-for="filteredUser in filtered_category_user" :key="filteredUser.id"  >
                 
                 <router-link :to="{ name: 'single-user', params: { slug: filteredUser.user_slug },}" >
+                    <img :src="'/storage/' + filteredUser.user_cover" :alt=" filteredUser.user_name  ">
                     <div class="card-layover"></div>
                     <div class="card-info">
                         <div class="card-title">
@@ -46,14 +47,14 @@
         <div v-if="!userLogged" class="mt-5">
             <div class="banner-user-cta">
                 <div class="user-cta-contain">
-                    <div class="my-left-col">
+                    <div class="my-left-col ">
                         <div class="user-jumbo-text">
                             Sei un ristoratore? Aderisci a DeliveBoo!
                         </div>
                         <a class="jumbo-btn" href="/register">Registrati</a>
                     </div>
                     <div class="my-right-col">
-                        <img src="../components/img/jumbotron/Chef.png" alt="">
+                        <img class="my-resp-jumbo" src="../components/img/jumbotron/Chef.png" alt="">
                     </div>
                 </div>
             </div>
@@ -340,6 +341,13 @@ computed:{
     }
 
 }
+
+@media screen and (max-width: 770px) {
+    .my-resp-jumbo{
+        display: none;
+    }
+}
+
 @media screen and (max-width: 460px) {
     .slide-track_my{
         padding: 1.2rem 0;

@@ -2,8 +2,10 @@
 @section('content')
 
 
-    <div>
-        <canvas id="myChart"></canvas>
+    <div class="my-chart-contain row overflow-auto">
+        <div class="col">
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -43,4 +45,10 @@
         config
         );
     </script>
+
+    <style scoped >
+        .my-chart-contain{
+            width: 100%;
+        }
+    </style>
 @endsection

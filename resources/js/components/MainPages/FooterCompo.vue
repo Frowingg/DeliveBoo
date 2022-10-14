@@ -59,34 +59,13 @@
 
                     <li>
                         
-                        tel: 39+ 43452414
-                        
+                        Tel: 39+ 43452414
+            
                     </li>
 
                     <li>
-                        email: Deliveboo@mail.com
+                        Email: Deliveboo@mail.com
                     </li>
-
-                </ul>
-
-                <ul class="discovery">
-
-                    <h4>
-                        Scarica l'App
-                    </h4>
-
-                    <li>
-                        <a href="#">
-                            link
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            link
-                        </a>
-                    </li>
-
 
                 </ul>
 
@@ -102,16 +81,16 @@
                 <div class="contain">
                     
                     <div class="foot-credit">               
-                        <img src="../img/work/instagram.png" alt="social">
+                      <a href="#"><img src="../img/work/instagram.png" alt="Instagram"></a>  
                     </div>
                       <div class="foot-credit">               
-                        <img src="../img/work/facebook.png" alt="social">
+                       <a href=""><img src="../img/work/facebook.png" alt="Facebook"></a> 
                     </div>
                     <div class="foot-credit">               
-                        <img src="../img/work/tumblr.png" alt="social">
+                       <a href=""><img src="../img/work/tumblr.png" alt="Tumblr"></a> 
                     </div>
                     <div class="foot-credit">               
-                        <img src="../img/work/twitter.png" alt="social">
+                       <a href=""><img src="../img/work/twitter.png" alt="Twitter"></a> 
                     </div>
                 </div>
             </div>
@@ -122,15 +101,13 @@
 export default {
     name: 'FooterCompo',
     
-    // props: {
-    //     headerLinks: Array,
-    // }
+
 }
 
 </script>
 
 <style lang="scss" scoped>
-// @import '../assets/style/common.scss';
+
 img{
     width: 100%;
 }
@@ -162,7 +139,7 @@ img{
 .foot-links{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .foot-logo{

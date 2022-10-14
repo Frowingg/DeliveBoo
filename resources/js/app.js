@@ -34,7 +34,13 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import router from './router.js';
 import App from './views/App.vue';
+import Toasted from 'vue-toasted';
 
+Vue.use(Toasted, {
+  duration: 1500,
+  position: 'bottom-right',
+  theme: 'bubble',
+})
 
 Vue.use(VueRouter);
 

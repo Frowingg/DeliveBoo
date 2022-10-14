@@ -139,7 +139,7 @@ h2{
     font-weight: 700;
     background-color: #fbba00;
     border-radius: 25px;
-    width: 25%;
+    // width: 25%;
     text-align: center;
 }
 
@@ -258,7 +258,7 @@ h2{
         font-weight: 700;
         background-color: #fbba00;
         border-radius: 25px;
-        width: 40%;
+        // width: 40%;
         text-align: center;
         margin-top: 1rem;
     }

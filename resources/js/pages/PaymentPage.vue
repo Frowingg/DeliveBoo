@@ -67,18 +67,24 @@
                     <h3 class="quest our-title">Pagamento avvenuto con successo</h3>
 
                     <div class="pop-up-action">
-                    <button type="button" class="cancelbtn btn btn-mine mr-3" onClick="document.getElementById('pop-up').style.display='none'">Ok</button>
-                </div>
+                        <router-link  :to="{ name: 'home' }">
+                            <button type="button" class="cancelbtn btn btn-pop-mine mr-3" onClick="document.getElementById('pop-up').style.display='none'">Ok</button>
+                        </router-link>
+                    
+                    </div>
             </div>
         </div>
 
         <div id="pop-up-alert">
             <div>
-                    <h3 class="quest">Pagamento non avvenuto </h3>
+                    <div class="our-logo">DeliveBoo</div>
+                    <h3 class="quest our-title">Pagamento non avvenuto </h3>
 
                     <div class="pop-up-action">
-                    <button type="button" class="cancelbtn btn btn-mine mr-3" onClick="document.getElementById('pop-up').style.display='none'">Ok</button>
-                </div>
+                        <router-link  :to="{ name: 'home' }">
+                            <button type="button" class="cancelbtn btn btn-pop-mine mr-3" onClick="document.getElementById('pop-up').style.display='none'">Ok</button>
+                        </router-link>
+                    </div>
             </div>
         </div>
     </div>
@@ -91,13 +97,13 @@ export default {
     data() {
         return {
             token: "",
-            userName: "davide",
-            userLastname: "davide",
-            userAddress: "davide",
-            userEmail: "davide@mail.com",
+            userName: "",
+            userLastname: "",
+            userAddress: "",
+            userEmail: "",
         };
     },
-    // bububaba
+
     mounted() {
         braintree.dropin.create({
             authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
@@ -142,6 +148,7 @@ export default {
                    if(response.data.success == true){
                         axios.post("http://127.0.0.1:8000/api/add-order", order);
                         document.getElementById('pop-up').style.display='block'
+                        localStorage.clear(this.carts);
                    } else {
                         document.getElementById('pop-up-alert').style.display='block'
                    }
@@ -200,7 +207,7 @@ export default {
         margin-top: 1rem;
     }
 
-    .btn-mine{
+    .btn-pop-mine{
         border: 1px solid #fbba00 !important;
         color: #fbba00 !important;
     }

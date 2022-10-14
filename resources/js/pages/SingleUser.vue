@@ -1,5 +1,10 @@
 <template>
-    <div class="container">
+<div class="wrap-bgc">
+    <div class="container-my">
+         <div class="title_my mt-3">
+                <h3>{{user.name}}</h3>
+         </div>
+        
         <div v-if="error.length > 0">
             <div class="alert alert-danger mt-5" >
                 <ul>
@@ -9,10 +14,12 @@
             </div>
         </div>
 
+    
         <div id="myproduct">
+          
             <div class="row mt-2 mb-2">
                 <div class="col-md-10">&nbsp;</div>
-                <div class="col-md-2 text-right">
+                <div class="col-md-2 text-right mt-3">
                     <button class="btn cart_my" data-toggle="modal" data-target="#cart">
                         <span class="">{{  allCartSum() }}</span>
                     </button>
@@ -30,7 +37,7 @@
                                         <tbody>
                                             <tr v-for="cart in carts" v-bind:key="cart.id">
                                                 <td>{{cart.name}}</td>
-                                                <td>{{cart.price}}</td>
+                                                <td>{{cart.price}}€</td>
                                                 <td width="100">{{cart.qty}}</td>
                                                 <td width="60">
                                                     <button @click="increase(cart)" class="btn addcart_my">+</button>
@@ -44,13 +51,13 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    Prezzo totale: {{getTotal()}} &nbsp;
+                                    Prezzo totale: {{getTotal()}}€ &nbsp;
                                     <router-link :to="{ name: 'payment' , params: { carts, cartsTotal }, }">
                                         <button v-if="carts.length > 0" data-dismiss="modal" class="btn btn_my" >
                                             Checkout
                                         </button>
                                     </router-link>
-                                    <button data-dismiss="modal" v-on:click="removeAllItemFromCart()" class="btn btn_my">
+                                    <button data-dismiss="modal" v-on:click="removeAllItemFromCart();cleanToast()" class="btn btn_my">
                                         Elimina tutti i prodtti
                                     </button>   
                                 </div>
@@ -60,31 +67,34 @@
                 </div>
             </div>
         </div>
-        <div class="container_my">
+        <div class="container_prod">
+            
             <div class="card_my_cart"  v-for="dish in dishes" :key="dish.id">
+                    <img :src="'/storage/' + dish.dish_cover" :alt=" dish.name ">
+                     <!-- <img src="https://picsum.photos/200/300" alt=""> -->
                     <div class="title_my">
                         <strong>{{ dish.name }}</strong>
-                    </div>
-                    <div class="img_my" >
-                         <img :src="'/storage/' + dish.dish_cover" :alt=" dish.name ">
                     </div>
                     <!-- <div class="img_my" v-else>
                         <img src="../img/work/sushi-pizza-scaled.jpg" alt="img">
                     </div> -->
-                    <div class="description_my">
-                        {{ dish.description }}
-                    </div>
-            
-                    <div class="price_my">
-                        {{  dish.price}} 
-                    </div>
-            
-                <button class="btn btn_my" @click="addCart(dish)">
-                    Aggiungi al carrello
-                </button>
+                    <div class="my-info">
+                            <div class="description_my">
+                                {{ dish.description }}
+                            </div>
+                    
+                            <div class="price_my">
+                                {{dish.price}}€
+                            </div>
+                        </div>
+                
+                        <button class="btn btn_my_cart" @click="addCart(dish);addToast()">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
             </div>  
         </div>
     </div>
+</div>
 </template>
 
 
@@ -95,8 +105,10 @@ export default {
         return {
             carts: [],
             dishes: [],
+            user:[],
             error: "",
             cartsTotal: 0,
+            
         };
     },
     methods: {
@@ -168,6 +180,12 @@ export default {
             });
             return totalItem;
         },
+        addToast(){
+            this.$toasted.show("Prodotto aggiunto al carrello.")
+        },
+        cleanToast(){
+            this.$toasted.show("Carrello svuotato correttamente.")
+        },
     },
 
     mounted() {
@@ -176,7 +194,9 @@ export default {
         }
         axios.get("/api/users/" + this.$route.params.slug).then((response) => {
             if (response.data.success) {
+                console.log(response)
                 this.dishes = response.data.results;
+                this.user = response.data.user
             } else {
                 this.$router.push({ name: "not-found" });
             }
@@ -186,14 +206,23 @@ export default {
 </script>
 
 <style scoped>
+.wrap-bgc{
+    background-color: lightgray;
+}
+    .container-my{
+        width: 80%;
+        margin: 0 auto;
+        
+    }
     .modal-title{
         color: #fbba00;
     }
     .title_my{
-        font-size:  20px;
+        font-size:  30px;
         color: chocolate;
-        margin-bottom: 30px;
+        margin-left: 1rem;
         margin-top: 30px;
+        position: absolute;
     }
 
     .addcart_my{
@@ -221,13 +250,11 @@ export default {
     }
     .price_my{
         font-size: 20px;
-        color: #9d9d9c;
+        color: white;
     }
     img{
         width: 100%;
-        border: 1px solid;
         border-radius: 20px;
-        margin-bottom: 25px;
         
     }
     .img_my{
@@ -236,33 +263,108 @@ export default {
     }
     .btn_my{
         background-color: #fbba00;
-        border: 1px solid #fbba00;
+        font-size: 1rem;
         color:white ;
         border-radius: 20px;
+    }
+    .btn_my_cart{
+        background-color: #fbba00;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 1.4rem;
+        color:white ;
+        align-self: end;
+        border-radius: 20px;
+        position: absolute;
+        bottom: 15px;
     }
     .btn_my:hover{
         background-color: white;
         color:#fbba00 ;
     }
+    .btn_my_cart:hover{
+        background-color: white;
+        color:#fbba00 ;
+    }
     .description_my{
-     color: #9d9d9c;
-     font-size: 18px;
-     width: 400px;
+     color: white;
+     font-size: 1.1rem;
     }
 
-    .container_my{
+    .my-info{
+        position: absolute;
+        bottom: 15px;
+        margin-left: 1rem;
+    }
+
+    .container_prod{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /* align-items: center; */
+    
  }
- .card_my-cart{
-    width: calc(100% / 2 - 20px);
-    margin-right: 20px;
+ .card_my_cart{
+    width: calc(100% / 3 - 35px);
+    margin: 15px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #fbba00;
+    position: relative;
 
  }
    
  .cart_my{
     background-color: #fbba00;
     color: white;
+    text-align: right;
  }
+ @media screen and (max-width: 920px) {
+    .card_my_cart{
+        width: calc(100% / 2 - 35px);
+        margin-right: 20px;
+
+    }
+}
+ @media screen and (max-width: 620px) {
+    .card_my_cart{
+        width: calc(100%);
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .btn_my{
+        color:white ;
+        border-radius: 50px;
+        width: 50px;
+        height: 50px;
+    }
+    .btn_my:hover{
+        background-color: white;
+        color:#fbba00 ;
+    }
+    
+.img_my{
+    display: none;
+}
+.description_my{
+    color: #9d9d9c;
+    font-size: 12px; 
+    display: flex;
+    justify-content: center;
+}
+.title_my{
+    font-size: 16px;
+    color: chocolate;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.price_my{
+    font-size: 15px;
+    color: #9d9d9c;
+    margin-right: 10px;
+}
+}
 </style>

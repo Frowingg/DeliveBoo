@@ -61,7 +61,7 @@ class CategoryController extends Controller
 
         //raw SQL 
         $raw_query = '
-        SELECT users.id AS user_id, users.name AS user_name, users.address AS user_address, users.slug AS user_slug
+        SELECT users.id AS user_id, users.name AS user_name, users.address AS user_address, users.slug AS user_slug, users.user_cover AS user_cover
         FROM users 
         JOIN category_user 
         ON users.id = category_user.user_id 

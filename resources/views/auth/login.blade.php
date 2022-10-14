@@ -5,9 +5,14 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8 my-padding-top">
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header">
+                        <div class="card-header">
+                            <a href="/" class="name-head">DeliveBoo</a href="/">
+                            <div class="deliveboo-page">{{ __('Login') }}</div>
+                        </div>
+                    </div>
     
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
@@ -59,11 +64,11 @@
                                         {{ __('Login') }}
                                     </button>
     
-                                    @if (Route::has('password.request'))
+                                    {{-- @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </form>
@@ -75,6 +80,9 @@
 </div>
 
 <style>
+    .my-padding-top{
+        padding-top: 3.5rem;
+    }
     .btn_my{
         background-color: #fbba00;
         color: white;
@@ -85,11 +93,20 @@
         background-color: white;
         color: #fbba00;
     }
+    .name-head{
+        font-family: pacifico;
+        font-size: 2rem;
+    }
+
+    .card-header a{
+        text-decoration: none;
+        color: inherit;
+    }
     .card-header{
         background-color: #fbba00;
         color: white;
-        font-size: 20px;
         text-align: center;
+        border: 0 !important;
     }
 </style>
 @endsection

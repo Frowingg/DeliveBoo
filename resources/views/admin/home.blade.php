@@ -2,7 +2,6 @@
 @section('content')
 
     <h1 class="mb-4">Benvenuto {{$user->name}}</h1>
-    <span>DEBUG: {{$user->id}}</span>
     <div class="row">
 
         <div class="col-lg-6 col-sm-12">
@@ -25,7 +24,9 @@
                     <div class="mb-4 my-orders">
                         <div>Cliente: {{$order->name}}</div>
                         <div>Totale: {{$order->total_price}}</div>
-                        <a href="#">Dettagli ordine</a>
+                        <div>Data e ora: {{ $order->created_at }}</div>
+                           
+    
                     </div>
                 @endforeach
             </ul>

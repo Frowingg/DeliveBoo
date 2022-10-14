@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriesTableSeeder::class);
     }
 
+
     //custom function
     protected function getSlug($title) {
 

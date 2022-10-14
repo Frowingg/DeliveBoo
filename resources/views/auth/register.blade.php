@@ -7,7 +7,9 @@
         <div class="col-md-8 mt-5">
             <div class="card my_form">
                 <div class="card-header">
-                    <div class="name-head">DeliveBoo</div>
+                    <div class="name-head">
+                      <a href="/"> DeliveBoo</a> 
+                    </div>
                     <div class="deliveboo-page">{{ __('Register') }}</div>
                 </div>
 
@@ -110,7 +112,7 @@
                                 
                             </div>
                             @endforeach     
-                            <span id="error-check-category" style="background-color: red">
+                            <span id="error-check-category" >
                                     
                             </span>  
                             @error('categories')
@@ -171,6 +173,14 @@
 </div>
 
 <style>
+
+#error-check-category{
+        background-color: red;
+        border-radius: 30px;
+        color: white;
+        margin: 0.2rem;
+        line-height: 38px
+    }
     /* LAYOUT */
     .my-input-check{
         border: none !important;
@@ -213,6 +223,7 @@
     .deliveboo-list{
         display: flex;
         width: 90%;
+        padding-bottom: 10px;
         flex-wrap: wrap;
     }
 
