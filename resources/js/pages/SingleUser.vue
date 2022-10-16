@@ -1,8 +1,11 @@
 <template>
 <div class="wrap-bgc">
+    <div class="my-bannerissimo">
+        <img src="../components/img/jumbotron/banner-singlepage.jpg" alt="">
+    </div>
     <div class="container-my">
          <div class="title_my mt-3">
-                <h3>{{user.name}}</h3>
+                <h3 class="my-name-restaurant-db">{{user.name}}</h3>
          </div>
         
         <div v-if="error.length > 0">
@@ -21,6 +24,9 @@
                 <div class="col-md-10">&nbsp;</div>
                 <div class="col-md-2 text-right mt-3">
                     <button class="btn cart_my" data-toggle="modal" data-target="#cart">
+                        <span>
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </span>
                         <span class="">{{  allCartSum() }}</span>
                     </button>
                     <div class="modal fade" id="cart">
@@ -71,21 +77,21 @@
             
             <div class="card_my_cart"  v-for="dish in dishes" :key="dish.id">
                     <img :src="'/storage/' + dish.dish_cover" :alt=" dish.name ">
-                     <!-- <img src="https://picsum.photos/200/300" alt=""> -->
-                    <div class="title_my">
-                        <strong>{{ dish.name }}</strong>
+                    <div class="title_my">{{ dish.name }}</div>
+                  
+                    <div class="description_my_test">
+                        {{ dish.description }}
                     </div>
-                    <!-- <div class="img_my" v-else>
-                        <img src="../img/work/sushi-pizza-scaled.jpg" alt="img">
-                    </div> -->
+
                     <div class="my-info">
-                            <div class="description_my">
+                            <!-- <div class="description_my">
                                 {{ dish.description }}
-                            </div>
+                            </div> -->
                     
                             <div class="price_my">
                                 {{dish.price}}€
                             </div>
+                            
                         </div>
                 
                         <button class="btn btn_my_cart" @click="addCart(dish);addToast()">
@@ -206,8 +212,78 @@ export default {
 </script>
 
 <style scoped>
+.my-name-restaurant-db{
+    font-size: 2rem;
+    padding: 0.2rem;
+}
+
+.my-bannerissimo{
+    width: 100%;
+    background-color: #fbba00;
+}
+
+.my-bannerissimo img{
+    height: 10vh;
+    object-fit: cover;
+}
+/* TEST */
+.card_my_cart:hover .my-info{
+    opacity: 0%;
+}
+
+.card_my_cart:active .my-info{
+    opacity: 0%;
+}
+
+.card_my_cart:hover .title_my{
+    opacity: 0%;
+}
+
+.card_my_cart:active .title_my{
+    opacity: 0%;
+}
+
+.card_my_cart:hover img{
+    filter: blur(5px);
+}
+
+.card_my_cart:active img{
+    filter: blur(5px);
+}
+
+.description_my_test{
+    position: absolute;
+    opacity: 0%;
+    width: 100%;
+}
+
+.card_my_cart:hover .description_my_test{
+    opacity: 100%;
+    padding: 1rem 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: chocolate;
+    height: 100%;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.card_my_cart:active .description_my_test{
+    display: block;
+    padding: 1rem 1rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: chocolate;
+    height: 100%;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* FINE TEST */
+
 .wrap-bgc{
-    background-color: lightgray;
+    /* background-color: lightgray; */
+    background: linear-gradient(rgba(255,255,255, 0.65), rgba(255,255,255, 0.65)), url("../components/img/jumbotron/try-back.jpg");
 }
     .container-my{
         width: 80%;
@@ -218,11 +294,16 @@ export default {
         color: #fbba00;
     }
     .title_my{
-        font-size:  30px;
-        color: chocolate;
+        font-size:  2rem;
         margin-left: 1rem;
         margin-top: 30px;
         position: absolute;
+        /* TEST */
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 30px;
+        padding: 0.2rem 0.6rem;
+        color: chocolate;
+        transition: all 0.5s;
     }
 
     .addcart_my{
@@ -250,7 +331,8 @@ export default {
     }
     .price_my{
         font-size: 20px;
-        color: white;
+        color: chocolate;
+        transition: all 0.5s;
     }
     img{
         width: 100%;
@@ -287,37 +369,50 @@ export default {
         color:#fbba00 ;
     }
     .description_my{
-     color: white;
-     font-size: 1.1rem;
+        color: chocolate;
+        font-size: 1.1rem;
+        transition: all 0.5s;
     }
 
     .my-info{
         position: absolute;
+        color: chocolate !important;
         bottom: 15px;
         margin-left: 1rem;
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 0.2rem 0.5rem;
+        border-radius: 25px;
+        transition: all 0.5s;
     }
 
     .container_prod{
-    display: flex;
-    flex-wrap: wrap;
-    /* align-items: center; */
+        display: flex;
+        flex-wrap: wrap;
+        /* align-items: center; */
     
  }
  .card_my_cart{
-    width: calc(100% / 3 - 35px);
-    margin: 15px;
+    /* width: calc(100% / 3 - 35px); */
+    transition: all 0.5s;
+    margin: 1rem;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    border: 1px solid #fbba00;
+    /* border: 1px solid #fbba00; */
     position: relative;
+ }
 
+ .card_my_cart:hover{
+        box-shadow: 15px 15px 25px rgb(50 50 50 / 15%);
  }
    
  .cart_my{
     background-color: #fbba00;
     color: white;
     text-align: right;
+    font-size: 1.2rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
  }
  @media screen and (max-width: 920px) {
     .card_my_cart{
@@ -350,20 +445,20 @@ export default {
     display: none;
 }
 .description_my{
-    color: #9d9d9c;
+    color: chocolate;
     font-size: 12px; 
     display: flex;
     justify-content: center;
 }
 .title_my{
-    font-size: 16px;
+    font-size: 1.4rem;
     color: chocolate;
     margin-bottom: 30px;
     margin-top: 30px;
 }
 .price_my{
     font-size: 15px;
-    color: #9d9d9c;
+    color: chocolate;
     margin-right: 10px;
 }
 }

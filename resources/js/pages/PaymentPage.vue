@@ -53,7 +53,7 @@
                 />
             </div>
 
-            <div class="container_my">
+            <div class="container_pay">
                 <div id="dropin-container"></div>
                 <button id="submit-button"  @click="makePay()" class="button button--small button--green">
                     Paga Adesso
@@ -160,6 +160,10 @@ export default {
 </script>
 
 <style>
+.container_pay{
+    padding: 0;
+    margin-bottom: 2rem;
+}
 
  #pop-up{
         display: none;

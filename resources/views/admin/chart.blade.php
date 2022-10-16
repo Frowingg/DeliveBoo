@@ -49,6 +49,7 @@
     <style scoped >
         .my-chart-contain{
             width: 100%;
+            aspect-ratio: auto;
         }
     </style>
 @endsection

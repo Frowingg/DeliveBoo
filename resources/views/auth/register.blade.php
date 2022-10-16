@@ -194,6 +194,11 @@
         font-size: 2rem;
     }
 
+    .name-head a{
+        text-decoration: none;
+        color: inherit
+    }
+
     .deliveboo-page{
         font-size: 0.8rem;
     }

@@ -10,7 +10,7 @@
                 <div class="card-layover"></div>
                 <div class="job-text">
                     <h3>Ristoratori</h3>
-                    <p>Lorem ipsum testo testo testo bububaba babacici</p>
+                    <p>Unisciti a migliaia di Ristoratori che utilizzano DeliveBoo</p>
                     <a class="btn-mine" href="">Scopri di più</a>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="card-layover"></div>
                 <div class="job-text">
                     <h3>Rider</h3>
-                    <p>Lorem ipsum testo testo testo bububaba babacici</p>
+                    <p>Lavora con noi come Raider clicca su Scopri di più per tutte le info</p>
                     <a class="btn-mine" href="">Scopri di più</a>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="card-layover"></div>
                 <div class="job-text">
                     <h3>Diventa Partner</h3>
-                    <p>Lorem ipsum testo testo testo bububaba babacici</p>
+                    <p>Scopri i vantaggi di essere nostro Partner </p>
                     <a class="btn-mine" href="">Scopri di più</a>
                 </div>
             </div>

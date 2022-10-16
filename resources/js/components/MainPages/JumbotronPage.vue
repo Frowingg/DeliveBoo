@@ -5,7 +5,7 @@
                 <div class="search_bar_my">
                     <h3>A fame come siamo messi?</h3>
                     <div class="message_my">
-                        Ordina i piatti che ami con DeliveBoo
+                        Clicca sulla Categoria che desideri per iniziare la ricerca
                     </div>
                 </div>
             </div>
@@ -77,13 +77,17 @@ export default {
         h3 {
             text-align: center;
             color: #fe7f08;
-            margin-bottom: 5px;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-family: pacifico;
         }
         .message_my {
             color: $secondarycolor;
             text-align: center;
-            font-size: 10px;
+            font-size: 1.0rem;
             margin-bottom: 5px;
+
+            
         }
         .input-group_my {
             border: 1px solid $secondarycolor;

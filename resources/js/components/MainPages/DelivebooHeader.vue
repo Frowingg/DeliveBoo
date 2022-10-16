@@ -9,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div v-if="userLogged" class="navbar-nav ms-auto my-pad">
                     <div>
-                        <a href="/admin">Il tuo Ristorante</a>
+                        <a class="user-logged-style" href="/admin">Il tuo Ristorante</a>
                     </div>
                 </div>
 
@@ -36,6 +36,12 @@ export default {
 
 </script>
 <style lang="scss" scoped>
+
+.user-logged-style{
+    text-decoration: none;
+    color: #ffba00;
+}
+
 .my-logo{
     font-family: 'Pacifico', cursive !important;
     color: #ffba00 !important;

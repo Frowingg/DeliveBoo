@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <div class="container top">
+        <div class="container-columns-foot top">
 
             <div class="foot-logo">
                 DeliveBoo
@@ -8,16 +8,16 @@
             
             <div class="foot-links">
 
-                <ul class="discovery">
+                <ul class="discovery footer-col-db">
 
                     <h4>
                         Scopri DeliveBoo
                     </h4>
 
                     <li>
-                        <a href="#">
-                            Chi Siamo?
-                        </a>
+                        <router-link :to="{ name: 'AboutUs'}">
+                            <a href="#"> Chi Siamo? </a>
+                        </router-link> 
                     </li>
 
                     <li>
@@ -47,7 +47,7 @@
 
                 </ul>
 
-                <ul class="discovery">
+                <ul class="discovery footer-col-db">
 
                     <h4>
                         Recapiti
@@ -69,28 +69,32 @@
 
                 </ul>
 
+                <!-- <ul class="footer-icon">
+                    <img src="../img/footer/icon-package.svg" alt="">
+                </ul> -->
+
             </div>
 
         </div>
 
         <hr>
-            <div class="container_my">
+            <div class="container_my_credits_foot">
                 <div class="copyright_my">
-                    Legal for Digital  © Copyright 2022 by Deliveboo
+                    Deliveboo &copy; 2022 by Team 1 - Classe 66
                 </div>
-                <div class="contain">
+                <div class="contain_my_credits_foot">
                     
                     <div class="foot-credit">               
-                      <a href="#"><img src="../img/work/instagram.png" alt="Instagram"></a>  
+                      <a href="#"><i class="fa-brands fa-instagram"></i></a>  
                     </div>
                       <div class="foot-credit">               
-                       <a href=""><img src="../img/work/facebook.png" alt="Facebook"></a> 
+                       <a href=""><i class="fa-brands fa-facebook"></i></a> 
                     </div>
                     <div class="foot-credit">               
-                       <a href=""><img src="../img/work/tumblr.png" alt="Tumblr"></a> 
+                       <a href=""><i class="fa-brands fa-google-plus-g"></i></a> 
                     </div>
                     <div class="foot-credit">               
-                       <a href=""><img src="../img/work/twitter.png" alt="Twitter"></a> 
+                       <a href=""><i class="fa-brands fa-twitter"></i></a> 
                     </div>
                 </div>
             </div>
@@ -100,24 +104,34 @@
 <script>
 export default {
     name: 'FooterCompo',
-    
-
 }
 
 </script>
 
 <style lang="scss" scoped>
 
-img{
-    width: 100%;
+.container-columns-foot{
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 .footer{
     background-color: #d0d0d0;
     padding: 1rem 0;
     margin-top: 20px;
 }
+
+// .footer-col-db{
+//     width: calc(100% / 3);
+// }
+
 .discovery{
     margin-top: 15px;
+    background-color: #9d9d9c;
+    padding: 2.3rem 3.6rem;
+    margin-left: 20px;
     h4{
         color: white;
         margin-bottom: 20px;
@@ -127,7 +141,13 @@ img{
         color: white;
     }
 }
-.contain{
+
+.footer-icon img{
+    padding: 2.3rem 3.6rem;
+    height: 50%;
+}
+
+.contain_my_credits_foot{
     display: flex;
     margin-right: 40px;
 }
@@ -140,6 +160,7 @@ img{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    height: 100%;
 }
 
 .foot-logo{
@@ -150,9 +171,6 @@ img{
 
 ul{
     list-style:none;
-    background-color: #9d9d9c;
-    padding: 2.3rem 3.6rem;
-    margin-left: 20px;
 }
 
 li a{
@@ -160,10 +178,15 @@ li a{
     color: inherit;
 }
 .foot-credit{
-    width: 30px;
-    margin-left: 20px;
+    font-size: 1.6rem;
+    margin: 0 1.2rem;
 }
-.container_my{
+
+.foot-credit a{
+    color: inherit;
+}
+
+.container_my_credits_foot{
     width: 100%;
     display: flex;
     align-items: center;

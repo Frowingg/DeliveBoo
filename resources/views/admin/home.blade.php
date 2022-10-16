@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-lg-6 col-sm-12">
-            <h2 class="order-title">I miei ordini:</h2>
+            <h2 class="order-title">Ultimi 3 ordini ricevuti:</h2>
             <ul>
                 @foreach ($orders->take(3) as $order)
                     <div class="mb-4 my-orders">

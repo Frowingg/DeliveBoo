@@ -75,22 +75,11 @@ body {
     justify-content: center;
     overflow: hidden;
 }
-.responsive_my_sp {
-    display: none;
-}
-.responsive_my_tb {
-    display: none;
-}
+
 @media screen and (max-width: 460px) {
-    .container_my{
-        height: 20vh !important;
-    }
     .carrousel_my {
         margin: 1rem 0 !important;
         padding: 0 !important;
-    }
-    .responsive_my_tb {
-        display: block;
     }
 }
 </style>

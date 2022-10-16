@@ -264,6 +264,7 @@ computed:{
     cursor: pointer;
     img {
         width: 100%;
+        height: 100%;
         justify-self: center;
         align-self: center;
         position: absolute;
